@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "1039580170525",
+    "firebase_url": "https://blood-relations.firebaseio.com",
+    "project_id": "blood-relations",
+    "storage_bucket": "blood-relations.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1039580170525:android:e520f7283465c839",
+        "android_client_info": {
+          "package_name": "smartindia.santas.bloodrelations"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1039580170525-8oh9os5sv07rjcrn0v6fcqlvet7il5vj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "smartindia.santas.bloodrelations",
+            "certificate_hash": "3f1250ddefe6c8b39f6be8006dfc8fc83be5a79f"
+          }
+        },
+        {
+          "client_id": "1039580170525-468k3ndnp7hp8gl5oqst7q3240sqbrdj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "smartindia.santas.bloodrelations",
+            "certificate_hash": "baf06bc63d3c7fa92b82f7d3f59543240662bab9"
+          }
+        },
+        {
+          "client_id": "1039580170525-6d08ab7osf0enf3rplqs53dje897hdfr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCv47sU5KVtI_nfcQVRWtzI9nizkDXjdRA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1039580170525-6d08ab7osf0enf3rplqs53dje897hdfr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
