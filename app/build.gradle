@@ -24,9 +24,9 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.0'
-    compile 'com.android.support:support-v13:25.3.0'
-    compile 'com.android.support:design:25.3.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:support-v13:25.3.1'
+    compile 'com.android.support:design:25.3.1'
     compile 'com.google.firebase:firebase-core:10.2.1'
     compile 'com.google.firebase:firebase-messaging:10.2.1'
     compile 'com.google.firebase:firebase-database:10.2.1'
@@ -35,7 +35,6 @@ dependencies {
     compile 'com.google.android.gms:play-services-auth:10.2.1'
     compile 'com.google.android.gms:play-services-maps:10.2.1'
     compile 'com.google.android.gms:play-services-places:10.2.1'
-    compile 'com.github.asne:asne-googleplus:0.3.3'
     testCompile 'junit:junit:4.12'
 }
 
