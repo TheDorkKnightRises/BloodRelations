@@ -1,4 +1,4 @@
-package smartindia.santas.bloodrelations;
+package smartindia.santas.bloodrelations.activities;
 
 import android.support.annotation.NonNull;
 import android.support.design.internal.NavigationMenu;
@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+
+import smartindia.santas.bloodrelations.R;
 
 public class MainActivity extends AppCompatActivity {
 
