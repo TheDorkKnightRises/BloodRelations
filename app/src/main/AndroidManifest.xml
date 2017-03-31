@@ -38,11 +38,10 @@
         <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".activities.MainActivity">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-      
+
         <activity android:name=".activities.MainActivity">
 
         </activity>
@@ -50,11 +49,18 @@
         <activity android:name=".activities.SignUpActivity">
 
         </activity>
-      
+
         <activity android:name=".activities.Form"
             android:label="Form"
             android:theme="@style/AppThemePlusToolbar"
             android:parentActivityName=".activities.MainActivity">
+        </activity>
+        <activity android:name=".activities.ProfileActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".activities.ProfileActivity"></activity>
 
