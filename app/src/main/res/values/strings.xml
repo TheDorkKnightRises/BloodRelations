@@ -3,6 +3,28 @@
 
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+  
+    <string name="error">Error</string>
+    <string name="please_wait">Please wait</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+
+
+    <string name="action_sign_in">Sign in to Websites.co.in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_sign_up_short">Sign up</string>
+
+    <string name="no_account">No account yet?</string>
+
+    <string name="permission_rationale">"Contacts permissions are needed for providing emailid
+        completions."
+    </string>
+
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_invalid_phone">This phone number is invalid</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
 
     <string name="home">Home</string>
     <string name="profile">Profile</string>
