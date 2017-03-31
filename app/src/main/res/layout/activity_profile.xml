@@ -19,14 +19,15 @@
             android:id="@+id/profile_image"
             android:src="@drawable/ic_account_circle_black_24dp"
             />
-        <ImageView
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_photo_camera_black_24dp"
+            android:background="@android:color/transparent"
             android:layout_alignBottom="@+id/profile_image"
             android:layout_alignRight="@+id/profile_image"
             android:scaleX="0.75"
-            android:scaleY="0.75"/>
+            android:scaleY="0.75" />
     </RelativeLayout>
     <TextView
         android:layout_width="wrap_content"
@@ -148,4 +149,13 @@
             android:layout_height="wrap_content"
             android:hint="Year"/>
     </LinearLayout>
+        android:hint="Enter address"/>
+    <EditText
+        android:id="@+id/birthday_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Birthday"
+        android:textSize="20dp"
+        android:textColor="@color/colorAccent"
+        />
 </LinearLayout>
