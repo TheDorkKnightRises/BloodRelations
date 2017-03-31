@@ -35,7 +35,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         profilePicture=(de.hdodenhof.circleimageview.CircleImageView)findViewById(R.id.profile_image);
-        birthDateEditText=(EditText) findViewById(R.id.birthday_textview);
+        birthDateEditText=(EditText) findViewById(R.id.birthday_edittext);
 
         final Calendar myCalendar = Calendar.getInstance();
 
