@@ -1,5 +1,6 @@
 package smartindia.santas.bloodrelations.activities;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.internal.NavigationMenu;
 import android.support.design.widget.NavigationView;
@@ -44,7 +45,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
-
+                    case R.id.menu_item_home:
+                        startActivity(new Intent(MainActivity.this,MainActivity.class));
+                        break;
+                    case R.id.menu_item_profile:
+                        //startActivity(new Intent(MainActivity.this,Form.class));
+                        break;
+                    case R.id.menu_item_locate:
+                        //startActivity(new Intent(MainActivity.this,Form.class));
+                        break;
+                    case R.id.menu_item_form:
+                        startActivity(new Intent(MainActivity.this,Form.class));
+                        break;
+                    case R.id.menu_item_language:
+                        //startActivity(new Intent(MainActivity.this,Form.class));
+                        break;
+                    case R.id.menu_item_feedback:
+                        //startActivity(new Intent(MainActivity.this,Form.class));
+                        break;
                 }
                 return true;
             }

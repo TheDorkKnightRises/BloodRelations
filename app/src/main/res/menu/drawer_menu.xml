@@ -1,8 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:title="@string/app_name"
-        android:id="@+id/sample"/>
+    <group
+        android:id="@+id/drawer_items"
+        android:checkableBehavior="single">
+
+        <item
+            android:title="@string/home"
+            android:id="@+id/menu_item_home"
+            android:icon="@drawable/svg_ic_home_black_24px"/>
+
+        <item
+            android:title="@string/profile"
+            android:id="@+id/menu_item_profile"
+            android:icon="@drawable/svg_ic_profile_black_24px"/>
+
+        <item
+            android:title="@string/locate"
+            android:id="@+id/menu_item_locate"
+            android:icon="@drawable/svg_ic_locate_black_24px"/>
+
+        <item
+            android:title="@string/form"
+            android:id="@+id/menu_item_form"
+            android:icon="@drawable/svg_icf_form_black_24px"/>
+
+        <item
+            android:title="@string/language"
+            android:id="@+id/menu_item_language"
+            android:icon="@drawable/svg_ic_language_black_24px"/>
+
+        <item
+            android:title="@string/faqs"
+            android:id="@+id/menu_item_faqs"
+            android:icon="@drawable/svg_ic_faqs_black_24px"/>
+
+        <item
+            android:title="@string/feedback"
+            android:id="@+id/menu_item_feedback"
+            android:icon="@drawable/svg_ic_feedback_black_24px"/>
+
+    </group>
 
 </menu>

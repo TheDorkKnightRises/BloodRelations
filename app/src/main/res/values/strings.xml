@@ -3,4 +3,12 @@
 
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="locate">Locate</string>
+    <string name="form">Form</string>
+    <string name="language">Language</string>
+    <string name="faqs">FAQs</string>
+    <string name="feedback">Feedback</string>
 </resources>

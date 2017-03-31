@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="@dimen/app_padding"
+    android:paddingRight="@dimen/app_padding"
     tools:context="smartindia.santas.bloodrelations.activities.Form">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:focusableInTouchMode="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -17,14 +20,13 @@
             android:orientation="horizontal">
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="2"
-                android:textSize="20dp"
+                android:layout_weight="1.5"
+                android:textSize="@dimen/form_header_size"
                 android:layout_height="wrap_content"
-                android:text="1. Enter Occupation: "/>
+                android:text="1. Enter Occupation"/>
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Occupation"
                 android:layout_weight="1"/>
         </LinearLayout>
 
@@ -32,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="In the past 6 months"
-            android:textSize="20dp"
+            android:textSize="@dimen/form_header_size"
             android:textStyle="bold"/>
 
         <LinearLayout
@@ -95,7 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Have you ever"
-            android:textSize="20dp"
+            android:textSize="@dimen/form_header_size"
             android:textStyle="bold"/>
 
         <LinearLayout

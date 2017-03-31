@@ -16,7 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.Form"></activity>
+        <activity android:name=".activities.Form"
+            android:label="Form"
+            android:theme="@style/AppThemePlusToolbar"
+            android:parentActivityName=".activities.MainActivity">
+        </activity>
     </application>
 
 </manifest>
