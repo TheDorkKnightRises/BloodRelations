@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/app_padding"
     android:paddingRight="@dimen/app_padding"
-    tools:context="smartindia.santas.bloodrelations.activities.Form">
+    tools:context="smartindia.santas.bloodrelations.activities.FormActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

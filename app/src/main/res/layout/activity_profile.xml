@@ -13,19 +13,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:paddingBottom="24dp">
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:id="@+id/profile_image"
             android:src="@drawable/ic_account_circle_black_24dp"
-
             />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_photo_camera_black_24dp"
             android:layout_alignBottom="@+id/profile_image"
-            android:layout_alignRight="@+id/profile_image"/>
+            android:layout_alignRight="@+id/profile_image"
+            android:scaleX="0.75"
+            android:scaleY="0.75"/>
     </RelativeLayout>
     <TextView
         android:layout_width="wrap_content"

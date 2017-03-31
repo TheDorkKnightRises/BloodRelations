@@ -42,9 +42,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activities.Form"
-
         <activity android:name=".activities.MainActivity">
 
         </activity>
@@ -53,16 +50,35 @@
 
         </activity>
 
-        <activity android:name=".activities.Form"
+        <activity
+            android:name=".activities.FormActivity"
             android:label="Form"
             android:parentActivityName=".activities.MainActivity"
-            android:theme="@style/AppThemePlusToolbar"></activity>
-        <activity android:name=".activities.BloodBankListActivity"></activity>
+            android:theme="@style/AppThemePlusToolbar"/>
+        <activity
+            android:name=".activities.BloodBankListActivity"
+            android:label="BloodRelations"
+            android:theme="@style/AppThemePlusToolbar"
+            android:parentActivityName=".activities.MainActivity">>
+        </activity>
+        <activity android:name=".activities.ProfileActivity"
+            android:label="Profile"
             android:theme="@style/AppThemePlusToolbar"
             android:parentActivityName=".activities.MainActivity">
         </activity>
-        <activity android:name=".activities.ProfileActivity"></activity>
 
+
+        <activity
+            android:name=".activities.LanguageActivity"
+            android:label="Select a language"
+            android:theme="@style/AppThemePlusToolbar"
+            android:parentActivityName=".activities.MainActivity">
+        </activity>
+        <activity
+            android:name=".activities.FeedbackActivity"
+            android:label="Feedback"
+            android:theme="@style/AppThemePlusToolbar"
+            android:parentActivityName=".activities.MainActivity"></activity>
     </application>
 
 </manifest>
