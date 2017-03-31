@@ -16,11 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.Form"
+        <activity
+            android:name=".activities.Form"
             android:label="Form"
-            android:theme="@style/AppThemePlusToolbar"
-            android:parentActivityName=".activities.MainActivity">
-        </activity>
+            android:parentActivityName=".activities.MainActivity"
+            android:theme="@style/AppThemePlusToolbar"></activity>
+        <activity android:name=".activities.BloodBankListActivity"></activity>
     </application>
 
 </manifest>

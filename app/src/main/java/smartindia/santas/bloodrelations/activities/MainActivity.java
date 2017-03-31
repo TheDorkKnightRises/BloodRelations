@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
                     case R.id.menu_item_home:
-                        startActivity(new Intent(MainActivity.this,MainActivity.class));
+                        startActivity(new Intent(MainActivity.this,BloodBankListActivity.class));
                         break;
                     case R.id.menu_item_profile:
                         //startActivity(new Intent(MainActivity.this,Form.class));
