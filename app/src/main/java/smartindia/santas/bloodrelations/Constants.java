@@ -5,4 +5,7 @@ package smartindia.santas.bloodrelations;
  */
 
 public class Constants {
+
+    public static final String PREFS = "prefs";
+    public static final String LOGGED_IN = "logged_in";
 }
