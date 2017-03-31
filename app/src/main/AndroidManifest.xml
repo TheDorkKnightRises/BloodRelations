@@ -22,6 +22,10 @@
             android:parentActivityName=".activities.MainActivity"
             android:theme="@style/AppThemePlusToolbar"></activity>
         <activity android:name=".activities.BloodBankListActivity"></activity>
+            android:theme="@style/AppThemePlusToolbar"
+            android:parentActivityName=".activities.MainActivity">
+        </activity>
+        <activity android:name=".activities.ProfileActivity"></activity>
     </application>
 
 </manifest>
