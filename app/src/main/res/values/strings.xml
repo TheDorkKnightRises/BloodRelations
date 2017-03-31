@@ -3,6 +3,7 @@
 
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+  
     <string name="error">Error</string>
     <string name="please_wait">Please wait</string>
     <string name="prompt_email">Email</string>
@@ -24,4 +25,12 @@
     <string name="error_invalid_phone">This phone number is invalid</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
+
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="locate">Locate</string>
+    <string name="form">Form</string>
+    <string name="language">Language</string>
+    <string name="faqs">FAQs</string>
+    <string name="feedback">Feedback</string>
 </resources>
