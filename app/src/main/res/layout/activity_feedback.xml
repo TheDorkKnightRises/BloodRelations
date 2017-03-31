@@ -79,28 +79,27 @@
                     android:text="Suggestion"
                     android:layout_gravity="right"
                     android:textSize="20dp"
-                    android:textColor="@android:color/darker_gray"/>
+                    android:textColor="@color/yellow"/>
 
                 <CheckBox
                     android:text="Question"
                     android:layout_gravity="fill"
                     android:layout_marginLeft="60dp"
                     android:textSize="20dp"
-                    android:textColor="@android:color/darker_gray"/>
+                    android:textColor="@color/blue"/>
 
                 <CheckBox
                     android:text="Problem"
                     android:layout_gravity="fill"
-
                     android:textSize="20dp"
-                    android:textColor="@android:color/darker_gray"/>
+                    android:textColor="@color/red"/>
 
                 <CheckBox
                     android:text="Praise"
                     android:layout_gravity="fill"
                     android:layout_marginLeft="60dp"
                     android:textSize="20dp"
-                    android:textColor="@android:color/darker_gray"/>
+                    android:textColor="@color/purple"/>
 
             </GridLayout>
 
