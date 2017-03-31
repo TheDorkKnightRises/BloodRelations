@@ -21,6 +21,7 @@
             android:theme="@style/AppThemePlusToolbar"
             android:parentActivityName=".activities.MainActivity">
         </activity>
+        <activity android:name=".activities.ProfileActivity"></activity>
     </application>
 
 </manifest>
