@@ -2,7 +2,6 @@ package smartindia.santas.bloodrelations.activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.internal.NavigationMenu;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -46,22 +45,22 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
                     case R.id.menu_item_home:
-                        startActivity(new Intent(MainActivity.this,MainActivity.class));
+                        startActivity(new Intent(MainActivity.this,BloodBankListActivity.class));
                         break;
                     case R.id.menu_item_profile:
-                        //startActivity(new Intent(MainActivity.this,Form.class));
+                        startActivity(new Intent(MainActivity.this,ProfileActivity.class));
                         break;
                     case R.id.menu_item_locate:
-                        //startActivity(new Intent(MainActivity.this,Form.class));
+                        //startActivity(new Intent(MainActivity.this,FormActivity.class));
                         break;
                     case R.id.menu_item_form:
-                        startActivity(new Intent(MainActivity.this,Form.class));
+                        startActivity(new Intent(MainActivity.this,FormActivity.class));
                         break;
                     case R.id.menu_item_language:
-                        //startActivity(new Intent(MainActivity.this,Form.class));
+                        startActivity(new Intent(MainActivity.this,LanguageActivity.class));
                         break;
                     case R.id.menu_item_feedback:
-                        //startActivity(new Intent(MainActivity.this,Form.class));
+                        startActivity(new Intent(MainActivity.this,FeedbackActivity.class));
                         break;
                 }
                 return true;

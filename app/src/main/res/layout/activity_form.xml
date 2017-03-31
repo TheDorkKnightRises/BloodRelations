@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/app_padding"
-    android:paddingRight="@dimen/app_padding"
     tools:context="smartindia.santas.bloodrelations.activities.Form">
 
     <LinearLayout
@@ -13,27 +11,34 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:focusableInTouchMode="true">
-
-        <LinearLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:padding="3dp"
-                android:layout_weight="1.5"
-                android:textSize="@dimen/form_header_size"
+            android:paddingTop="10dp"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            app:cardCornerRadius="7dp">
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="1. Enter Occupation"/>
-            <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:background="@android:color/darker_gray"/>
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:padding="3dp"
+                    android:layout_weight="1.5"
+                    android:textSize="@dimen/form_header_size"
+                    android:layout_height="wrap_content"
+                    android:text="1. Enter Occupation"/>
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
 
         <TextView
             android:layout_width="match_parent"
@@ -42,71 +47,85 @@
             android:textSize="@dimen/form_header_size"
             android:textStyle="bold"/>
 
-        <LinearLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="3"
-                android:padding="3dp"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:text="2. Have you had a blood trasnfusion?"/>
-            <RadioGroup
-                android:layout_width="0dp"
-                android:layout_weight="2"
+            android:paddingTop="10dp"
+            android:paddingRight="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:paddingLeft="5dp"
+            app:cardCornerRadius="7dp">
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:padding="3dp"
                     android:layout_height="wrap_content"
-                    android:text="Yes"/>
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:text="2. Have you had a blood trasnfusion?"/>
+                <RadioGroup
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="wrap_content"
-                    android:text="No"/>
-            </RadioGroup>
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"/>
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Yes"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="No"/>
+                </RadioGroup>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
 
-        <LinearLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="3"
-                android:layout_height="wrap_content"
-                android:padding="3dp"
-                android:textSize="20dp"
-                android:text="3. Have you had any vaccinations or other shots?"/>
-            <RadioGroup
-                android:layout_width="0dp"
-                android:layout_weight="2"
+            android:paddingTop="10dp"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            app:cardCornerRadius="7dp">
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
                     android:layout_height="wrap_content"
-                    android:text="Yes"/>
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
+                    android:padding="3dp"
+                    android:textSize="20dp"
+                    android:text="3. Have you had any vaccinations or other shots?"/>
+                <RadioGroup
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="wrap_content"
-                    android:text="No"/>
-            </RadioGroup>
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:background="@android:color/darker_gray"/>
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Yes"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="No"/>
+                </RadioGroup>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
 
         <TextView
             android:layout_width="match_parent"
@@ -115,170 +134,212 @@
             android:textSize="@dimen/form_header_size"
             android:textStyle="bold"/>
 
-        <LinearLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="3"
-                android:layout_height="wrap_content"
-                android:padding="3dp"
-                android:textSize="20dp"
-                android:text="4. Had Jaundice/Hepatitis"/>
-            <RadioGroup
-                android:layout_width="0dp"
-                android:layout_weight="2"
+            android:paddingTop="10dp"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            app:cardCornerRadius="7dp">
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
                     android:layout_height="wrap_content"
-                    android:text="Yes"/>
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
+                    android:padding="3dp"
+                    android:textSize="20dp"
+                    android:text="4. Had Jaundice/Hepatitis"/>
+                <RadioGroup
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="wrap_content"
-                    android:text="No"/>
-            </RadioGroup>
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"/>
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Yes"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="No"/>
+                </RadioGroup>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="3"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:padding="3dp"
-                android:text="5. Had a positive test for HIV/HbSAg/HCV?"/>
-            <RadioGroup
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Yes"/>
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="No"/>
-            </RadioGroup>
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"/>
 
-        <LinearLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="3"
-                android:layout_height="wrap_content"
-                android:padding="3dp"
-                android:textSize="20dp"
-                android:text="6. Had Had any cardiac/lung problems?"/>
-            <RadioGroup
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Yes"/>
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="No"/>
-            </RadioGroup>
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"/>
+            android:paddingTop="10dp"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            app:cardCornerRadius="7dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="3"
-                android:layout_height="wrap_content"
-                android:padding="3dp"
-                android:textSize="20dp"
-                android:text="7. Had a bleeding condition or blood disease?"/>
-            <RadioGroup
-                android:layout_width="0dp"
-                android:layout_weight="2"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
                     android:layout_height="wrap_content"
-                    android:text="Yes"/>
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:padding="3dp"
+                    android:text="5. Had a positive test for HIV/HbSAg/HCV?"/>
+                <RadioGroup
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
                     android:layout_height="wrap_content"
-                    android:text="No"/>
-            </RadioGroup>
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="3"
-                android:layout_height="wrap_content"
-                android:padding="3dp"
-                android:textSize="20dp"
-                android:text="8. Do you have hypertension or blood disease"/>
-            <RadioGroup
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Yes"/>
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="No"/>
-            </RadioGroup>
-        </LinearLayout>
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Yes"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="No"/>
+                </RadioGroup>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
 
-        <View
+
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"/>
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            app:cardCornerRadius="7dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:textSize="20dp"
+                    android:text="6. Had Had any cardiac/lung problems?"/>
+                <RadioGroup
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Yes"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="No"/>
+                </RadioGroup>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            app:cardCornerRadius="7dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:textSize="20dp"
+                    android:text="7. Had a bleeding condition or blood disease?"/>
+                <RadioGroup
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Yes"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="No"/>
+                </RadioGroup>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            app:cardCornerRadius="7dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:textSize="20dp"
+                    android:text="8. Do you have hypertension or blood disease"/>
+                <RadioGroup
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Yes"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="No"/>
+                </RadioGroup>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

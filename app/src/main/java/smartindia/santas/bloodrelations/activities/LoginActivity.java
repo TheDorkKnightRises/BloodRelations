@@ -87,20 +87,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         else{
             Toast.makeText(LoginActivity.this,"Not Signed in",Toast.LENGTH_SHORT).show();
         }
-        /*authStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null){
-                    Toast.makeText(LoginActivity.this,"Signed in",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(LoginActivity.this,MainActivity.class));
-                    finish();
-                }
-                else {
 
-                }
-            }
-        };*/
 
 
         final Handler handler = new Handler();
@@ -147,6 +134,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                         }
                     });
 
+                    //TODO : Delete bypass
+                    Button button = (Button)findViewById(R.id.bypass);
+                    button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                            finish();
+                        }
+                    });
 
                     mLoginFormView = findViewById(R.id.login_form);
                     mProgressView = findViewById(R.id.login_progress);

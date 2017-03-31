@@ -15,6 +15,32 @@
       },
       "oauth_client": [
         {
+          "client_id": "1039580170525-hou0auh53k6rd8pufs1aomseau5op9vd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "smartindia.santas.bloodrelations",
+            "certificate_hash": "f688b1ba541cfda41df88b7a25da77b7901cd3d5"
+          }
+        },
+        {
+          "client_id": "1039580170525-8tvr1c5nnm2lscc01vt0sj3d3gfa0tk6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "smartindia.santas.bloodrelations",
+            "certificate_hash": "b5102889171d6b3c2f2c3c84f5c0d92676229329"
+          }
+        },
+        {
+          "client_id": "1039580170525-cgbmbhp7l20r7hmioe4045v83ouo142u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "smartindia.santas.bloodrelations",
+            "certificate_hash": "401f816599429a02cf5ebee7087725ee15fa7888"
+          }
+        },
+        {
+          "client_id": "1039580170525-e5s8georuui2bgg8ct890a7bob3pbf54.apps.googleusercontent.com",
+          "client_id": "1039580170525-8oh9os5sv07rjcrn0v6fcqlvet7il5vj.apps.googleusercontent.com",
           "client_id": "1039580170525-e5s8georuui2bgg8ct890a7bob3pbf54.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
