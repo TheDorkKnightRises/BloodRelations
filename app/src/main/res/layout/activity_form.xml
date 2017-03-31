@@ -20,6 +20,7 @@
             android:orientation="horizontal">
             <TextView
                 android:layout_width="0dp"
+                android:padding="3dp"
                 android:layout_weight="1.5"
                 android:textSize="@dimen/form_header_size"
                 android:layout_height="wrap_content"
@@ -29,6 +30,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@android:color/darker_gray"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -44,6 +49,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="3"
+                android:padding="3dp"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:text="2. Have you had a blood trasnfusion?"/>
@@ -64,6 +70,10 @@
                     android:text="No"/>
             </RadioGroup>
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -73,6 +83,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:layout_height="wrap_content"
+                android:padding="3dp"
                 android:textSize="20dp"
                 android:text="3. Have you had any vaccinations or other shots?"/>
             <RadioGroup
@@ -92,6 +103,10 @@
                     android:text="No"/>
             </RadioGroup>
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@android:color/darker_gray"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -108,6 +123,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:layout_height="wrap_content"
+                android:padding="3dp"
                 android:textSize="20dp"
                 android:text="4. Had Jaundice/Hepatitis"/>
             <RadioGroup
@@ -127,6 +143,10 @@
                     android:text="No"/>
             </RadioGroup>
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -137,6 +157,7 @@
                 android:layout_weight="3"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
+                android:padding="3dp"
                 android:text="5. Had a positive test for HIV/HbSAg/HCV?"/>
             <RadioGroup
                 android:layout_width="0dp"
@@ -155,6 +176,10 @@
                     android:text="No"/>
             </RadioGroup>
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -164,6 +189,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:layout_height="wrap_content"
+                android:padding="3dp"
                 android:textSize="20dp"
                 android:text="6. Had Had any cardiac/lung problems?"/>
             <RadioGroup
@@ -183,6 +209,10 @@
                     android:text="No"/>
             </RadioGroup>
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -192,6 +222,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:layout_height="wrap_content"
+                android:padding="3dp"
                 android:textSize="20dp"
                 android:text="7. Had a bleeding condition or blood disease?"/>
             <RadioGroup
@@ -211,6 +242,10 @@
                     android:text="No"/>
             </RadioGroup>
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -219,6 +254,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="3"
                 android:layout_height="wrap_content"
+                android:padding="3dp"
                 android:textSize="20dp"
                 android:text="8. Do you have hypertension or blood disease"/>
             <RadioGroup
@@ -239,6 +275,10 @@
             </RadioGroup>
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
