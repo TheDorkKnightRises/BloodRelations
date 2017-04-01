@@ -95,17 +95,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        firebaseAuth =FirebaseAuth.getInstance();
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        if(user != null){
-            Toast.makeText(LoginActivity.this,"Signed in",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(LoginActivity.this,MainActivity.class));
-            finish();
-        }
-        else{
-            Toast.makeText(LoginActivity.this,"Not Signed in",Toast.LENGTH_SHORT).show();
-        }
-
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -127,52 +116,60 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         };
 
 
+        firebaseAuth =FirebaseAuth.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if(user != null){
+            Toast.makeText(LoginActivity.this,"Signed in",Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(LoginActivity.this,MainActivity.class));
+            finish();
+        }
+        else{
+            Toast.makeText(LoginActivity.this,"Not Signed in",Toast.LENGTH_SHORT).show();
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    pref = getSharedPreferences(Constants.PREFS, MODE_PRIVATE);
+                    if (!pref.getBoolean(Constants.LOGGED_IN, false)) {
+                        ViewGroup sceneRoot = (ViewGroup) findViewById(R.id.sceneroot);
+                        Scene endScene = Scene.getSceneForLayout(sceneRoot, R.layout.activity_login, LoginActivity.this);
+                        Transition transition = new ChangeBounds().setDuration(750);
+                        TransitionManager.go(endScene, transition);
+                        // Set up the login form.
+                        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+                        mEmailView.setDropDownBackgroundResource(R.color.white);
+                        populateAutoComplete();
 
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                pref = getSharedPreferences(Constants.PREFS, MODE_PRIVATE);
-                if (!pref.getBoolean(Constants.LOGGED_IN, false)) {
-                    ViewGroup sceneRoot = (ViewGroup) findViewById(R.id.sceneroot);
-                    Scene endScene = Scene.getSceneForLayout(sceneRoot, R.layout.activity_login, LoginActivity.this);
-                    Transition transition = new ChangeBounds().setDuration(750);
-                    TransitionManager.go(endScene, transition);
-                    // Set up the login form.
-                    mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-                    mEmailView.setDropDownBackgroundResource(R.color.white);
-                    populateAutoComplete();
-
-                    mPasswordView = (EditText) findViewById(R.id.password);
-                    mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                        @Override
-                        public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                            if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                                attemptLogin();
-                                return true;
+                        mPasswordView = (EditText) findViewById(R.id.password);
+                        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                            @Override
+                            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+                                if (id == R.id.login || id == EditorInfo.IME_NULL) {
+                                    attemptLogin();
+                                    return true;
+                                }
+                                return false;
                             }
-                            return false;
-                        }
-                    });
+                        });
 
-                    Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-                    mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            attemptLogin();
-                        }
-                    });
+                        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+                        mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                attemptLogin();
+                            }
+                        });
 
-                    Button register = (Button) findViewById(R.id.email_register_button);
-                    register.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
-                            finish();
-                        }
-                    });
+                        Button register = (Button) findViewById(R.id.email_register_button);
+                        register.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+                                finish();
+                            }
+                        });
 
-                    //TODO : Delete bypass
+                        //TODO : Delete bypass
                     /*Button button = (Button)findViewById(R.id.bypass);
                     button.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -182,43 +179,51 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                         }
                     });*/
 
-                    mLoginFormView = findViewById(R.id.login_form);
-                    mProgressView = findViewById(R.id.login_progress);
-                    mProgressText = findViewById(R.id.progress_text);
+                        mLoginFormView = findViewById(R.id.login_form);
+                        mProgressView = findViewById(R.id.login_progress);
+                        mProgressText = findViewById(R.id.progress_text);
 
 
-                    googleButton = (SignInButton)findViewById(R.id.googleButton);
-                    GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                            .requestIdToken(getString(R.string.default_web_client_id))
-                            .requestEmail()
-                            .build();
+                        googleButton = (SignInButton)findViewById(R.id.googleButton);
+                        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                                .requestIdToken(getString(R.string.default_web_client_id))
+                                .requestEmail()
+                                .build();
 
-                    googleApiClient = new GoogleApiClient.Builder(LoginActivity.this)
-                            .enableAutoManage(LoginActivity.this,
-                                    new GoogleApiClient.OnConnectionFailedListener(){
-                                        @Override
-                                        public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-                                            Toast.makeText(getApplicationContext(),"onConnectionFailed "+ connectionResult,Toast.LENGTH_LONG).show();
-                                        }
-                                    })
-                            .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
-                            .build();
-
-                    googleButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            googleSignIn();
-                        }
-                    });
+                        googleApiClient = new GoogleApiClient.Builder(LoginActivity.this)
+                                .enableAutoManage(LoginActivity.this,
+                                        new GoogleApiClient.OnConnectionFailedListener(){
+                                            @Override
+                                            public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+                                                Toast.makeText(LoginActivity.this,"onConnectionFailed "+ connectionResult,Toast.LENGTH_LONG).show();
+                                            }
+                                        })
+                                .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
+                                .build();
 
 
-                } else {
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    finish();
+                        googleButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                googleSignIn();
+                            }
+                        });
+
+
+                    } else {
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        finish();
+                    }
+                    handler.removeCallbacks(this);
                 }
-                handler.removeCallbacks(this);
-            }
-        }, 750);
+            }, 750);
+
+
+        }
+
+
+
+
 
     }
 
@@ -254,9 +259,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Toast.makeText(getApplicationContext(),"SignInWithCredential Complete "+task.isSuccessful(),Toast.LENGTH_SHORT).show();
-                        /*if(!task.isSuccessful()){
-
-                        }*/
+                        startActivity(new Intent(LoginActivity.this,UserTypeActivity.class));
                     }
                 });
     }

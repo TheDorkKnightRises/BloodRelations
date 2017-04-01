@@ -91,22 +91,22 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
                     case R.id.menu_item_profile:
-                        startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+                        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                         break;
                     case R.id.menu_item_locate:
-                        startActivity(new Intent(MainActivity.this,BloodBankDetailsActivity.class));
+                        startActivity(new Intent(MainActivity.this, LocateActivity.class));
                         break;
                     case R.id.menu_item_form:
-                        startActivity(new Intent(MainActivity.this,FormActivity.class));
+                        startActivity(new Intent(MainActivity.this, FormActivity.class));
                         break;
                     case R.id.menu_item_feedback:
-                        startActivity(new Intent(MainActivity.this,FeedbackActivity.class));
+                        startActivity(new Intent(MainActivity.this, FeedbackActivity.class));
                         break;
                     case R.id.menu_item_faqs:
-                        startActivity(new Intent(MainActivity.this,HelpActivity.class));
+                        startActivity(new Intent(MainActivity.this, HelpActivity.class));
                         break;
                     case R.id.menu_item_bloodbank_details:
-                        startActivity(new Intent(MainActivity.this,BloodBankDetailsActivity.class));
+                        startActivity(new Intent(MainActivity.this, BloodBankDetailsActivity.class));
                         break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
