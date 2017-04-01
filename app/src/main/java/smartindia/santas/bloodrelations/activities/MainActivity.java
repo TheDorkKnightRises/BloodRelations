@@ -220,8 +220,8 @@ public class MainActivity extends AppCompatActivity {
         sendNotification("Put in a request for blood","notifs");
     }
 
-    private void sendNotification(String string, String topic){
-        DatabaseReference root;
+    private void sendNotification(final String string, String topic){
+        final DatabaseReference root;
         root = FirebaseDatabase.getInstance().getReference();
 
         FirebaseMessaging.getInstance().subscribeToTopic(topic);
@@ -232,6 +232,27 @@ public class MainActivity extends AppCompatActivity {
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     if(snapshot.getKey().equals(user.getUid())){
                         Log.v("tag",snapshot.getKey());
+                        String user_name = snapshot.child("details").child("bloodbankname").getValue().toString();
+                        HashMap<String,Object> notification = new HashMap<>();
+                        notification.put("username", user_name);
+                        notification.put("message", string);
+
+                        String pushKey = root.child(requests).push().getKey();
+
+                        HashMap<String,Object> updateHashmap = new HashMap<>();
+                        updateHashmap.put("/"+requests+"/"+pushKey,notification);
+
+                        root.updateChildren(updateHashmap, new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                if (databaseError != null) {
+                                    Toast.makeText(getApplicationContext(), "Error: " + databaseError, Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
                     }
                 }
             }
@@ -242,29 +263,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        String user_name = user.getDisplayName();
         //DatabaseReference notifications = root.child(requests);
-
-
-        HashMap<String,Object> notification = new HashMap<>();
-        notification.put("username", user_name);
-        notification.put("message", string);
-
-        String pushKey = root.child(requests).push().getKey();
-
-        HashMap<String,Object> updateHashmap = new HashMap<>();
-        updateHashmap.put("/"+requests+"/"+pushKey,notification);
-
-        root.updateChildren(updateHashmap, new DatabaseReference.CompletionListener() {
-            @Override
-            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                if (databaseError != null) {
-                    Toast.makeText(getApplicationContext(), "Error: " + databaseError, Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
 
     }
