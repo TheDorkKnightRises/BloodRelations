@@ -14,9 +14,9 @@ import android.view.MenuItem;
 
 import java.util.ArrayList;
 
-import smartindia.santas.bloodrelations.Adapters.DonorRecyclerAdapter;
 import smartindia.santas.bloodrelations.Objects.Donor;
 import smartindia.santas.bloodrelations.R;
+import smartindia.santas.bloodrelations.adapters.DonorRecyclerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -75,9 +75,6 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.menu_item_form:
                         startActivity(new Intent(MainActivity.this,FormActivity.class));
-                        break;
-                    case R.id.menu_item_language:
-                        startActivity(new Intent(MainActivity.this,LanguageActivity.class));
                         break;
                     case R.id.menu_item_feedback:
                         startActivity(new Intent(MainActivity.this,FeedbackActivity.class));
