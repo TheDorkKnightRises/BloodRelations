@@ -7,9 +7,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
+import smartindia.santas.bloodrelations.Adapters.DonorRecyclerAdapter;
+import smartindia.santas.bloodrelations.Objects.Donor;
 import smartindia.santas.bloodrelations.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,6 +24,11 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigationView;
     Toolbar toolbar;
     ActionBarDrawerToggle actionBarDrawerToggle;
+
+    RecyclerView recyclerView;
+    LinearLayoutManager linearLayoutManager;
+    DonorRecyclerAdapter adapter;
+    ArrayList<Donor> donorList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +47,16 @@ public class MainActivity extends AppCompatActivity {
 
         setupDrawer();
 
+        donorList = new ArrayList<>();
+        for(int i=0;i<10;i++){
+            donorList.add(new Donor("Placeholder Name Here","Placeholder Location Here","Placeholder Blood Group Here","Placeholder Phone Here"));
+        }
 
+        recyclerView = (RecyclerView)findViewById(R.id.donor_recyclerview);
+        linearLayoutManager = new LinearLayoutManager(this);
+        adapter = new DonorRecyclerAdapter(donorList);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(adapter);
     }
 
     private void setupDrawer(){
