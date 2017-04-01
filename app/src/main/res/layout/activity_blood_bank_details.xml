@@ -26,11 +26,15 @@
         android:columnCount="8">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="WHOLE BLOOD (WB)"
             android:layout_columnSpan="8"
-            android:background="@color/blue"/>
+            android:gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:textSize="25dp"
+            android:textColor="#000000"
+            android:background="#FFCA28"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,7 +42,8 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:background="@color/red"
-            android:layout_margin="2dp"/>
+            android:layout_margin="1dp"
+            android:gravity="center_horizontal"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,7 +51,8 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:background="@color/red"
-            android:layout_margin="2dp"/>
+            android:layout_margin="2dp"
+            android:gravity="center_horizontal"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,7 +60,8 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:background="@color/red"
-            android:layout_margin="2dp"/>
+            android:layout_margin="2dp"
+            android:gravity="center_horizontal"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -62,7 +69,8 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:background="@color/red"
-            android:layout_margin="2dp"/>
+            android:layout_margin="2dp"
+            android:gravity="center_horizontal"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,7 +78,8 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:background="@color/red"
-            android:layout_margin="2dp"/>
+            android:layout_margin="2dp"
+            android:gravity="center_horizontal"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -78,7 +87,8 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:background="@color/red"
-            android:layout_margin="2dp"/>
+            android:layout_margin="2dp"
+            android:gravity="center_horizontal"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -86,7 +96,8 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:background="@color/red"
-            android:layout_margin="2dp"/>
+            android:layout_margin="2dp"
+            android:gravity="center_horizontal"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -94,7 +105,8 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:background="@color/red"
-            android:layout_margin="2dp"/>
+            android:layout_margin="2dp"
+            android:gravity="center_horizontal"/>
 
 
         <TextView
@@ -104,7 +116,8 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:background="@color/red"
-            android:layout_margin="2dp"/>
+            android:layout_margin="2dp"
+            android:gravity="center_horizontal"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -112,7 +125,8 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:background="@color/red"
-            android:layout_margin="2dp"/>
+            android:layout_margin="2dp"
+            android:gravity="center_horizontal"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -120,7 +134,8 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:background="@color/red"
-            android:layout_margin="2dp"/>
+            android:layout_margin="2dp"
+            android:gravity="center_horizontal"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -128,7 +143,8 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:background="@color/red"
-            android:layout_margin="2dp"/>
+            android:layout_margin="2dp"
+            android:gravity="center_horizontal"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -136,7 +152,8 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:background="@color/red"
-            android:layout_margin="2dp"/>
+            android:layout_margin="2dp"
+            android:gravity="center_horizontal"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -144,7 +161,8 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:background="@color/red"
-            android:layout_margin="2dp"/>
+            android:layout_margin="2dp"
+            android:gravity="center_horizontal"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -152,7 +170,8 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:background="@color/red"
-            android:layout_margin="2dp"/>
+            android:layout_margin="2dp"
+            android:gravity="center_horizontal"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -160,7 +179,8 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:background="@color/red"
-            android:layout_margin="2dp"/>
+            android:layout_margin="2dp"
+            android:gravity="center_horizontal"/>
 
     </GridLayout>
 
@@ -168,9 +188,27 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
         android:text="Blood Group:"/>
     <Spinner
         android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
         android:id="@+id/spinner"></Spinner>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Quantity"/>
+    <EditText
+        android:layout_width="50dp"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:text="Submit"/>
 </LinearLayout>
