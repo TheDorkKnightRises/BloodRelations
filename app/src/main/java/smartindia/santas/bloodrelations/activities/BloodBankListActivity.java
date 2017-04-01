@@ -74,7 +74,9 @@ public class BloodBankListActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
                     case R.id.menu_item_profile:
-                        startActivity(new Intent(BloodBankListActivity.this,ProfileActivity.class));
+                        Intent i = new Intent(BloodBankListActivity.this,ProfileActivity.class);
+                        i.putExtra("isfromsignup",false);
+                        startActivity(i);
                         break;
                     case R.id.menu_item_locate:
                         startActivity(new Intent(BloodBankListActivity.this,BloodBankDetailsActivity.class));
