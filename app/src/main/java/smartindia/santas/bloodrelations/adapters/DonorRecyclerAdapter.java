@@ -1,4 +1,4 @@
-package smartindia.santas.bloodrelations.Adapters;
+package smartindia.santas.bloodrelations.adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import smartindia.santas.bloodrelations.Objects.BloodBank;
 import smartindia.santas.bloodrelations.Objects.Donor;
 import smartindia.santas.bloodrelations.R;
 
