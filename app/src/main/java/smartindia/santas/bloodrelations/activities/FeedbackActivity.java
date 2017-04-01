@@ -1,11 +1,16 @@
 package smartindia.santas.bloodrelations.activities;
 
+import android.media.Rating;
+import android.support.annotation.IdRes;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -15,6 +20,10 @@ import java.util.List;
 import smartindia.santas.bloodrelations.R;
 
 public class FeedbackActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+
+    TextInputEditText subject= (TextInputEditText)findViewById(R.id.subject);
+    TextInputEditText Description=(TextInputEditText)findViewById(R.id.description);
+    RatingBar rating=(RatingBar)findViewById(R.id.rating);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
