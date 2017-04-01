@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -38,6 +39,13 @@ public class DonorRecyclerAdapter extends RecyclerView.Adapter<DonorRecyclerAdap
 
         @Override
         public void onClick(View v) {
+            CheckBox cb = (CheckBox)v.findViewById(R.id.select_donor);
+            if(cb.isChecked()){
+                cb.setChecked(false);
+            }
+            else{
+                cb.setChecked(true);
+            }
         }
 
         public void bindIndustry(Donor donor) {

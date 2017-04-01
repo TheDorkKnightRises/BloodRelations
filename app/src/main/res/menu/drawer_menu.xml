@@ -23,7 +23,7 @@
         <item
             android:title="@string/form"
             android:id="@+id/menu_item_form"
-            android:icon="@drawable/svg_icf_form_black_24px"/>
+            android:icon="@drawable/svg_ic_form_black_24px"/>
 
         <item
             android:title="@string/language"
