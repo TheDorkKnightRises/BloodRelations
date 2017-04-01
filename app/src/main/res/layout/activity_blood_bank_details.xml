@@ -229,7 +229,8 @@
             <android.support.design.widget.TextInputEditText
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:hint="Quantity" />
+                android:hint="Quantity"
+                android:inputType="number"/>
 
             </android.support.design.widget.TextInputLayout>
             <Button
