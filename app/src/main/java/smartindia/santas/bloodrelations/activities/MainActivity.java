@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this,ProfileActivity.class));
                         break;
                     case R.id.menu_item_locate:
-                        //startActivity(new Intent(MainActivity.this,FormActivity.class));
+                        startActivity(new Intent(MainActivity.this,BloodBankDetailsActivity.class));
                         break;
                     case R.id.menu_item_form:
                         startActivity(new Intent(MainActivity.this,FormActivity.class));
