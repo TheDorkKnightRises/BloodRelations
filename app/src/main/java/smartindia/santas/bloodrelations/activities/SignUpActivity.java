@@ -68,11 +68,8 @@ public class SignUpActivity extends AppCompatActivity{
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null){
-                    //Toast.makeText(getApplicationContext(),"onAuthStateChanged:signed_in:" + user.getUid(),Toast.LENGTH_LONG).show();
-                    // Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                    //startActivity(new Intent(Login.this, MainActivity.class));
-                    //finish();
                     Toast.makeText(SignUpActivity.this,user.getUid().toString(),Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(SignUpActivity.this,MainActivity.class));
                 }
                 else {
                     //Toast.makeText(getApplicationContext(), "onAuthStateChanged:signed_out", Toast.LENGTH_SHORT).show();
