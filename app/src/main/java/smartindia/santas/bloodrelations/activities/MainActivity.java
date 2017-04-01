@@ -115,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateUI(){
-        Log.v("tag","reached");
         adapter=new DonorRecyclerAdapter(donorList);
         recyclerView.setAdapter(adapter);
     }
@@ -157,9 +156,8 @@ public class MainActivity extends AppCompatActivity {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     donorList.clear();
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                        Boolean isBank = (Boolean)snapshot.child("isBloodBank").getValue();
-                        if(!isBank){
-                            Log.v("tag","called");
+                        String isBank = (String) snapshot.child("isBloodBank").getValue();
+                        if(isBank.equals("false")){
                             String firstname = (String) snapshot.child("details").child("firstname").getValue().toString();
                             String surname = (String) snapshot.child("details").child("surname").getValue().toString();
                             String name = firstname + " " + surname;
@@ -228,6 +226,21 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseMessaging.getInstance().subscribeToTopic(topic);
 
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    if(snapshot.getKey().equals(user.getUid())){
+                        Log.v("tag",snapshot.getKey());
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         String user_name = user.getDisplayName();
         //DatabaseReference notifications = root.child(requests);

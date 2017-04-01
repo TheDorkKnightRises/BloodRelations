@@ -139,8 +139,8 @@ public class BloodBankListActivity extends AppCompatActivity {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     bloodBankList.clear();
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                        Boolean isBank = (Boolean)snapshot.child("isBloodBank").getValue();
-                        if(isBank){
+                        String isBank = (String) snapshot.child("isBloodBank").getValue();
+                        if(isBank.equals("true")){
                             String bbname = (String) snapshot.child("details").child("bloodbankname").getValue().toString();
                             String location = (String) snapshot.child("details").child("address").getValue().toString();
                             String phone = (String) snapshot.child("details").child("phone").getValue().toString();

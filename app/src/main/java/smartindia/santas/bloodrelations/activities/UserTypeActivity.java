@@ -75,7 +75,7 @@ public class UserTypeActivity extends AppCompatActivity {
 
     public void push(){
         databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("isBloodBank");
-        databaseReference.setValue(isBloodBank);
+        databaseReference.setValue(Boolean.toString(isBloodBank));
 
     }
 }
