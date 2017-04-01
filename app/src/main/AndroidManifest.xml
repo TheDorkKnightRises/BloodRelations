@@ -71,11 +71,6 @@
             android:parentActivityName=".activities.MainActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activities.LanguageActivity"
-            android:label="@string/language"
-            android:parentActivityName=".activities.MainActivity"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".activities.FeedbackActivity"
             android:label="@string/feedback"
             android:parentActivityName=".activities.MainActivity"
