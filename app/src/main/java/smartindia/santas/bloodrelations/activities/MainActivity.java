@@ -220,6 +220,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.menu_item_certificate:
                         startActivity(new Intent(MainActivity.this,CertificateActivity.class));
                         break;
+                    case R.id.menu_item_settings:
+                        startActivity(new Intent(MainActivity.this,SettingsActivity.class));
+                        break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;

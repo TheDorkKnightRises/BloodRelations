@@ -19,6 +19,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
 
 public class FeedbackActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
@@ -31,7 +32,10 @@ public class FeedbackActivity extends AppCompatActivity implements AdapterView.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getSharedPreferences(Constants.PREFS, MODE_PRIVATE).getBoolean(Constants.DARK_THEME, false))
+            setTheme(R.style.AppTheme_Dark);
         setContentView(R.layout.activity_feedback);
+
 
         subject= (TextInputEditText)findViewById(R.id.subject);
         description=(TextInputEditText)findViewById(R.id.description);

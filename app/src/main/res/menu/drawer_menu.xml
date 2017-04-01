@@ -36,6 +36,10 @@
             android:title="Certificate"
             android:id="@+id/menu_item_certificate"
             android:icon="@drawable/ic_library_books_black_24dp"/>
+        <item
+            android:title="Settings"
+            android:id="@+id/menu_item_settings"
+            android:icon="@drawable/ic_settings_black_24dp"/>
 
     </group>
 

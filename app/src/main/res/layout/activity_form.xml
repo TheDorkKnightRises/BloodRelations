@@ -15,7 +15,7 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:contentPadding="@dimen/app_padding"
+            app:contentPadding="5dp"
             android:layout_marginBottom="6dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -44,7 +44,7 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:contentPadding="@dimen/app_padding"
+            app:contentPadding="5dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             app:cardCornerRadius="7dp"
@@ -140,7 +140,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             app:cardCornerRadius="7dp"
-            app:contentPadding="@dimen/app_padding"
+            app:contentPadding="5dp"
             android:layout_marginBottom="4dp"
             app:cardElevation="4dp">
             <LinearLayout

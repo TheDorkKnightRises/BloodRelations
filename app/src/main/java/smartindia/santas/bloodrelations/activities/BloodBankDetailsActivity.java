@@ -11,6 +11,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
 
 public class BloodBankDetailsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -18,7 +19,10 @@ public class BloodBankDetailsActivity extends AppCompatActivity implements Adapt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getSharedPreferences(Constants.PREFS, MODE_PRIVATE).getBoolean(Constants.DARK_THEME, false))
+            setTheme(R.style.AppTheme_Dark);
         setContentView(R.layout.activity_blood_bank_details);
+
 
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner);

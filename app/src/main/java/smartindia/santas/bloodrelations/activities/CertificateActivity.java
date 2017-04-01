@@ -22,6 +22,7 @@ import android.webkit.WebView;
 import android.widget.Toast;
 
 
+import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
 
 public class CertificateActivity extends AppCompatActivity {
@@ -34,7 +35,10 @@ public class CertificateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getSharedPreferences(Constants.PREFS, MODE_PRIVATE).getBoolean(Constants.DARK_THEME, false))
+            setTheme(R.style.AppTheme_Dark);
         setContentView(R.layout.activity_certificate);
+
         permissionStatus = getSharedPreferences("permissionStatus",MODE_PRIVATE);
         String html_value= "<html xmlns=\\\"http://www.w3.org/1999/xhtml\\\">" +
                 "<head><meta http-equiv=\\\"Content-Type\\\" content=\\\"text/html; charset=iso-8859-1\\\">" +

@@ -35,6 +35,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
 import smartindia.santas.bloodrelations.adapters.BloodBankRecyclerAdapter;
 import smartindia.santas.bloodrelations.objects.BloodBank;
@@ -63,7 +64,10 @@ public class BloodBankListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getSharedPreferences(Constants.PREFS, MODE_PRIVATE).getBoolean(Constants.DARK_THEME, false))
+            setTheme(R.style.AppTheme_Dark_Translucent);
         setContentView(R.layout.activity_blood_bank_list);
+
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

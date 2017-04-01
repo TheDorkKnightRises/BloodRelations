@@ -77,8 +77,10 @@ public class ProfileActivity extends AppCompatActivity {
         t = i.getBooleanExtra("isfromsignup",false);
         prefs = getSharedPreferences(Constants.PREFS, MODE_PRIVATE);
         if(!prefs.getBoolean(Constants.ISBLOODBANK,false)){
-
+            if (getSharedPreferences(Constants.PREFS, MODE_PRIVATE).getBoolean(Constants.DARK_THEME, false))
+                setTheme(R.style.AppTheme_Dark);
             setContentView(R.layout.activity_profile);
+
             profilePicture=(de.hdodenhof.circleimageview.CircleImageView)findViewById(R.id.profile_image);
             birthDateEditText=(EditText) findViewById(R.id.birthday_edittext);
             profileEditDone=(FloatingActionButton)findViewById(R.id.profile_edit_done_fab);
