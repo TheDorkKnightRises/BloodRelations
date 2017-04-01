@@ -42,6 +42,7 @@ public class UserTypeActivity extends AppCompatActivity {
                 push();
                 setsharedpreference();
                 Intent i = new Intent(UserTypeActivity.this, ProfileActivity.class);
+                i.putExtra("isfromsignup",true);
                 startActivity(i);
                 finish();
 
