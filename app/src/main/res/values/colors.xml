@@ -8,4 +8,5 @@
     <color name="purple">#800080</color>
     <color name="red">#FF0000</color>
     <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
 </resources>

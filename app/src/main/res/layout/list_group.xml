@@ -20,7 +20,9 @@
             android:paddingTop="6dip"
             android:textSize="17dp"
             android:textStyle="bold"
-            tools:ignore="SpUsage" />
+            tools:ignore="SpUsage"
+            android:textColor="#000000"
+            />
 
     </LinearLayout>
 
