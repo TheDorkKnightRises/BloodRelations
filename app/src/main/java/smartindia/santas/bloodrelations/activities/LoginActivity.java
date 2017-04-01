@@ -25,7 +25,6 @@ import android.support.transition.Transition;
 import android.support.transition.TransitionManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,13 +50,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,15 +113,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                     Toast.makeText(LoginActivity.this,user.getUid().toString(),Toast.LENGTH_SHORT).show();
                     Toast.makeText(LoginActivity.this,"Signed in",Toast.LENGTH_SHORT).show();
                     SharedPreferences prefs = getSharedPreferences(Constants.PREFS,MODE_PRIVATE);
-                    if(prefs.getBoolean(Constants.ISBLOODBANK,false)){
-                        startActivity(new Intent(LoginActivity.this,MainActivity.class));
-                    }
-                    else{
-                        startActivity(new Intent(LoginActivity.this,BloodBankListActivity.class));
-                    }
+                    startActivity(new Intent(LoginActivity.this,MainActivity.class));
                     finish();
-                }
-                else {
+                } else {
                     //Toast.makeText(getApplicationContext(), "onAuthStateChanged:signed_out", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -136,12 +127,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         if(user != null){
             Toast.makeText(LoginActivity.this,"Signed in",Toast.LENGTH_SHORT).show();
             SharedPreferences prefs = getSharedPreferences(Constants.PREFS,MODE_PRIVATE);
-            if(prefs.getBoolean(Constants.ISBLOODBANK,false)){
-                startActivity(new Intent(LoginActivity.this,MainActivity.class));
-            }
-            else{
-                startActivity(new Intent(LoginActivity.this,BloodBankListActivity.class));
-            }
+            startActivity(new Intent(LoginActivity.this,MainActivity.class));
             finish();
         }
         else{

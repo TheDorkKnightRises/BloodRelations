@@ -343,6 +343,7 @@
             android:minHeight="56dp"
             android:layout_margin="8dp"
             android:layout_gravity="center_horizontal"
+            android:textColor="@color/white"
             android:text="@string/submit_form"/>
 
     </LinearLayout>

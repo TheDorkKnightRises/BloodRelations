@@ -1,6 +1,7 @@
 package smartindia.santas.bloodrelations.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,6 +20,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -34,11 +39,14 @@ import java.util.HashMap;
 
 import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
+import smartindia.santas.bloodrelations.adapters.BloodBankRecyclerAdapter;
 import smartindia.santas.bloodrelations.adapters.DonorRecyclerAdapter;
+import smartindia.santas.bloodrelations.objects.BloodBank;
 import smartindia.santas.bloodrelations.objects.Donor;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int PLACE_PICKER_REQUEST = 1;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
@@ -47,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
-    DonorRecyclerAdapter adapter;
-    ArrayList<Donor> donorList;
+    RecyclerView.Adapter adapter;
+    ArrayList list;
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -56,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
     private ValueEventListener mValueEventListener;
     FirebaseUser user;
     SwipeRefreshLayout swipeRefreshLayout;
+    SharedPreferences pref;
+    boolean bbMode;
 
     final String requests = "notificationRequests";
 
@@ -63,15 +73,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getSharedPreferences(Constants.PREFS, MODE_PRIVATE).getBoolean(Constants.DARK_THEME, false))
+        pref = getSharedPreferences(Constants.PREFS, MODE_PRIVATE);
+        if (pref.getBoolean(Constants.DARK_THEME, false))
             setTheme(R.style.AppTheme_Dark_Translucent);
 
         setContentView(R.layout.activity_main);
+        bbMode = pref.getBoolean(Constants.ISBLOODBANK, false);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_refresh_layout);
-
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -87,15 +97,20 @@ public class MainActivity extends AppCompatActivity {
 
         setupDrawer();
 
-        recyclerView = (RecyclerView)findViewById(R.id.donor_recyclerview);
+        recyclerView = (RecyclerView)findViewById(R.id.recyclerview);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        donorList = new ArrayList<>();
-//        for(int i=0;i<10;i++){
-//            donorList.add(new Donor("Placeholder Name Here","Placeholder Location Here","Placeholder Blood Group Here","Placeholder Phone Here"));
-//        }
-
+        if (bbMode) {
+            list = new ArrayList<Donor>();
+            FetchDonorList mFetch = new FetchDonorList();
+            mFetch.execute();
+        }
+        else {
+            list = new ArrayList<BloodBank>();
+            FetchBloodBankList mFetch = new FetchBloodBankList();
+            mFetch.execute();
+        }
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,9 +118,6 @@ public class MainActivity extends AppCompatActivity {
                 fab_pressed();
             }
         });
-
-        fetchDonorList mFetch = new fetchDonorList();
-        mFetch.execute();
 
     }
 
@@ -115,53 +127,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        detachDatabaseReadListener();
-    }
-
     public void updateUI(){
-        adapter=new DonorRecyclerAdapter(donorList);
+        if (bbMode)
+            adapter = new DonorRecyclerAdapter(list);
+        else adapter = new BloodBankRecyclerAdapter(list);
         recyclerView.setAdapter(adapter);
     }
 
-    private void attachDatabaseReadListener() {
-        if (mChildEventListener == null) {
-            mChildEventListener = new ChildEventListener() {
-                @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    Donor donor = dataSnapshot.getValue(Donor.class);
-                    donorList.add(donor);
-
-                }
-
-                public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
-                public void onChildRemoved(DataSnapshot dataSnapshot) {
-                    Donor donor = dataSnapshot.getValue(Donor.class);
-                    donorList.remove(donor);
-                }
-                public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
-                public void onCancelled(DatabaseError databaseError) {}
-            };
-        }
-    }
-
-    private void detachDatabaseReadListener() {
-        if (mChildEventListener != null) {
-            databaseReference.removeEventListener(mChildEventListener);
-            mChildEventListener = null;
-        }
-    }
-
-    public class fetchDonorList extends AsyncTask<Void,Void,ArrayList<Donor>> {
+    public class FetchDonorList extends AsyncTask<Void,Void,ArrayList<Donor>> {
         @Override
         protected ArrayList<Donor> doInBackground(Void... params) {
 
             mValueEventListener = new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    donorList.clear();
+                    list.clear();
                     try {
                         for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                             String isBank = (String) snapshot.child("isBloodBank").getValue();
@@ -172,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                                 String location = snapshot.child("details").child("address").getValue().toString();
                                 String bloodGroup = snapshot.child("details").child("bloodgroup").getValue().toString();
                                 String phone = snapshot.child("details").child("phone").getValue().toString();
-                                donorList.add(new Donor(name,location,bloodGroup,phone));
+                                list.add(new Donor(name,location,bloodGroup,phone));
                             }
                         }
                         updateUI();
@@ -188,8 +168,106 @@ public class MainActivity extends AppCompatActivity {
             };
 
             databaseReference.addValueEventListener(mValueEventListener);
-            return donorList;
+            return list;
         }
+    }
+
+    public class FetchBloodBankList extends AsyncTask<Void,Void,ArrayList<BloodBank>> {
+        @Override
+        protected ArrayList<BloodBank> doInBackground(Void... params) {
+
+            mValueEventListener = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    list.clear();
+                    try {
+                        for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            String isBank = (String) snapshot.child("isBloodBank").getValue();
+                            if(isBank.equals("true")){
+                                String bbname = snapshot.child("details").child("bloodbankname").getValue().toString();
+                                String location = snapshot.child("details").child("address").getValue().toString();
+                                String phone = snapshot.child("details").child("phone").getValue().toString();
+                                list.add(new BloodBank(bbname,location,phone));
+                            }
+                        }
+                        updateUI();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            };
+
+            databaseReference.addValueEventListener(mValueEventListener);
+            return list;
+        }
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PLACE_PICKER_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                Place place = PlacePicker.getPlace(data, this);
+                String toastMsg = String.format("Place: %s", place.getName());
+                Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
+                sendNotification("request", "put in a request for blood", String.valueOf(place.getLatLng().latitude), String.valueOf(place.getLatLng().longitude), 50);
+            }
+        }
+    }
+
+    private void sendNotification(String topic, final String string, final String latitude, final String longitude, final int qty){
+        final DatabaseReference root;
+        root = FirebaseDatabase.getInstance().getReference();
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseMessaging.getInstance().subscribeToTopic(topic);
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    if(snapshot.getKey().equals(user.getUid())){
+                        Log.v("tag",snapshot.getKey());
+                        String first_name = snapshot.child("details").child("firstname").getValue().toString();
+                        String blood_type = snapshot.child("details").child("bloodgroup").getValue().toString();
+                        HashMap<String,Object> notification = new HashMap<>();
+                        notification.put("username", first_name);
+                        notification.put("message", string);
+                        notification.put("latitude", latitude);
+                        notification.put("longitude", longitude);
+                        notification.put("quantity", qty);
+                        notification.put("bloodgroup", blood_type);
+
+                        String pushKey = root.child(requests).push().getKey();
+
+                        HashMap<String,Object> updateHashmap = new HashMap<>();
+                        updateHashmap.put("/"+requests+"/"+pushKey,notification);
+
+                        root.updateChildren(updateHashmap, new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                if (databaseError != null) {
+                                    Toast.makeText(getApplicationContext(), "Error: " + databaseError, Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        //DatabaseReference notifications = root.child(requests);
+
     }
 
     private void setupDrawer(){
@@ -218,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this, BloodBankDetailsActivity.class));
                         break;
                     case R.id.menu_item_certificate:
-                        startActivity(new Intent(MainActivity.this,CertificateActivity.class));
+                        startActivity(new Intent(MainActivity.this, CertificateActivity.class));
                         break;
                     case R.id.menu_item_settings:
                         startActivity(new Intent(MainActivity.this,SettingsActivity.class));
@@ -231,7 +309,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fab_pressed(){
+        if (bbMode)
         sendNotification("Put in a request for blood","notifs");
+        else {
+            PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+            try {
+                startActivityForResult(builder.build(MainActivity.this), PLACE_PICKER_REQUEST);
+            } catch (GooglePlayServicesRepairableException e) {
+                Toast.makeText(MainActivity.this, "Google Play Services error", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            } catch (GooglePlayServicesNotAvailableException e) {
+                Toast.makeText(MainActivity.this, "Google Play Services is required for this feature", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+        }
     }
 
     private void sendNotification(final String string, String topic){

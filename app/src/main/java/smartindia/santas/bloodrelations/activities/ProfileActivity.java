@@ -188,7 +188,7 @@ public class ProfileActivity extends AppCompatActivity {
                     if(!profileName.getEditText().getText().toString().equals(null) && !profileSurname.getEditText().getText().toString().equals(null) && !profilePhone.getEditText().getText().toString().equals(null)
                             && !profileBloodGroup.getEditText().getText().toString().equals(null) && !profileAddress.getEditText().getText().toString().equals(null)
                             && !birthDateEditText.getText().toString().equals(null)){
-                        startActivity(new Intent(ProfileActivity.this,BloodBankListActivity.class));
+                        startActivity(new Intent(ProfileActivity.this,MainActivity.class));
                         finish();
                     }
                     else{

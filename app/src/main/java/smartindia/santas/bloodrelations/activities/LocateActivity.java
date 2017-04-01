@@ -19,7 +19,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
 
 public class LocateActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -51,8 +50,6 @@ public class LocateActivity extends FragmentActivity implements OnMapReadyCallba
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getSharedPreferences(Constants.PREFS, MODE_PRIVATE).getBoolean(Constants.DARK_THEME, false))
-            setTheme(R.style.AppTheme_Dark_Translucent);
         setContentView(R.layout.activity_locate);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.

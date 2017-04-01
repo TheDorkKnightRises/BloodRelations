@@ -56,7 +56,6 @@ public class CustomFireBaseMessagingService extends FirebaseMessagingService {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
 
-
     }
 
 

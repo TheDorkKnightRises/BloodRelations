@@ -25,9 +25,6 @@ public class SettingsActivity extends AppCompatActivity {
             setTheme(R.style.AppTheme_Dark);
         setContentView(R.layout.activity_settings);
 
-
-
-
         mySwitch = (Switch) findViewById(R.id.mySwitch);
 
         editor = shPref.edit();
@@ -35,25 +32,21 @@ public class SettingsActivity extends AppCompatActivity {
         if (shPref.getBoolean(Constants.DARK_THEME, false))
             mySwitch.setChecked(true);
 
-
         //attach a listener to check for changes in state
         mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
                 if(isChecked){
                     editor.putBoolean(Constants.DARK_THEME, true);
-                    editor.commit();
-                    Toast.makeText(SettingsActivity.this, "Please restart app", Toast.LENGTH_SHORT).show();
-
-                }else{
+                    editor.apply();
+                } else {
                     editor.putBoolean(Constants.DARK_THEME, false);
                     editor.commit();
                     //Toast.makeText(SettingsActivity.this, String.valueOf(shPref.getBoolean(Constants.DARK_THEME, false)), Toast.LENGTH_SHORT).show();
-
                 }
-
+                Toast.makeText(SettingsActivity.this, "App needs to restart", Toast.LENGTH_SHORT).show();
+                finishAffinity();
             }
         });
 
