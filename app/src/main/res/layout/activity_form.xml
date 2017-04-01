@@ -20,6 +20,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#FFEE58"
             app:cardCornerRadius="7dp">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -31,6 +33,7 @@
                     android:layout_weight="1.5"
                     android:textSize="@dimen/form_header_size"
                     android:layout_height="wrap_content"
+                    android:textColor="#000000"
                     android:text="1. Enter Occupation"/>
                 <EditText
                     android:layout_width="0dp"
@@ -45,6 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="In the past 6 months"
+            android:layout_marginLeft="10dp"
             android:textSize="@dimen/form_header_size"
             android:textStyle="bold"/>
 
@@ -57,6 +61,8 @@
             android:layout_marginRight="8dp"
             android:layout_marginLeft="8dp"
             android:paddingLeft="5dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#FFEE58"
             app:cardCornerRadius="7dp">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -68,22 +74,26 @@
                     android:padding="3dp"
                     android:layout_height="wrap_content"
                     android:textSize="20dp"
+                    android:textColor="#000000"
                     android:text="2. Have you had a blood trasnfusion?"/>
                 <RadioGroup
                     android:layout_width="0dp"
                     android:id="@+id/ques2"
                     android:layout_weight="2"
+                    android:layout_gravity="center_vertical"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_weight="1"
                         android:id="@+id/ques2_yes"
+                        android:padding="5dp"
                         android:layout_height="wrap_content"
                         android:text="Yes"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_weight="1"
+                        android:padding="5dp"
                         android:id="@+id/ques2_no"
                         android:layout_height="wrap_content"
                         android:text="No"/>
@@ -100,6 +110,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#FFEE58"
             app:cardCornerRadius="7dp">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -110,6 +122,7 @@
                     android:layout_weight="3"
                     android:layout_height="wrap_content"
                     android:padding="3dp"
+                    android:textColor="#000000"
                     android:textSize="20dp"
                     android:text="3. Have you had any vaccinations or other shots?"/>
                 <RadioGroup
@@ -117,17 +130,20 @@
                     android:layout_weight="2"
                     android:id="@+id/ques3"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:orientation="horizontal">
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_weight="1"
                         android:id="@+id/ques3_yes"
+                        android:padding="5dp"
                         android:layout_height="wrap_content"
                         android:text="Yes"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_weight="1"
                         android:id="@+id/ques3_no"
+                        android:padding="5dp"
                         android:layout_height="wrap_content"
                         android:text="No"/>
                 </RadioGroup>
@@ -138,6 +154,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Have you ever"
+            android:layout_marginLeft="10dp"
             android:textSize="@dimen/form_header_size"
             android:textStyle="bold"/>
 
@@ -150,6 +167,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#FFEE58"
             app:cardCornerRadius="7dp">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -161,23 +180,27 @@
                     android:layout_height="wrap_content"
                     android:padding="3dp"
                     android:textSize="20dp"
+                    android:textColor="#000000"
                     android:text="4. Had Jaundice/Hepatitis"/>
                 <RadioGroup
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:id="@+id/ques4"
+                    android:layout_gravity="center_vertical"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_weight="1"
                         android:id="@+id/ques4_yes"
+                        android:padding="5dp"
                         android:layout_height="wrap_content"
                         android:text="Yes"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_weight="1"
                         android:id="@+id/ques4_no"
+                        android:padding="5dp"
                         android:layout_height="wrap_content"
                         android:text="No"/>
                 </RadioGroup>
@@ -194,35 +217,44 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#FFEE58"
             app:cardCornerRadius="7dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
+                    android:id="@+id/textView2"
                     android:layout_width="0dp"
-                    android:layout_weight="3"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
+                    android:layout_weight="3"
                     android:padding="3dp"
-                    android:text="5. Had a positive test for HIV/HbSAg/HCV?"/>
+                    android:textColor="#000000"
+                    android:text="5. Had a positive test for HIV/HbSAg/HCV?"
+                    android:textSize="20dp" />
+
                 <RadioGroup
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:id="@+id/ques5"
+                    android:layout_gravity="center_vertical"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_weight="1"
                         android:id="@+id/ques5_yes"
+                        android:padding="5dp"
                         android:layout_height="wrap_content"
                         android:text="Yes"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_weight="1"
                         android:id="@+id/ques5_no"
+                        android:padding="5dp"
                         android:layout_height="wrap_content"
                         android:text="No"/>
                 </RadioGroup>
@@ -239,6 +271,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#FFEE58"
             app:cardCornerRadius="7dp">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -250,23 +284,27 @@
                     android:layout_height="wrap_content"
                     android:padding="3dp"
                     android:textSize="20dp"
+                    android:textColor="#000000"
                     android:text="6. Had any cardiac/lung problems?"/>
                 <RadioGroup
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:id="@+id/ques6"
+                    android:layout_gravity="center_vertical"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_weight="1"
                         android:id="@+id/ques6_yes"
+                        android:padding="5dp"
                         android:layout_height="wrap_content"
                         android:text="Yes"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_weight="1"
                         android:id="@+id/ques6_no"
+                        android:padding="5dp"
                         android:layout_height="wrap_content"
                         android:text="No"/>
                 </RadioGroup>
@@ -284,6 +322,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#FFEE58"
             app:cardCornerRadius="7dp">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -294,24 +334,28 @@
                     android:layout_weight="3"
                     android:layout_height="wrap_content"
                     android:padding="3dp"
+                    android:textColor="#000000"
                     android:textSize="20dp"
                     android:text="7. Had a bleeding condition or blood disease?"/>
                 <RadioGroup
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:id="@+id/ques7"
+                    android:layout_gravity="center_vertical"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_weight="1"
                         android:id="@+id/ques7_yes"
+                        android:padding="5dp"
                         android:layout_height="wrap_content"
                         android:text="Yes"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_weight="1"
                         android:id="@+id/ques7_no"
+                        android:padding="5dp"
                         android:layout_height="wrap_content"
                         android:text="No"/>
                 </RadioGroup>
@@ -328,6 +372,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#FFEE58"
             app:cardCornerRadius="7dp">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -339,10 +385,12 @@
                     android:layout_height="wrap_content"
                     android:padding="3dp"
                     android:textSize="20dp"
+                    android:textColor="#000000"
                     android:text="8. Do you have hypertension or blood disease"/>
                 <RadioGroup
                     android:layout_width="0dp"
                     android:layout_weight="2"
+                    android:layout_gravity="center_vertical"
                     android:id="@+id/ques8"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -350,12 +398,14 @@
                         android:layout_width="wrap_content"
                         android:layout_weight="1"
                         android:id="@+id/ques8_yes"
+                        android:padding="5dp"
                         android:layout_height="wrap_content"
                         android:text="Yes"/>
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_weight="1"
                         android:id="@+id/ques8_no"
+                        android:padding="5dp"
                         android:layout_height="wrap_content"
                         android:text="No"/>
                 </RadioGroup>
