@@ -251,6 +251,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         }
     }
 
+
     private void firebaseAuthWithGoogle(GoogleSignInAccount account){
 
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(),null);
