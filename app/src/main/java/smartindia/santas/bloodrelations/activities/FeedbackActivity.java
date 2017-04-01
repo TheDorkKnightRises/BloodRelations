@@ -26,6 +26,7 @@ public class FeedbackActivity extends AppCompatActivity implements AdapterView.O
     EditText subject;
     EditText description;
     RatingBar rating;
+    String item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class FeedbackActivity extends AppCompatActivity implements AdapterView.O
         subject= (TextInputEditText)findViewById(R.id.subject);
         description=(TextInputEditText)findViewById(R.id.description);
         rating=(RatingBar)findViewById(R.id.rating);
+
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner1);
 
@@ -62,7 +64,7 @@ public class FeedbackActivity extends AppCompatActivity implements AdapterView.O
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
-        String item = parent.getItemAtPosition(position).toString();
+        item = parent.getItemAtPosition(position).toString();
 
         // Showing selected spinner item
         Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
@@ -74,6 +76,9 @@ public class FeedbackActivity extends AppCompatActivity implements AdapterView.O
 
     }
 
+
+
+
     public void nextPage(View view){
         String emailSubject = subject.getText().toString();
         String emailBody = description.getText().toString();
@@ -82,9 +87,9 @@ public class FeedbackActivity extends AppCompatActivity implements AdapterView.O
 
 
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                "mailto","abc@gmail.com", null));
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, emailSubject);
-        emailIntent.putExtra(Intent.EXTRA_TEXT, emailBody);
+                "mailto","sihbloodbank@gmail.com", null));
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, emailSubject + "(Rated:" + String.valueOf(rating.getRating()) + ")");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "(" + item + ")\n" + emailBody);
         startActivity(Intent.createChooser(emailIntent, "Send email..."));
     }
     }
