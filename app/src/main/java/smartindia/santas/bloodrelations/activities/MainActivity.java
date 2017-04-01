@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fab_pressed(){
-        sendNotification("Hello","notifs");
+        sendNotification("Put in a request for blood","notifs");
     }
 
     private void sendNotification(String string, String topic){
