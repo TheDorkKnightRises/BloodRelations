@@ -82,6 +82,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.menu_item_faqs:
                         startActivity(new Intent(MainActivity.this,HelpActivity.class));
                         break;
+                    case R.id.menu_item_bloodbank_details:
+                        startActivity(new Intent(MainActivity.this,BloodBankDetailsActivity.class));
+                        break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
