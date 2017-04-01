@@ -66,51 +66,48 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:layout_margin="5dp">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical">
-                <RadioGroup
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:id="@+id/group1">
-                <RadioButton
-                    android:text="Suggestion"
-                    android:layout_gravity="right"
-                    android:textSize="20dp"
-                    android:textColor="@color/yellow"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"/>
 
-                <RadioButton
-                    android:text="Question"
-                    android:layout_gravity="fill"
-                    android:textSize="20dp"
-                    android:textColor="@color/blue"
+                <RadioGroup
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"/>
-                <RadioButton
-                    android:text="Problem"
-                    android:layout_gravity="fill"
-                    android:textSize="20dp"
-                    android:textColor="@color/red"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"/>
-                <RadioButton
-                    android:text="Praise"
-                    android:layout_gravity="fill"
-                    android:textSize="20dp"
-                    android:textColor="@color/purple"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"/>
+                    android:id="@+id/group1">
+
+                        <RadioButton
+                            android:text="Suggestion"
+                            android:textSize="20dp"
+                            android:textColor="@color/yellow"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"/>
+
+                        <RadioButton
+                            android:text="Question"
+                            android:textSize="20dp"
+                            android:textColor="@color/blue"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"/>
+
+
+
+                        <RadioButton
+                            android:text="Problem"
+                            android:layout_gravity="fill"
+                            android:textSize="20dp"
+                            android:textColor="@color/red"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content" />
+                        <RadioButton
+                            android:text="Praise"
+                            android:layout_gravity="fill"
+                            android:textSize="20dp"
+                            android:textColor="@color/purple"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"/>
+
+
                 </RadioGroup>
-            </LinearLayout>
 
         </android.support.v7.widget.CardView>
 
