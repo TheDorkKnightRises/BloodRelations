@@ -162,19 +162,23 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     donorList.clear();
-                    for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                        String isBank = (String) snapshot.child("isBloodBank").getValue();
-                        if(isBank.equals("false")){
-                            String firstname = (String) snapshot.child("details").child("firstname").getValue().toString();
-                            String surname = (String) snapshot.child("details").child("surname").getValue().toString();
-                            String name = firstname + " " + surname;
-                            String location = (String) snapshot.child("details").child("address").getValue().toString();
-                            String bloodGroup = (String) snapshot.child("details").child("bloodgroup").getValue().toString();
-                            String phone = (String) snapshot.child("details").child("phone").getValue().toString();
-                            donorList.add(new Donor(name,location,bloodGroup,phone));
+                    try {
+                        for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            String isBank = (String) snapshot.child("isBloodBank").getValue();
+                            if(isBank.equals("false")){
+                                String firstname = snapshot.child("details").child("firstname").getValue().toString();
+                                String surname = snapshot.child("details").child("surname").getValue().toString();
+                                String name = firstname + " " + surname;
+                                String location = snapshot.child("details").child("address").getValue().toString();
+                                String bloodGroup = snapshot.child("details").child("bloodgroup").getValue().toString();
+                                String phone = snapshot.child("details").child("phone").getValue().toString();
+                                donorList.add(new Donor(name,location,bloodGroup,phone));
+                            }
                         }
+                        updateUI();
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                    updateUI();
                 }
 
                 @Override
@@ -236,31 +240,35 @@ public class MainActivity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    if(snapshot.getKey().equals(user.getUid())){
-                        Log.v("tag",snapshot.getKey());
-                        String user_name = snapshot.child("details").child("bloodbankname").getValue().toString();
-                        HashMap<String,Object> notification = new HashMap<>();
-                        notification.put("username", user_name);
-                        notification.put("message", string);
+                try {
+                    for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                        if(snapshot.getKey().equals(user.getUid())){
+                            Log.v("tag",snapshot.getKey());
+                            String user_name = snapshot.child("details").child("bloodbankname").getValue().toString();
+                            HashMap<String,Object> notification = new HashMap<>();
+                            notification.put("username", user_name);
+                            notification.put("message", string);
 
-                        String pushKey = root.child(requests).push().getKey();
+                            String pushKey = root.child(requests).push().getKey();
 
-                        HashMap<String,Object> updateHashmap = new HashMap<>();
-                        updateHashmap.put("/"+requests+"/"+pushKey,notification);
+                            HashMap<String,Object> updateHashmap = new HashMap<>();
+                            updateHashmap.put("/"+requests+"/"+pushKey,notification);
 
-                        root.updateChildren(updateHashmap, new DatabaseReference.CompletionListener() {
-                            @Override
-                            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                                if (databaseError != null) {
-                                    Toast.makeText(getApplicationContext(), "Error: " + databaseError, Toast.LENGTH_LONG).show();
-                                } else {
-                                    Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                            root.updateChildren(updateHashmap, new DatabaseReference.CompletionListener() {
+                                @Override
+                                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                    if (databaseError != null) {
+                                        Toast.makeText(getApplicationContext(), "Error: " + databaseError, Toast.LENGTH_LONG).show();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
+                            });
 
+                        }
                     }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
 

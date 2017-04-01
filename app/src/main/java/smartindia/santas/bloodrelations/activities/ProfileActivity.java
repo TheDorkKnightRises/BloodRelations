@@ -4,12 +4,10 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.preference.PreferenceManager;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
@@ -17,8 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -41,9 +37,6 @@ import java.util.Locale;
 
 import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
-import static smartindia.santas.bloodrelations.R.string.profile;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -194,6 +187,7 @@ public class ProfileActivity extends AppCompatActivity {
                             && !profileBloodGroup.getEditText().getText().toString().equals(null) && !profileAddress.getEditText().getText().toString().equals(null)
                             && !birthDateEditText.getText().toString().equals(null)){
                         startActivity(new Intent(ProfileActivity.this,BloodBankListActivity.class));
+                        finish();
                     }
                     else{
                         Toast.makeText(ProfileActivity.this, "All fields must be filled", Toast.LENGTH_SHORT).show();
@@ -277,6 +271,7 @@ public class ProfileActivity extends AppCompatActivity {
                     if(!profileName.getEditText().getText().toString().equals(null) && !profileSurname.getEditText().getText().toString().equals(null) && !profilePhone.getEditText().getText().toString().equals(null)
                             && !profileBbName.getEditText().getText().toString().equals(null) && !profileAddress.getEditText().getText().toString().equals(null)){
                         startActivity(new Intent(ProfileActivity.this,MainActivity.class));
+                        finish();
                     }
                     else{
                         Toast.makeText(ProfileActivity.this, "All fields must be filled", Toast.LENGTH_SHORT).show();
