@@ -188,7 +188,7 @@ public class ProfileActivity extends AppCompatActivity {
                         databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("phone");
                         databaseReference.setValue(profilePhone.getEditText().getText().toString());
                     }
-                    if(profileBbName.getEditText().getText().toString().equals(null)){
+                    if(!profileBbName.getEditText().getText().toString().equals(null)){
                         databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("bloodbankname");
                         databaseReference.setValue(profileBbName.getEditText().getText().toString());
                     }
