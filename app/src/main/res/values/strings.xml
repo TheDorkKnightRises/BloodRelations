@@ -37,4 +37,5 @@
     <string name="bloodbank_details">BloodBank Details</string>
     <string name="title_activity_locate">Map</string>
     <string name="prompt_name">Name</string>
+    <string name="submit_form">Submit Form</string>
 </resources>
