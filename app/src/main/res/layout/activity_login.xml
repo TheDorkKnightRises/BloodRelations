@@ -135,14 +135,6 @@
                         android:text="@string/action_sign_up_short"
                         android:textSize="16sp" />
 
-                    <Button
-                        android:id="@+id/bypass"
-                        style="@style/Base.Widget.AppCompat.Button.Colored"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:minHeight="56dp"
-                        android:text="By Pass to mainactivity"
-                        android:textSize="16sp" />
 
                 </LinearLayout>
             </ScrollView>

@@ -158,14 +158,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                     });
 
                     //TODO : Delete bypass
-                    Button button = (Button)findViewById(R.id.bypass);
+                    /*Button button = (Button)findViewById(R.id.bypass);
                     button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             startActivity(new Intent(LoginActivity.this,MainActivity.class));
                             finish();
                         }
-                    });
+                    });*/
 
                     mLoginFormView = findViewById(R.id.login_form);
                     mProgressView = findViewById(R.id.login_progress);
