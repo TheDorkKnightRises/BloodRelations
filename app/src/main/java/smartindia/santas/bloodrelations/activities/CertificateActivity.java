@@ -1,30 +1,20 @@
 package smartindia.santas.bloodrelations.activities;
 
 import android.content.Context;
-import android.graphics.Rect;
-import android.graphics.pdf.PdfDocument;
-import android.os.Environment;
+import android.os.Bundle;
 import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintJob;
 import android.print.PrintManager;
-import android.provider.DocumentsContract;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.Toast;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 
 import smartindia.santas.bloodrelations.R;
 
 public class CertificateActivity extends AppCompatActivity {
     private WebView webView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +44,11 @@ public class CertificateActivity extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true);
 
         webView.loadData(html_value, "text/html", "UTF-8");
-        createWebPrintJob(webView);
 
     }
 
 
-    private void createWebPrintJob(WebView webView) {
+    public void createWebPrintJob(View view) {
 
         // Get a PrintManager instance
         PrintManager printManager = (PrintManager) this.getSystemService(Context.PRINT_SERVICE);
