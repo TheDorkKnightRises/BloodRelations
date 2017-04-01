@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup = "true"
@@ -82,6 +84,10 @@
             android:name=".activities.UserTypeActivity"
             android:label="User Type"
             android:theme="@style/AppTheme" />
+
+        <activity android:name=".activities.CertificateActivity"
+            android:label="Certificate"
+            android:theme="@style/AppTheme"/>
 
         <activity android:name=".activities.HelpActivity"
             android:label="@string/help"
