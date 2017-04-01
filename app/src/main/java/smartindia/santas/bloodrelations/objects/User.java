@@ -1,4 +1,4 @@
-package smartindia.santas.bloodrelations.Objects;
+package smartindia.santas.bloodrelations.objects;
 
 /**
  * Created by DELL on 01/04/2017.

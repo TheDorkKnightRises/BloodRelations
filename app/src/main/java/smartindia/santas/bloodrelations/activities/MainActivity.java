@@ -26,7 +26,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import smartindia.santas.bloodrelations.Objects.Donor;
+import smartindia.santas.bloodrelations.objects.Donor;
 import smartindia.santas.bloodrelations.R;
 import smartindia.santas.bloodrelations.adapters.DonorRecyclerAdapter;
 

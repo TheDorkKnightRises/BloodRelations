@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import smartindia.santas.bloodrelations.Objects.Donor;
+import smartindia.santas.bloodrelations.objects.Donor;
 import smartindia.santas.bloodrelations.R;
 
 /**

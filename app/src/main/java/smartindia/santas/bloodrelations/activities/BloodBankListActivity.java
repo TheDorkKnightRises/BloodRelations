@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 
 import smartindia.santas.bloodrelations.adapters.BloodBankRecyclerAdapter;
-import smartindia.santas.bloodrelations.Objects.BloodBank;
+import smartindia.santas.bloodrelations.objects.BloodBank;
 import smartindia.santas.bloodrelations.R;
 
 public class BloodBankListActivity extends AppCompatActivity {

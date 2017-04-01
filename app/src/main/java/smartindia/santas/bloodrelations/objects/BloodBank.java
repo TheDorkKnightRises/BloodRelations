@@ -1,4 +1,4 @@
-package smartindia.santas.bloodrelations.Objects;
+package smartindia.santas.bloodrelations.objects;
 
 /**
  * Created by adityadesai on 31/03/17.

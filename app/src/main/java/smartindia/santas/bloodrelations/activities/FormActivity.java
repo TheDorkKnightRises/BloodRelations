@@ -14,8 +14,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import smartindia.santas.bloodrelations.Objects.Donor;
-import smartindia.santas.bloodrelations.Objects.Question;
 import smartindia.santas.bloodrelations.R;
 
 public class FormActivity extends AppCompatActivity {
