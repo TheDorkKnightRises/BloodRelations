@@ -149,7 +149,7 @@ public class ProfileActivity extends AppCompatActivity {
                         databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("imageURL");
                         databaseReference.setValue(imageUrl.toString());
                     }
-                    startActivity(new Intent(ProfileActivity.this,MainActivity.class));
+                    startActivity(new Intent(ProfileActivity.this,BloodBankListActivity.class));
                 }
             });
         }
