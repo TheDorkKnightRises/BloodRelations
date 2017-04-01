@@ -145,7 +145,9 @@ public class ProfileActivity extends AppCompatActivity {
                                 profileAddress.getEditText().setText(snapshot.child("details").child("address").getValue().toString());
                                 profilePhone.getEditText().setText(snapshot.child("details").child("phone").getValue().toString());
                                 birthDateEditText.setText(snapshot.child("details").child("birthdate").getValue().toString());
-                                Picasso.with(profilePicture.getContext()).load(snapshot.child("details").child("imageURL").getValue().toString()).into(profilePicture);
+                                if(snapshot.child("details").hasChild("imageURL")){
+                                    Picasso.with(profilePicture.getContext()).load(snapshot.child("details").child("imageURL").getValue().toString()).into(profilePicture);
+                                }
                             }
                         }
                     }
@@ -231,7 +233,9 @@ public class ProfileActivity extends AppCompatActivity {
                                 profileBbName.getEditText().setText(snapshot.child("details").child("bloodbankname").getValue().toString());
                                 profileAddress.getEditText().setText(snapshot.child("details").child("address").getValue().toString());
                                 profilePhone.getEditText().setText(snapshot.child("details").child("phone").getValue().toString());
-                                Picasso.with(profilePicture.getContext()).load(snapshot.child("details").child("imageURL").getValue().toString()).into(profilePicture);
+                                if(snapshot.child("details").hasChild("imageURL")){
+                                    Picasso.with(profilePicture.getContext()).load(snapshot.child("details").child("imageURL").getValue().toString()).into(profilePicture);
+                                }
                             }
                         }
                     }
