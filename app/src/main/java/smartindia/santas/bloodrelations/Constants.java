@@ -9,7 +9,6 @@ public class Constants {
     public static final String PREFS = "prefs";
     public static final String LOGGED_IN = "logged_in";
 
-
     /*user*/
     public static final String NAME = "name";
     public static final String ADDRESS = "address";
@@ -21,7 +20,7 @@ public class Constants {
 
     public static final String BLOOD_GROUP = "group";
     public static final String DOB = "dob";
-
+    public static final String ISBLOODBANK = "isbb";
 
 
 

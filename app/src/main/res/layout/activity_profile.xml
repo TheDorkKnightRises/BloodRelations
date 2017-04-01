@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="smartindia.santas.bloodrelations.activities.ProfileActivity"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -36,12 +31,16 @@
                 android:scaleY="0.75"
                 android:onClick="getPicture"/>
         </RelativeLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
             <android.support.design.widget.TextInputLayout
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -66,8 +65,13 @@
                     android:hint="Surname"/>
 
             </android.support.design.widget.TextInputLayout>
-        </LinearLayout>
-        <android.support.design.widget.TextInputLayout
+            </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -80,10 +84,14 @@
                 android:inputType="textEmailAddress"/>
 
         </android.support.design.widget.TextInputLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -98,6 +106,7 @@
                     android:inputType="number"/>
 
             </android.support.design.widget.TextInputLayout>
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -111,9 +120,12 @@
                     android:hint="Blood Group"/>
 
             </android.support.design.widget.TextInputLayout>
-        </LinearLayout>
-
-        <android.support.design.widget.TextInputLayout
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -125,13 +137,18 @@
                 android:hint="Enter Address"/>
 
         </android.support.design.widget.TextInputLayout>
+            </android.support.v7.widget.CardView>
 
-        <EditText
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Birthday"
             android:id="@+id/birthday_edittext" />
-    </LinearLayout>
+            </android.support.v7.widget.CardView>
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/profile_edit_done_fab"
@@ -141,4 +158,4 @@
         android:layout_margin="16dp"
         android:src="@drawable/svg_ic_done_black_24px" />
 
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

@@ -90,8 +90,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
-                    case R.id.menu_item_home:
-                        break;
                     case R.id.menu_item_profile:
                         startActivity(new Intent(MainActivity.this,ProfileActivity.class));
                         break;
