@@ -91,7 +91,9 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
                     case R.id.menu_item_profile:
-                        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                        Intent i = new Intent(MainActivity.this,ProfileActivity.class);
+                        i.putExtra("isfromsignup",false);
+                        startActivity(i);
                         break;
                     case R.id.menu_item_locate:
                         startActivity(new Intent(MainActivity.this, LocateActivity.class));

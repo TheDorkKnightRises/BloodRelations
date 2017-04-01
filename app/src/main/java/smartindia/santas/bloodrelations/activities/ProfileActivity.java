@@ -62,13 +62,14 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseUser user;
 
     private Uri imageUrl;
-
+    boolean t;
     SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Intent i = getIntent();
+        t =  i.getBooleanExtra("isfromsignup",false);
         prefs = getSharedPreferences(Constants.PREFS, MODE_PRIVATE);
         if(!prefs.getBoolean(Constants.ISBLOODBANK,false)){
 
@@ -208,12 +209,25 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        if (t){
+            return;
+        }
+        else
+        {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId())
         {
             case android.R.id.home:
+                if (!t)
                 onBackPressed();
                 break;
+
             case R.id.menu_save:
                 onSavePressed();
                 break;
