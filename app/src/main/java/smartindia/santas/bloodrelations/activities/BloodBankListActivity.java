@@ -79,7 +79,7 @@ public class BloodBankListActivity extends AppCompatActivity {
                         startActivity(i);
                         break;
                     case R.id.menu_item_locate:
-                        startActivity(new Intent(BloodBankListActivity.this,BloodBankDetailsActivity.class));
+                        startActivity(new Intent(BloodBankListActivity.this,LocateActivity.class));
                         break;
                     case R.id.menu_item_form:
                         startActivity(new Intent(BloodBankListActivity.this,FormActivity.class));
