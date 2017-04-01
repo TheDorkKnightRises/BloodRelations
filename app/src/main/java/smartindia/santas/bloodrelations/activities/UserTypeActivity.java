@@ -15,7 +15,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
 
-import static android.R.attr.button;
 
 public class UserTypeActivity extends AppCompatActivity {
     SharedPreferences prefs;
@@ -34,30 +33,35 @@ public class UserTypeActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
+
         final Button b = (Button) findViewById(R.id.Yes);
         b.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                        isBloodBank = true;
-                        push();
-                        setsharedpreference();
-                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(i);
+                isBloodBank = true;
+                push();
+                setsharedpreference();
+                Intent i = new Intent(UserTypeActivity.this, MainActivity.class);
+                startActivity(i);
+                finish();
 
             }
 
         });
+
         final Button b1 = (Button) findViewById(R.id.No);
         b1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-        isBloodBank = false;
-        push();
-        setsharedpreference();
-        Intent j = new Intent(getApplicationContext(), BloodBankListActivity.class);
-        startActivity(j);
+                isBloodBank = false;
+                push();
+                setsharedpreference();
+                Intent j = new Intent(UserTypeActivity.this, BloodBankListActivity.class);
+                startActivity(j);
+                finish();
 
+            }
+        });
     }
-    });
-    }
+
     public void setsharedpreference() {
         prefs = getSharedPreferences(Constants.PREFS, MODE_PRIVATE);
         editor = prefs.edit();
