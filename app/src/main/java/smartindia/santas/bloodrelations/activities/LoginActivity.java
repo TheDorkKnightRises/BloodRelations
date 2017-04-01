@@ -35,12 +35,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -71,10 +80,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
     private View mProgressText;
     private View mProgressView;
     private View mLoginFormView;
+    GoogleApiClient googleApiClient;
+    SignInButton googleButton;
 
 
     FirebaseAuth firebaseAuth;
     FirebaseAuth.AuthStateListener authStateListener;
+
+
+    private static final int RC_SIGN_IN = 9001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,6 +186,32 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                     mProgressView = findViewById(R.id.login_progress);
                     mProgressText = findViewById(R.id.progress_text);
 
+
+                    googleButton = (SignInButton)findViewById(R.id.googleButton);
+                    GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                            .requestIdToken(getString(R.string.default_web_client_id))
+                            .requestEmail()
+                            .build();
+
+                    googleApiClient = new GoogleApiClient.Builder(LoginActivity.this)
+                            .enableAutoManage(LoginActivity.this,
+                                    new GoogleApiClient.OnConnectionFailedListener(){
+                                        @Override
+                                        public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+                                            Toast.makeText(getApplicationContext(),"onConnectionFailed "+ connectionResult,Toast.LENGTH_LONG).show();
+                                        }
+                                    })
+                            .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
+                            .build();
+
+                    googleButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            googleSignIn();
+                        }
+                    });
+
+
                 } else {
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
@@ -180,6 +220,44 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
             }
         }, 750);
 
+    }
+
+    private void googleSignIn() {
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
+        startActivityForResult(signInIntent,RC_SIGN_IN);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == RC_SIGN_IN){
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            if(result.isSuccess()){
+                //Toast.makeText(getApplicationContext(),"result.isSuccess",Toast.LENGTH_SHORT).show();
+                GoogleSignInAccount account = result.getSignInAccount();
+                firebaseAuthWithGoogle(account);
+            }
+            else{
+                Toast.makeText(getApplicationContext(),"Google SignIn Failed",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void firebaseAuthWithGoogle(GoogleSignInAccount account){
+
+        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(),null);
+        firebaseAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Toast.makeText(getApplicationContext(),"SignInWithCredential Complete "+task.isSuccessful(),Toast.LENGTH_SHORT).show();
+                        /*if(!task.isSuccessful()){
+
+                        }*/
+                    }
+                });
     }
 
     private void populateAutoComplete() {

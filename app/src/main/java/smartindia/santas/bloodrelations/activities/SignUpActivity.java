@@ -34,14 +34,12 @@ import smartindia.santas.bloodrelations.R;
 
 public class SignUpActivity extends AppCompatActivity{
 
-    private static final int RC_SIGN_IN = 9001;
 
     EditText emailEdiText ,passwordEditText;
     Button signupButton;//loginButton,;
     private FirebaseAuth firebaseAuth;
     private  FirebaseAuth.AuthStateListener authStateListener;
-    GoogleApiClient googleApiClient;
-    SignInButton googleButton;
+
     //Button signout;
 
     @Override
@@ -53,7 +51,6 @@ public class SignUpActivity extends AppCompatActivity{
         passwordEditText =(EditText)findViewById(R.id.password_editText);
         signupButton= (Button)findViewById(R.id.signinButton);
         //loginButton = (Button)findViewById(R.id.loginButton);
-        googleButton = (SignInButton)findViewById(R.id.googleButton);
         //signout = (Button)findViewById(R.id.signout);
         /*signout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,67 +91,10 @@ public class SignUpActivity extends AppCompatActivity{
 
         /*Google SignUp*/
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
 
-        googleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this,
-                        new GoogleApiClient.OnConnectionFailedListener(){
-                            @Override
-                            public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-                                Toast.makeText(getApplicationContext(),"onConnectionFailed "+ connectionResult,Toast.LENGTH_LONG).show();
-                            }
-                        })
-                .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
-                .build();
-
-        googleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                googleSignIn();
-            }
-        });
-    }
-
-    private void googleSignIn() {
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
-        startActivityForResult(signInIntent,RC_SIGN_IN);
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == RC_SIGN_IN){
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            if(result.isSuccess()){
-                //Toast.makeText(getApplicationContext(),"result.isSuccess",Toast.LENGTH_SHORT).show();
-                GoogleSignInAccount account = result.getSignInAccount();
-                firebaseAuthWithGoogle(account);
-            }
-            else{
-                Toast.makeText(getApplicationContext(),"Google SignIn Failed",Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    private void firebaseAuthWithGoogle(GoogleSignInAccount account){
-
-        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(),null);
-        firebaseAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Toast.makeText(getApplicationContext(),"SignInWithCredential Complete "+task.isSuccessful(),Toast.LENGTH_SHORT).show();
-                        /*if(!task.isSuccessful()){
-
-                        }*/
-                    }
-                });
-    }
 
 
 
