@@ -23,5 +23,5 @@ public class Constants {
     public static final String ISBLOODBANK = "isbb";
 
 
-
+    public static final String DARK_THEME = "dark_theme";
 }
