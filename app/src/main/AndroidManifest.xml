@@ -60,8 +60,7 @@
         <activity
             android:name=".activities.BloodBankListActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".activities.MainActivity" />
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".activities.BloodBankDetailsActivity"
@@ -76,12 +75,6 @@
             android:parentActivityName=".activities.MainActivity" />
 
         <activity
-            android:name=".activities.LanguageActivity"
-            android:label="@string/language"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".activities.MainActivity" />
-
-        <activity
             android:name=".activities.FeedbackActivity"
             android:label="@string/feedback"
             android:theme="@style/AppTheme"
@@ -89,8 +82,7 @@
 
         <activity android:name=".activities.UserTypeActivity"
             android:label="User Type"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".activities.SignUpActivity" />
+            android:theme="@style/AppTheme" />
 
         <activity android:name=".activities.HelpActivity"
             android:label="@string/help"
