@@ -34,6 +34,10 @@
             android:title="@string/feedback"
             android:id="@+id/menu_item_feedback"
             android:icon="@drawable/svg_ic_feedback_black_24px"/>
+        <item
+            android:title="@string/bloodbank_details"
+            android:id="@+id/menu_item_bloodbank_details"
+            android:icon="@drawable/ic_work_black_24dp"/>
 
     </group>
 

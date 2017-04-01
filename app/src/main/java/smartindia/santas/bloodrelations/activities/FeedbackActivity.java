@@ -1,6 +1,8 @@
 package smartindia.santas.bloodrelations.activities;
 
+import android.content.Intent;
 import android.media.Rating;
+import android.net.Uri;
 import android.support.annotation.IdRes;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
@@ -21,15 +23,18 @@ import smartindia.santas.bloodrelations.R;
 
 public class FeedbackActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-    TextInputEditText subject= (TextInputEditText)findViewById(R.id.subject);
-    TextInputEditText Description=(TextInputEditText)findViewById(R.id.description);
-    RatingBar rating=(RatingBar)findViewById(R.id.rating);
+    EditText subject;
+    EditText description;
+    RatingBar rating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
 
+        subject= (TextInputEditText)findViewById(R.id.subject);
+        description=(TextInputEditText)findViewById(R.id.description);
+        rating=(RatingBar)findViewById(R.id.rating);
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner1);
 
@@ -67,6 +72,20 @@ public class FeedbackActivity extends AppCompatActivity implements AdapterView.O
     public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub
 
+    }
+
+    public void nextPage(View view){
+        String emailSubject = subject.getText().toString();
+        String emailBody = description.getText().toString();
+
+
+
+
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto","abc@gmail.com", null));
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, emailSubject);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, emailBody);
+        startActivity(Intent.createChooser(emailIntent, "Send email..."));
     }
     }
 
