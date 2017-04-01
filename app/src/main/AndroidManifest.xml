@@ -83,6 +83,9 @@
             android:label="Feedback"
             android:theme="@style/AppThemePlusToolbar"
             android:parentActivityName=".activities.MainActivity"></activity>
+        <activity android:name=".activities.BloodBankDetailsActivity"
+            android:label="Blood Bank"
+            android:theme="@style/AppThemePlusToolbar"></activity>
     </application>
 
 </manifest>
