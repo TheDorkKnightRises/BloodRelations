@@ -69,7 +69,7 @@ public class SignUpActivity extends AppCompatActivity{
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null){
                     Toast.makeText(SignUpActivity.this,user.getUid().toString(),Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(SignUpActivity.this,MainActivity.class));
+                    startActivity(new Intent(SignUpActivity.this,UserTypeActivity.class));
                 }
                 else {
                     //Toast.makeText(getApplicationContext(), "onAuthStateChanged:signed_out", Toast.LENGTH_SHORT).show();
