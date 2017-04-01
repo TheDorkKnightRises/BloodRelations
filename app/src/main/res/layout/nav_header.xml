@@ -12,25 +12,23 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="32dp"
         android:src="@android:drawable/sym_def_app_icon"
-        android:layout_marginBottom="30dp"/>
+        android:layout_marginBottom="12dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Username"
-        android:textSize="15dp"
-        android:textColor="@android:color/white"
-        android:layout_marginBottom="7dp"/>
+        android:textSize="15sp"
+        android:textColor="@android:color/white"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Blood Bank"
-        android:textSize="12dp"
+        android:textSize="12sp"
         android:textColor="@android:color/darker_gray"
-        android:gravity="center_horizontal"
-        android:layout_marginLeft="5dp"/>
+        android:gravity="center_horizontal"/>
 
 </LinearLayout>
