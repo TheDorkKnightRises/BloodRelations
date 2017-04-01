@@ -162,13 +162,12 @@
             android:id="@+id/birthday_edittext" />
             </android.support.v7.widget.CardView>
 
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/profile_edit_done_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:src="@drawable/svg_ic_done_black_24px" />
+        android:src="@drawable/svg_ic_done_white_24px" />
 </LinearLayout>
 </ScrollView>

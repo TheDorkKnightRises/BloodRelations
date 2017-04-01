@@ -25,7 +25,6 @@ import android.support.transition.Transition;
 import android.support.transition.TransitionManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +48,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
@@ -59,10 +57,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -166,7 +160,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                             }
                         });
 
-                        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+                        final Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
                         mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -234,10 +228,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
 
         }
-
-
-
-
 
     }
 
@@ -458,6 +448,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener
                         if (!task.isSuccessful()) {
+                            showProgress(false);
                             try {
                                 String msg = task.getResult().toString();
                                 Toast.makeText(getApplicationContext(), "Unsuccessful" + msg, Toast.LENGTH_SHORT).show();

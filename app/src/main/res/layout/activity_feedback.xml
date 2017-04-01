@@ -130,7 +130,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:src="@drawable/svg_ic_done_black_24px"
+        android:src="@drawable/svg_ic_done_white_24px"
         android:onClick="nextPage"
         android:id="@+id/submit"/>
 
