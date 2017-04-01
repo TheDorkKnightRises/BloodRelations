@@ -42,6 +42,7 @@ public class UserTypeActivity extends AppCompatActivity {
                         setsharedpreference();
                         Intent i = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(i);
+                finish();
 
             }
 
@@ -54,6 +55,7 @@ public class UserTypeActivity extends AppCompatActivity {
         setsharedpreference();
         Intent j = new Intent(getApplicationContext(), BloodBankListActivity.class);
         startActivity(j);
+                finish();
 
     }
     });
