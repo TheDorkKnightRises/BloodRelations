@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/lblListHeader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="6dip"
+            android:paddingTop="6dip"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            tools:ignore="SpUsage" />
+
+    </LinearLayout>
+
+</LinearLayout>
