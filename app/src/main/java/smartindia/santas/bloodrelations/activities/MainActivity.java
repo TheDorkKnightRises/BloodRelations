@@ -1,6 +1,7 @@
 package smartindia.santas.bloodrelations.activities;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -12,20 +13,26 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import smartindia.santas.bloodrelations.adapters.BloodBankRecyclerAdapter;
+import smartindia.santas.bloodrelations.objects.BloodBank;
 import smartindia.santas.bloodrelations.objects.Donor;
 import smartindia.santas.bloodrelations.R;
 import smartindia.santas.bloodrelations.adapters.DonorRecyclerAdapter;
@@ -42,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
     LinearLayoutManager linearLayoutManager;
     DonorRecyclerAdapter adapter;
     ArrayList<Donor> donorList;
+
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+    private ChildEventListener mChildEventListener;
+    private ValueEventListener mValueEventListener;
     FirebaseUser user;
 
     final String requests = "notificationRequests";
@@ -55,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference().child("users");
 
         drawerLayout= (DrawerLayout)findViewById(R.id.drawer_layout) ;
         navigationView = (NavigationView) findViewById(R.id.nvView);
@@ -66,16 +80,15 @@ public class MainActivity extends AppCompatActivity {
 
         setupDrawer();
 
-        donorList = new ArrayList<>();
-        for(int i=0;i<10;i++){
-            donorList.add(new Donor("Placeholder Name Here","Placeholder Location Here","Placeholder Blood Group Here","Placeholder Phone Here"));
-        }
-
         recyclerView = (RecyclerView)findViewById(R.id.donor_recyclerview);
         linearLayoutManager = new LinearLayoutManager(this);
-        adapter = new DonorRecyclerAdapter(donorList);
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(adapter);
+
+        donorList = new ArrayList<>();
+//        for(int i=0;i<10;i++){
+//            donorList.add(new Donor("Placeholder Name Here","Placeholder Location Here","Placeholder Blood Group Here","Placeholder Phone Here"));
+//        }
+
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +96,91 @@ public class MainActivity extends AppCompatActivity {
                 fab_pressed();
             }
         });
+
+        fetchDonorList mFetch = new fetchDonorList();
+        mFetch.execute();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        detachDatabaseReadListener();
+    }
+
+    public void updateUI(){
+        Log.v("tag","reached");
+        adapter=new DonorRecyclerAdapter(donorList);
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void attachDatabaseReadListener() {
+        if (mChildEventListener == null) {
+            mChildEventListener = new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    Donor donor = dataSnapshot.getValue(Donor.class);
+                    donorList.add(donor);
+
+                }
+
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
+                    Donor donor = dataSnapshot.getValue(Donor.class);
+                    donorList.remove(donor);
+                }
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
+                public void onCancelled(DatabaseError databaseError) {}
+            };
+        }
+    }
+
+    private void detachDatabaseReadListener() {
+        if (mChildEventListener != null) {
+            databaseReference.removeEventListener(mChildEventListener);
+            mChildEventListener = null;
+        }
+    }
+
+    public class fetchDonorList extends AsyncTask<Void,Void,ArrayList<Donor>> {
+        @Override
+        protected ArrayList<Donor> doInBackground(Void... params) {
+
+            mValueEventListener = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    donorList.clear();
+                    for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                        Boolean isBank = (Boolean)snapshot.child("isBloodBank").getValue();
+                        if(!isBank){
+                            Log.v("tag","called");
+                            String firstname = (String) snapshot.child("details").child("firstname").getValue().toString();
+                            String surname = (String) snapshot.child("details").child("surname").getValue().toString();
+                            String name = firstname + " " + surname;
+                            String location = (String) snapshot.child("details").child("address").getValue().toString();
+                            String bloodGroup = (String) snapshot.child("details").child("bloodgroup").getValue().toString();
+                            String phone = (String) snapshot.child("details").child("phone").getValue().toString();
+                            donorList.add(new Donor(name,location,bloodGroup,phone));
+                        }
+                    }
+                    updateUI();
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            };
+
+            databaseReference.addValueEventListener(mValueEventListener);
+            return donorList;
+        }
     }
 
     private void setupDrawer(){

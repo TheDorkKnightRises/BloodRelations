@@ -98,7 +98,6 @@ public class BloodBankListActivity extends AppCompatActivity {
     }
 
     public void updateUI(){
-        Log.v("tag","reached");
         adapter=new BloodBankRecyclerAdapter(bloodBankList);
         recyclerView.setAdapter(adapter);
     }
@@ -121,7 +120,6 @@ public class BloodBankListActivity extends AppCompatActivity {
                 public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
                 public void onCancelled(DatabaseError databaseError) {}
             };
-            //mIndustryDatabaseReference.addChildEventListener(mChildEventListener);
         }
     }
 
@@ -143,7 +141,6 @@ public class BloodBankListActivity extends AppCompatActivity {
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                         Boolean isBank = (Boolean)snapshot.child("isBloodBank").getValue();
                         if(isBank){
-                            Log.v("tag","called");
                             String bbname = (String) snapshot.child("details").child("bloodbankname").getValue().toString();
                             String location = (String) snapshot.child("details").child("address").getValue().toString();
                             String phone = (String) snapshot.child("details").child("phone").getValue().toString();
