@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            card_view:cardCornerRadius="4dp"
+            card_view:cardCornerRadius="5dp"
             android:layout_margin="5dp">
 
             <android.support.design.widget.TextInputLayout
@@ -47,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            card_view:cardCornerRadius="4dp"
+            card_view:cardCornerRadius="5dp"
             android:layout_margin="5dp">
 
             <android.support.design.widget.TextInputLayout
@@ -67,47 +67,23 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp">
+            android:layout_margin="5dp"
+            app:cardCornerRadius="5dp">
 
-
-                <RadioGroup
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/group1">
+                    android:text="FeedBack Type"/>
 
-                        <RadioButton
-                            android:text="Suggestion"
-                            android:textSize="20dp"
-                            android:textColor="@color/yellow"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"/>
-
-                        <RadioButton
-                            android:text="Question"
-                            android:textSize="20dp"
-                            android:textColor="@color/blue"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"/>
-
-
-
-                        <RadioButton
-                            android:text="Problem"
-                            android:layout_gravity="fill"
-                            android:textSize="20dp"
-                            android:textColor="@color/red"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content" />
-                        <RadioButton
-                            android:text="Praise"
-                            android:layout_gravity="fill"
-                            android:textSize="20dp"
-                            android:textColor="@color/purple"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"/>
-
-
-                </RadioGroup>
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spinner1"></Spinner>
+            </LinearLayout>
 
         </android.support.v7.widget.CardView>
 
