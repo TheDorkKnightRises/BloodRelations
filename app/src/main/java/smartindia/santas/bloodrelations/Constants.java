@@ -24,4 +24,5 @@ public class Constants {
 
 
     public static final String DARK_THEME = "dark_theme";
+    public static final String NOTIFICATIONS = "notifications_enabled";
 }

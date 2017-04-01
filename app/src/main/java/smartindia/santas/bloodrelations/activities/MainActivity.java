@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
     boolean bbMode;
 
     final String requests = "notificationRequests";
+    private boolean backPressFlag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -375,5 +377,25 @@ public class MainActivity extends AppCompatActivity {
         //DatabaseReference notifications = root.child(requests);
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawers();
+        } else {
+            if (backPressFlag)
+                finishAffinity();
+            else {
+                Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show();
+                backPressFlag = true;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        backPressFlag = false;
+                    }
+                }, 2000);
+            }
+        }
     }
 }

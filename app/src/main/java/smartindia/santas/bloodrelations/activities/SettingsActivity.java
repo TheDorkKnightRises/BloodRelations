@@ -1,18 +1,19 @@
 package smartindia.santas.bloodrelations.activities;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    Switch mySwitch;
+    Switch themeSwitch, notifSwitch;
     SharedPreferences shPref;
     SharedPreferences.Editor editor;
 
@@ -25,15 +26,18 @@ public class SettingsActivity extends AppCompatActivity {
             setTheme(R.style.AppTheme_Dark);
         setContentView(R.layout.activity_settings);
 
-        mySwitch = (Switch) findViewById(R.id.mySwitch);
+        themeSwitch = (Switch) findViewById(R.id.theme_switch);
+        notifSwitch = (Switch) findViewById(R.id.notif_switch);
 
         editor = shPref.edit();
 
         if (shPref.getBoolean(Constants.DARK_THEME, false))
-            mySwitch.setChecked(true);
+            themeSwitch.setChecked(true);
+        if (shPref.getBoolean(Constants.NOTIFICATIONS, true))
+            notifSwitch.setChecked(true);
 
         //attach a listener to check for changes in state
-        mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        themeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -45,8 +49,28 @@ public class SettingsActivity extends AppCompatActivity {
                     editor.commit();
                     //Toast.makeText(SettingsActivity.this, String.valueOf(shPref.getBoolean(Constants.DARK_THEME, false)), Toast.LENGTH_SHORT).show();
                 }
-                Toast.makeText(SettingsActivity.this, "App needs to restart", Toast.LENGTH_SHORT).show();
-                finishAffinity();
+                AlertDialog.Builder alert = new AlertDialog.Builder(SettingsActivity.this).setMessage("App will restart to apply theme changes")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                SettingsActivity.this.finishAffinity();
+                            }
+                        });
+                alert.show();
+            }
+        });
+
+        notifSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    editor.putBoolean(Constants.NOTIFICATIONS, true);
+                    editor.apply();
+                } else {
+                    editor.putBoolean(Constants.NOTIFICATIONS, false);
+                    editor.commit();
+                }
             }
         });
 

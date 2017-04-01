@@ -38,4 +38,5 @@
     <string name="title_activity_locate">Map</string>
     <string name="prompt_name">Name</string>
     <string name="submit_form">Submit Form</string>
+    <string name="app_settings">App settings</string>
 </resources>

@@ -25,7 +25,6 @@ import android.support.transition.Transition;
 import android.support.transition.TransitionManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,7 +61,6 @@ import java.util.List;
 
 import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
-import smartindia.santas.bloodrelations.objects.Donor;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -115,7 +113,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                     //finish();
                     Toast.makeText(LoginActivity.this,user.getUid().toString(),Toast.LENGTH_SHORT).show();
                     Toast.makeText(LoginActivity.this,"Signed in",Toast.LENGTH_SHORT).show();
-                    SharedPreferences prefs = getSharedPreferences(Constants.PREFS,MODE_PRIVATE);
                     startActivity(new Intent(LoginActivity.this,MainActivity.class));
                     finish();
                 } else {
@@ -564,4 +561,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        if (backPressFlag)
+            finishAffinity();
+        else {
+            Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show();
+            backPressFlag = true;
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    backPressFlag = false;
+                }
+            }, 2000);
+        }
+    }
 }
