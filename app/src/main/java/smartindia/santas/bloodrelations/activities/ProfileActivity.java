@@ -2,13 +2,16 @@ package smartindia.santas.bloodrelations.activities;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,7 +34,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
+
+import static smartindia.santas.bloodrelations.R.string.profile;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -39,13 +45,14 @@ public class ProfileActivity extends AppCompatActivity {
 
     private de.hdodenhof.circleimageview.CircleImageView profilePicture;
     private FloatingActionButton profileEditDone;
+    private FloatingActionButton locateFab;
 
     private TextInputLayout profileName;
     private TextInputLayout profileSurname;
-    private TextInputLayout profileEmail;
     private TextInputLayout profilePhone;
     private TextInputLayout profileBloodGroup;
     private TextInputLayout profileAddress;
+    private TextInputLayout profileBbName;
     private EditText birthDateEditText;
 
     private FirebaseDatabase firebaseDatabase;
@@ -56,80 +63,159 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseUser user;
 
     private Uri imageUrl;
+    boolean t;
+    SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        Intent i = getIntent();
+        t =  i.getBooleanExtra("isfromsignup",false);
+        prefs = getSharedPreferences(Constants.PREFS, MODE_PRIVATE);
+        if(!prefs.getBoolean(Constants.ISBLOODBANK,false)){
 
-        profilePicture=(de.hdodenhof.circleimageview.CircleImageView)findViewById(R.id.profile_image);
-        birthDateEditText=(EditText) findViewById(R.id.birthday_edittext);
-        profileEditDone=(FloatingActionButton)findViewById(R.id.profile_edit_done_fab);
-        profileName = (TextInputLayout)findViewById(R.id.profile_name);
-        profileSurname = (TextInputLayout)findViewById(R.id.profile_surname);
-        profileEmail = (TextInputLayout)findViewById(R.id.profile_email);
-        profilePhone = (TextInputLayout)findViewById(R.id.profile_phone);
-        profileBloodGroup = (TextInputLayout)findViewById(R.id.profile_blood_group);
-        profileAddress = (TextInputLayout)findViewById(R.id.profile_address);
+            setContentView(R.layout.activity_profile);
+            profilePicture=(de.hdodenhof.circleimageview.CircleImageView)findViewById(R.id.profile_image);
+            birthDateEditText=(EditText) findViewById(R.id.birthday_edittext);
+            profileEditDone=(FloatingActionButton)findViewById(R.id.profile_edit_done_fab);
+            profileName = (TextInputLayout)findViewById(R.id.profile_name);
+            profileSurname = (TextInputLayout)findViewById(R.id.profile_surname);
+            profilePhone = (TextInputLayout)findViewById(R.id.profile_phone);
+            profileBloodGroup = (TextInputLayout)findViewById(R.id.profile_blood_group);
+            profileAddress = (TextInputLayout)findViewById(R.id.profile_address);
 
-        final Calendar myCalendar = Calendar.getInstance();
+            final Calendar myCalendar = Calendar.getInstance();
 
-        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+            final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                  int dayOfMonth) {
-                // TODO Auto-generated method stub
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, monthOfYear);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateLabel(myCalendar);
-            }
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                      int dayOfMonth) {
+                    // TODO Auto-generated method stub
+                    myCalendar.set(Calendar.YEAR, year);
+                    myCalendar.set(Calendar.MONTH, monthOfYear);
+                    myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                    updateLabel(myCalendar);
+                }
 
-        };
+            };
 
-        birthDateEditText.setOnClickListener(new View.OnClickListener() {
+            birthDateEditText.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                new DatePickerDialog(ProfileActivity.this, date, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
-        birthDateEditText.setInputType(InputType.TYPE_NULL);
-        birthDateEditText.requestFocus();
+                @Override
+                public void onClick(View v) {
+                    // TODO Auto-generated method stub
+                    new DatePickerDialog(ProfileActivity.this, date, myCalendar
+                            .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                            myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                }
+            });
+            birthDateEditText.setInputType(InputType.TYPE_NULL);
+            birthDateEditText.requestFocus();
 
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        firebaseStorage = FirebaseStorage.getInstance();
-        firebaseAuth = FirebaseAuth.getInstance();
-        user = firebaseAuth.getCurrentUser();
-        storageReference = firebaseStorage.getReference().child("userPhotos");
+            firebaseDatabase = FirebaseDatabase.getInstance();
+            firebaseStorage = FirebaseStorage.getInstance();
+            firebaseAuth = FirebaseAuth.getInstance();
+            user = firebaseAuth.getCurrentUser();
+            storageReference = firebaseStorage.getReference().child("userPhotos");
 
-        profileEditDone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            profileEditDone.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(!profileName.getEditText().getText().toString().equals(null)){
+                        databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("firstname");
+                        databaseReference.setValue(profileName.getEditText().getText().toString());
+                    }
+                    if(!profileSurname.getEditText().getText().toString().equals(null)){
+                        databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("surname");
+                        databaseReference.setValue(profileSurname.getEditText().getText().toString());
+                    }
+                    if(!profilePhone.getEditText().getText().toString().equals(null)){
+                        databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("phone");
+                        databaseReference.setValue(profilePhone.getEditText().getText().toString());
+                    }
+                    if(!profileBloodGroup.getEditText().getText().toString().equals(null)){
+                        databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("bloodgroup");
+                        databaseReference.setValue(profileBloodGroup.getEditText().getText().toString());
+                    }
+                    if(!profileAddress.getEditText().getText().toString().equals(null)){
+                        databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("address");
+                        databaseReference.setValue(profileAddress.getEditText().getText().toString());
+                    }
+                    if(!birthDateEditText.getText().toString().equals(null)){
+                        databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("birthdate");
+                        databaseReference.setValue(birthDateEditText.getText().toString());
+                    }
+                    if (imageUrl != null) {
+                        databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("imageURL");
+                        databaseReference.setValue(imageUrl.toString());
+                    }
+                    startActivity(new Intent(ProfileActivity.this,MainActivity.class));
+                }
+            });
+        }
 
-                databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("firstname");
-                databaseReference.setValue(profileName.getEditText().getText().toString());
-                databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("surname");
-                databaseReference.setValue(profileSurname.getEditText().getText().toString());
-                databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("email");
-                databaseReference.setValue(profileEmail.getEditText().getText().toString());
-                databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("phone");
-                databaseReference.setValue(profilePhone.getEditText().getText().toString());
-                databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("bloodgroup");
-                databaseReference.setValue(profileBloodGroup.getEditText().getText().toString());
-                databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("address");
-                databaseReference.setValue(profileAddress.getEditText().getText().toString());
-                databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("birthdate");
-                databaseReference.setValue(birthDateEditText.getText().toString());
-                databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("imageURL");
-                databaseReference.setValue(imageUrl.toString());
+        else{
 
-            }
-        });
+            setContentView(R.layout.activity_profilebloodbank);
+            profilePicture=(de.hdodenhof.circleimageview.CircleImageView)findViewById(R.id.profile_image);
+            birthDateEditText=(EditText) findViewById(R.id.birthday_edittext);
+            profileName = (TextInputLayout)findViewById(R.id.profile_name);
+            profileSurname = (TextInputLayout)findViewById(R.id.profile_surname);
+            profileBbName = (TextInputLayout)findViewById(R.id.profile_bb_name);
+            profilePhone = (TextInputLayout)findViewById(R.id.profile_phone);
+            profileAddress = (TextInputLayout)findViewById(R.id.profile_address);
+            locateFab = (FloatingActionButton)findViewById(R.id.locateFab);
+
+            firebaseDatabase = FirebaseDatabase.getInstance();
+            firebaseStorage = FirebaseStorage.getInstance();
+            firebaseAuth = FirebaseAuth.getInstance();
+            user = firebaseAuth.getCurrentUser();
+            storageReference = firebaseStorage.getReference().child("bloodBankPhotos");
+
+            locateFab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(!profileName.getEditText().getText().toString().equals(null)){
+                        databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("firstname");
+                        databaseReference.setValue(profileName.getEditText().getText().toString());
+                    }
+                    if(!profileSurname.getEditText().getText().toString().equals(null)){
+                        databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("surname");
+                        databaseReference.setValue(profileSurname.getEditText().getText().toString());
+                    }
+                    if(!profilePhone.getEditText().getText().toString().equals(null)){
+                        databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("phone");
+                        databaseReference.setValue(profilePhone.getEditText().getText().toString());
+                    }
+                    if(profileBbName.getEditText().getText().toString().equals(null)){
+                        databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("bloodbankname");
+                        databaseReference.setValue(profileBbName.getEditText().getText().toString());
+                    }
+                    if(!profileAddress.getEditText().getText().toString().equals(null)){
+                        databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("address");
+                        databaseReference.setValue(profileAddress.getEditText().getText().toString());
+                    }
+                    if(imageUrl!=null){
+                        databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("imageURL");
+                        databaseReference.setValue(imageUrl.toString());
+                    }
+                    startActivity(new Intent(ProfileActivity.this,MainActivity.class));
+                }
+            });
+        }
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(t){
+            return;
+        }
+        else {
+            Log.e("tag",Boolean.toString(t));
+            super.onBackPressed();
+        }
     }
 
     @Override
@@ -137,8 +223,10 @@ public class ProfileActivity extends AppCompatActivity {
         switch (item.getItemId())
         {
             case android.R.id.home:
+                if (!t)
                 onBackPressed();
                 break;
+
             case R.id.menu_save:
                 onSavePressed();
                 break;
@@ -150,7 +238,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.profile_menu,menu);
         return true;
     }
@@ -182,10 +270,7 @@ public class ProfileActivity extends AppCompatActivity {
                 photoRef.putFile(selectedImageUri)
                         .addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                // When the image has successfully uploaded, we get its download URL
                                 imageUrl = taskSnapshot.getDownloadUrl();
-                                // Set the download URL to the message box, so that the user can send it to the database
-                                //Bitmap bitmap = MediaStore.Images.Media.getBitmap(this,imageUrl);
                                 Picasso.with(ProfileActivity.this).load(selectedImageUri).into(profilePicture);
                             }
                         });
