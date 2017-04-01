@@ -10,4 +10,5 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="indigo">#283593</color>
+    <color name="colorTextCommon">#212121</color>
 </resources>

@@ -20,13 +20,16 @@
                 android:layout_height="wrap_content"
                 android:text="BLOOD BANK NAME"
                 android:textSize="30dp"
-                android:paddingTop="10dp"/>
+                android:paddingTop="10dp"
+                android:gravity="center"
+                android:textColor="#000000"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Location"
                 android:textSize="20dp"
-                android:paddingTop="20dp"/>
+                android:paddingTop="20dp"
+                android:textColor="@color/colorTextCommon"/>
 
             <GridLayout
                 android:layout_width="match_parent"
@@ -213,7 +216,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="90dp"
-                android:text="Blood Group:"/>
+                android:text="Blood Group:"
+                android:textSize="20dp"
+                android:textColor="@color/colorTextCommon"/>
             <Spinner
                 android:layout_width="150dp"
                 android:layout_marginTop="20dp"
@@ -230,7 +235,9 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:hint="Quantity"
-                android:inputType="number"/>
+                android:inputType="number"
+                android:textSize="20dp"
+                android:textColor="@color/colorTextCommon"/>
 
             </android.support.design.widget.TextInputLayout>
             <Button
@@ -238,7 +245,9 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_height="wrap_content"
                 android:text="Submit"
-                android:layout_margin="8dp"/>
+                android:layout_margin="8dp"
+                android:textSize="20dp"
+                android:background="@color/colorPrimary"/>
         </LinearLayout>
     </ScrollView>
 </android.support.v7.widget.CardView>

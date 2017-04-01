@@ -33,7 +33,9 @@
                         android:layout_height="wrap_content"
                         android:hint="Subject"
                         android:id="@+id/subject"
-                        android:inputType="textCapSentences"/>
+                        android:inputType="textCapSentences"
+                        android:textSize="20dp"
+                        android:textColor="@color/colorTextCommon"/>
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -49,6 +51,8 @@
                         android:minHeight="48dp"
                         android:layout_marginBottom="@dimen/app_padding"
                         android:id="@+id/description"
+                        android:textSize="20dp"
+                        android:textColor="@color/colorTextCommon"
                         android:inputType="textCapSentences"/>
 
                 </android.support.design.widget.TextInputLayout>
