@@ -1,22 +1,15 @@
-package smartindia.santas.bloodrelations.Adapters;
+package smartindia.santas.bloodrelations.adapters;
 
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
 import smartindia.santas.bloodrelations.Objects.BloodBank;
 import smartindia.santas.bloodrelations.R;
-
-import static android.R.attr.id;
-import static android.R.attr.name;
 
 public class BloodBankRecyclerAdapter extends RecyclerView.Adapter<BloodBankRecyclerAdapter.BloodBankHolder> {
 
