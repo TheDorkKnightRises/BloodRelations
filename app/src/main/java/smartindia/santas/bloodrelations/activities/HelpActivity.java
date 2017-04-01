@@ -28,8 +28,8 @@ public class HelpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_help);
 
         faqListView  = (ExpandableListView) findViewById(R.id.list_faq);
-        String[] groups = new String[0];
-        String[][] children = new String[0][0];
+        String[] groups;
+        String[][] children;
 
 
             groups = new String[]{"How does the blood donation process work?","Will it hurt when you insert the needle?","How long does a blood donation take?","How often can I donate blood?","Is it safe to give blood?","Can I get HIV from donating blood?","Who can donate blood?","Does the Red Cross pay blood donors?"};
@@ -124,7 +124,7 @@ public class HelpActivity extends AppCompatActivity {
             }
 
             holder.text.setText(getChild(groupPosition, childPosition).toString());
-            holder.text.setTextColor(Color.WHITE);
+            holder.text.setTextColor(Color.BLUE);
             holder.text.setAutoLinkMask(Linkify.PHONE_NUMBERS);
 
             return convertView;
@@ -145,7 +145,7 @@ public class HelpActivity extends AppCompatActivity {
             }
 
             holder.text.setText(getGroup(groupPosition).toString());
-            holder.text.setTextColor(Color.WHITE);
+            holder.text.setTextColor(Color.BLACK);
 
             return convertView;
         }
