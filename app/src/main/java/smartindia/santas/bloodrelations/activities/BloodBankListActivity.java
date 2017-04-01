@@ -2,18 +2,16 @@ package smartindia.santas.bloodrelations.activities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.firebase.database.ChildEventListener;
@@ -25,9 +23,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import smartindia.santas.bloodrelations.R;
 import smartindia.santas.bloodrelations.adapters.BloodBankRecyclerAdapter;
 import smartindia.santas.bloodrelations.objects.BloodBank;
-import smartindia.santas.bloodrelations.R;
 
 public class BloodBankListActivity extends AppCompatActivity {
 
@@ -45,8 +43,8 @@ public class BloodBankListActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     private ChildEventListener mChildEventListener;
     private ValueEventListener mValueEventListener;
-    
-    
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -138,14 +136,18 @@ public class BloodBankListActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     bloodBankList.clear();
-                    for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                        String isBank = (String) snapshot.child("isBloodBank").getValue();
-                        if(isBank.equals("true")){
-                            String bbname = (String) snapshot.child("details").child("bloodbankname").getValue().toString();
-                            String location = (String) snapshot.child("details").child("address").getValue().toString();
-                            String phone = (String) snapshot.child("details").child("phone").getValue().toString();
-                            bloodBankList.add(new BloodBank(bbname,location,phone));
+                    try {
+                        for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            String isBank = (String) snapshot.child("isBloodBank").getValue();
+                            if(isBank.equals("true")){
+                                String bbname = snapshot.child("details").child("bloodbankname").getValue().toString();
+                                String location = snapshot.child("details").child("address").getValue().toString();
+                                String phone = snapshot.child("details").child("phone").getValue().toString();
+                                bloodBankList.add(new BloodBank(bbname,location,phone));
+                            }
                         }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                     updateUI();
                 }
@@ -195,5 +197,5 @@ public class BloodBankListActivity extends AppCompatActivity {
             }
         });
     }
-    
+
 }
