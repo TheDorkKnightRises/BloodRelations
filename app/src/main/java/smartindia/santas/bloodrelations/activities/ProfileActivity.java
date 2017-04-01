@@ -154,6 +154,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         else{
 
+
             setContentView(R.layout.activity_profilebloodbank);
             profilePicture=(de.hdodenhof.circleimageview.CircleImageView)findViewById(R.id.profile_image);
             //birthDateEditText=(TextView) findViewById(R.id.birthday_edittext);
