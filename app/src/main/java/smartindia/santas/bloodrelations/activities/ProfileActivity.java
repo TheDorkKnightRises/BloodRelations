@@ -4,9 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,9 +13,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -37,8 +34,6 @@ import java.util.Locale;
 import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
 
-import static smartindia.santas.bloodrelations.R.string.profile;
-
 public class ProfileActivity extends AppCompatActivity {
 
     private static final int RC_PHOTO_PICKER = 1;
@@ -53,7 +48,7 @@ public class ProfileActivity extends AppCompatActivity {
     private TextInputLayout profileBloodGroup;
     private TextInputLayout profileAddress;
     private TextInputLayout profileBbName;
-    private EditText birthDateEditText;
+    private TextView birthDateEditText;
 
     private FirebaseDatabase firebaseDatabase;
     private FirebaseAuth firebaseAuth;
@@ -62,6 +57,7 @@ public class ProfileActivity extends AppCompatActivity {
     private StorageReference storageReference;
     private FirebaseUser user;
 
+    Button button;
     private Uri imageUrl;
     boolean t;
     SharedPreferences prefs;
@@ -76,13 +72,14 @@ public class ProfileActivity extends AppCompatActivity {
 
             setContentView(R.layout.activity_profile);
             profilePicture=(de.hdodenhof.circleimageview.CircleImageView)findViewById(R.id.profile_image);
-            birthDateEditText=(EditText) findViewById(R.id.birthday_edittext);
+            birthDateEditText=(TextView) findViewById(R.id.birthday_edittext);
             profileEditDone=(FloatingActionButton)findViewById(R.id.profile_edit_done_fab);
             profileName = (TextInputLayout)findViewById(R.id.profile_name);
             profileSurname = (TextInputLayout)findViewById(R.id.profile_surname);
             profilePhone = (TextInputLayout)findViewById(R.id.profile_phone);
             profileBloodGroup = (TextInputLayout)findViewById(R.id.profile_blood_group);
             profileAddress = (TextInputLayout)findViewById(R.id.profile_address);
+            button = (Button)findViewById(R.id.date_picker);
 
             final Calendar myCalendar = Calendar.getInstance();
 
@@ -100,7 +97,7 @@ public class ProfileActivity extends AppCompatActivity {
 
             };
 
-            birthDateEditText.setOnClickListener(new View.OnClickListener() {
+            button.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
@@ -159,7 +156,7 @@ public class ProfileActivity extends AppCompatActivity {
 
             setContentView(R.layout.activity_profilebloodbank);
             profilePicture=(de.hdodenhof.circleimageview.CircleImageView)findViewById(R.id.profile_image);
-            birthDateEditText=(EditText) findViewById(R.id.birthday_edittext);
+            //birthDateEditText=(TextView) findViewById(R.id.birthday_edittext);
             profileName = (TextInputLayout)findViewById(R.id.profile_name);
             profileSurname = (TextInputLayout)findViewById(R.id.profile_surname);
             profileBbName = (TextInputLayout)findViewById(R.id.profile_bb_name);
