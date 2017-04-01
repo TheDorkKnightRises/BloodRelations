@@ -69,12 +69,11 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent i = getIntent();
-        t =  i.getBooleanExtra("isfromsignup",false);
         prefs = getSharedPreferences(Constants.PREFS, MODE_PRIVATE);
         if(!prefs.getBoolean(Constants.ISBLOODBANK,false)){
 
             setContentView(R.layout.activity_profile);
-
+            t =  i.getBooleanExtra("isfromsignup",false);
             profilePicture=(de.hdodenhof.circleimageview.CircleImageView)findViewById(R.id.profile_image);
             birthDateEditText=(EditText) findViewById(R.id.birthday_edittext);
             profileEditDone=(FloatingActionButton)findViewById(R.id.profile_edit_done_fab);
@@ -158,7 +157,7 @@ public class ProfileActivity extends AppCompatActivity {
         else{
 
             setContentView(R.layout.activity_profilebloodbank);
-
+            t =  i.getBooleanExtra("isfromsignup",false);
             profilePicture=(de.hdodenhof.circleimageview.CircleImageView)findViewById(R.id.profile_image);
             birthDateEditText=(EditText) findViewById(R.id.birthday_edittext);
             profileName = (TextInputLayout)findViewById(R.id.profile_name);
