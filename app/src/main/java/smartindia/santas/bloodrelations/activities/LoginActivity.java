@@ -25,6 +25,7 @@ import android.support.transition.Transition;
 import android.support.transition.TransitionManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -276,30 +277,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Toast.makeText(getApplicationContext(),"SignInWithCredential Complete "+task.isSuccessful(),Toast.LENGTH_SHORT).show();
-
-                        user = firebaseAuth.getCurrentUser();
-                        firebaseDatabase = FirebaseDatabase.getInstance();
-                        databaseReference = firebaseDatabase.getReference().child("users");
-                        databaseReference.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                                    if(!snapshot.getKey().equals(user.getUid())){
-                                        startActivity(new Intent(LoginActivity.this,UserTypeActivity.class));
-                                    }
-                                    else{
-                                        SharedPreferences.Editor editor = getSharedPreferences(Constants.PREFS,MODE_PRIVATE).edit();
-                                        editor.putBoolean(Constants.ISBLOODBANK,Boolean.parseBoolean(snapshot.child("isBloodBank").getValue().toString()));
-                                        editor.apply();
-                                    }
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-
-                            }
-                        });
+                        startActivity(new Intent(LoginActivity.this,UserTypeActivity.class));
                         //fetchIsBloodBank();
 
                     }
