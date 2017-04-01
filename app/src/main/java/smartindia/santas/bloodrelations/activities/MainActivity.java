@@ -62,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.menu_item_feedback:
                         startActivity(new Intent(MainActivity.this,FeedbackActivity.class));
                         break;
+                    case R.id.menu_item_faqs:
+                        startActivity(new Intent(MainActivity.this,HelpActivity.class));
+                        break;
+
                 }
                 return true;
             }
