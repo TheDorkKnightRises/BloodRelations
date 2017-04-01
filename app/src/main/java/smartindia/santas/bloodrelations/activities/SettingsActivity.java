@@ -49,7 +49,7 @@ public class SettingsActivity extends AppCompatActivity {
                     editor.commit();
                     //Toast.makeText(SettingsActivity.this, String.valueOf(shPref.getBoolean(Constants.DARK_THEME, false)), Toast.LENGTH_SHORT).show();
                 }
-                AlertDialog.Builder alert = new AlertDialog.Builder(SettingsActivity.this).setMessage("App will restart to apply theme changes")
+                AlertDialog.Builder alert = new AlertDialog.Builder(SettingsActivity.this).setMessage("App will now close. Restart to apply theme changes")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
