@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.LoaderManager;
+import android.app.ProgressDialog;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
@@ -11,6 +12,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -50,8 +52,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -88,6 +95,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
     FirebaseAuth firebaseAuth;
     FirebaseAuth.AuthStateListener authStateListener;
+    ProgressDialog dialog;
+
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     FirebaseUser user;
@@ -272,9 +281,76 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
 
                         startActivity(new Intent(LoginActivity.this,UserTypeActivity.class));
+                        //fetchIsBloodBank();
+
                     }
                 });
     }
+
+    private void fetchIsBloodBank(){
+        FetchTask task = new FetchTask();
+        task.execute();
+    }
+
+    private class FetchTask extends AsyncTask<Void,Void,String>{
+
+        DatabaseReference root,isBloodBank_root;
+        ValueEventListener listener;
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            dialog = new ProgressDialog(LoginActivity.this);
+            dialog.show();
+            String uid = firebaseAuth.getCurrentUser().getUid();
+
+            root = FirebaseDatabase.getInstance().getReference();
+
+            isBloodBank_root  = root.child("users").child(uid).child("isBloodBank");
+
+
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+
+            listener = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String value = dataSnapshot.getValue().toString();
+                    updatePrefs(value);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            };
+
+            isBloodBank_root.addValueEventListener(listener);
+
+            return null;
+        }
+
+    }
+
+    private void updatePrefs(String value){
+        boolean isBloodBank;
+        if(value.equals("true")) isBloodBank = true;
+        else isBloodBank=false;
+
+        pref = getSharedPreferences(Constants.PREFS,MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putBoolean(Constants.ISBLOODBANK,isBloodBank);
+        editor.apply();
+
+        dialog.dismiss();
+        //startActivity(new Intent(LoginActivity.this,UserTypeActivity.class));
+
+    }
+
 
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {

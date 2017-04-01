@@ -280,4 +280,36 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
+    /*
+    private void postThisEvent(EventData eventData) {
+
+        HashMap<String,Object> eventHashmap = eventData.getHashMap();
+
+        root = FirebaseDatabase.getInstance().getReference();
+
+        String eventKey = root.child(Constants.EVENT).push().getKey();
+
+        HashMap<String,Object> updateHashMap = new HashMap<>();
+
+        updateHashMap.put("/"+Constants.EVENT+"/" + eventKey,eventHashmap);
+
+        root.updateChildren(updateHashMap, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                if (databaseError!= null){
+                    Toast.makeText(getApplicationContext(),"Error: "+databaseError,Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        finish();
+
+    }
+     */
+
+
+
 }
