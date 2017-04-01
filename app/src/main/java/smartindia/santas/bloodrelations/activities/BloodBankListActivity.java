@@ -186,6 +186,9 @@ public class BloodBankListActivity extends AppCompatActivity {
                     case R.id.menu_item_bloodbank_details:
                         startActivity(new Intent(BloodBankListActivity.this,BloodBankDetailsActivity.class));
                         break;
+                    case R.id.menu_item_certificate:
+                        startActivity(new Intent(BloodBankListActivity.this,CertificateActivity.class));
+                        break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
