@@ -279,10 +279,27 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
                         user = firebaseAuth.getCurrentUser();
                         firebaseDatabase = FirebaseDatabase.getInstance();
-                        databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("isBloodBank");
+                        databaseReference = firebaseDatabase.getReference().child("users");
+                        databaseReference.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                                    if(!snapshot.getKey().equals(user.getUid())){
+                                        startActivity(new Intent(LoginActivity.this,UserTypeActivity.class));
+                                    }
+                                    else{
+                                        SharedPreferences.Editor editor = getSharedPreferences(Constants.PREFS,MODE_PRIVATE).edit();
+                                        editor.putBoolean(Constants.ISBLOODBANK,Boolean.parseBoolean(snapshot.child("isBloodBank").getValue().toString()));
+                                        editor.apply();
+                                    }
+                                }
+                            }
 
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
 
-                        startActivity(new Intent(LoginActivity.this,UserTypeActivity.class));
+                            }
+                        });
                         //fetchIsBloodBank();
 
                     }
