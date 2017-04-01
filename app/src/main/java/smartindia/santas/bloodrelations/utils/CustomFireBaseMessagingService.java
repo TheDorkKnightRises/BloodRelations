@@ -48,6 +48,7 @@ public class CustomFireBaseMessagingService extends FirebaseMessagingService {
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
+            sendNotification(remoteMessage.getData().get("title"), remoteMessage.getData().get("body"));
         }
 
         // Check if message contains a notification payload.
@@ -55,7 +56,6 @@ public class CustomFireBaseMessagingService extends FirebaseMessagingService {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
 
-        sendNotification(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
 
     }
 
@@ -66,7 +66,7 @@ public class CustomFireBaseMessagingService extends FirebaseMessagingService {
 
     private void sendNotification(String messageTitle, String messageBody) {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
                 PendingIntent.FLAG_ONE_SHOT);
 
