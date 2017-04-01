@@ -27,11 +27,7 @@ public class HelpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
 
-        toolbar = (Toolbar)findViewById(R.id.toolbar_emer);
         faqListView  = (ExpandableListView) findViewById(R.id.list_faq);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setTitle("Help");
         String[] groups = new String[0];
         String[][] children = new String[0][0];
 
