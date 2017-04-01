@@ -114,7 +114,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                     //finish();
                     Toast.makeText(LoginActivity.this,user.getUid().toString(),Toast.LENGTH_SHORT).show();
                     Toast.makeText(LoginActivity.this,"Signed in",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                    SharedPreferences prefs = getSharedPreferences(Constants.PREFS,MODE_PRIVATE);
+                    if(prefs.getBoolean(Constants.ISBLOODBANK,false)){
+                        startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                    }
+                    else{
+                        startActivity(new Intent(LoginActivity.this,BloodBankListActivity.class));
+                    }
                     finish();
                 }
                 else {
