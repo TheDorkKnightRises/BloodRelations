@@ -35,6 +35,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -87,6 +90,26 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         else{
             Toast.makeText(LoginActivity.this,"Not Signed in",Toast.LENGTH_SHORT).show();
         }
+
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null){
+                    //Toast.makeText(getApplicationContext(),"onAuthStateChanged:signed_in:" + user.getUid(),Toast.LENGTH_LONG).show();
+                    // Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    //startActivity(new Intent(Login.this, MainActivity.class));
+                    //finish();
+                    Toast.makeText(LoginActivity.this,user.getUid().toString(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this,"Signed in",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                    finish();
+                }
+                else {
+                    //Toast.makeText(getApplicationContext(), "onAuthStateChanged:signed_out", Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
 
 
 
@@ -147,6 +170,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                     mLoginFormView = findViewById(R.id.login_form);
                     mProgressView = findViewById(R.id.login_progress);
                     mProgressText = findViewById(R.id.progress_text);
+
                 } else {
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
@@ -242,12 +266,31 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         } else {
             //true
             showProgress(true);
-            //TODO : Add firebase email and password auth
-            startActivity(new Intent(LoginActivity.this,MainActivity.class));
-            finish();
+            login();
+            //startActivity(new Intent(LoginActivity.this,MainActivity.class));
+            //finish();
 
         }
 
+    }
+
+    public void login(){
+
+        firebaseAuth.signInWithEmailAndPassword(
+                mEmailView.getText().toString(),
+                mPasswordView.getText().toString())
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Toast.makeText(getApplicationContext(),"signinUserWithEmail:onComplete:" + task.isSuccessful(),Toast.LENGTH_SHORT).show();
+                        // If sign in fails, display a message to the user. If sign in succeeds
+                        // the auth state listener will be notified and logic to handle the
+                        // signed in user can be handled in the listener
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(getApplicationContext(),"Unsuccessful" + task.getResult(),Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     private boolean isEmailValid(String email) {
@@ -342,6 +385,21 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
         int ADDRESS = 0;
         int IS_PRIMARY = 1;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        firebaseAuth =FirebaseAuth.getInstance();
+        firebaseAuth.addAuthStateListener(authStateListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (authStateListener != null) {
+            firebaseAuth.removeAuthStateListener(authStateListener);
+        }
     }
 
 }

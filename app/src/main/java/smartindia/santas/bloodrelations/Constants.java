@@ -8,4 +8,21 @@ public class Constants {
 
     public static final String PREFS = "prefs";
     public static final String LOGGED_IN = "logged_in";
+
+
+    /*user*/
+    public static final String NAME = "name";
+    public static final String ADDRESS = "address";
+    public static final String LATITUDE = "latitude";
+    public static final String LONGITUDE = "longitude";
+    public static final String EMAIL = "email";
+    public static final String PH = "phone";
+
+
+    public static final String BLOOD_GROUP = "group";
+    public static final String DOB = "dob";
+
+
+
+
 }

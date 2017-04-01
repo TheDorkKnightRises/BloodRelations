@@ -37,12 +37,12 @@ public class SignUpActivity extends AppCompatActivity{
     private static final int RC_SIGN_IN = 9001;
 
     EditText emailEdiText ,passwordEditText;
-    Button loginButton,signupButton;
+    Button signupButton;//loginButton,;
     private FirebaseAuth firebaseAuth;
     private  FirebaseAuth.AuthStateListener authStateListener;
     GoogleApiClient googleApiClient;
     SignInButton googleButton;
-    Button signout;
+    //Button signout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,15 +52,15 @@ public class SignUpActivity extends AppCompatActivity{
         emailEdiText = (EditText)findViewById(R.id.email_editText);
         passwordEditText =(EditText)findViewById(R.id.password_editText);
         signupButton= (Button)findViewById(R.id.signinButton);
-        loginButton = (Button)findViewById(R.id.loginButton);
+        //loginButton = (Button)findViewById(R.id.loginButton);
         googleButton = (SignInButton)findViewById(R.id.googleButton);
-        signout = (Button)findViewById(R.id.signout);
-        signout.setOnClickListener(new View.OnClickListener() {
+        //signout = (Button)findViewById(R.id.signout);
+        /*signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
             }
-        });
+        });*/
 
         firebaseAuth =FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -80,12 +80,12 @@ public class SignUpActivity extends AppCompatActivity{
             }
         };
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        /*loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 login();
             }
-        });
+        });*/
 
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,24 +159,7 @@ public class SignUpActivity extends AppCompatActivity{
                 });
     }
 
-    public void login(){
 
-        firebaseAuth.signInWithEmailAndPassword(
-                emailEdiText.getText().toString(),
-                passwordEditText.getText().toString())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Toast.makeText(getApplicationContext(),"signinUserWithEmail:onComplete:" + task.isSuccessful(),Toast.LENGTH_SHORT).show();
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener
-                        if (!task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(),"Unsuccessful" + task.getResult(),Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
 
     public void signUP(){
 
