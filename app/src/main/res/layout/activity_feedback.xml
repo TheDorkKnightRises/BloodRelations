@@ -8,12 +8,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="smartindia.santas.bloodrelations.activities.LanguageActivity">
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="com.example.adityadesai.sih.MainActivity">
+        tools:context="com.example.adityadesai.sih.MainActivity"
+     android:padding="6dp">
 
         <android.support.v7.widget.CardView
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -67,40 +70,54 @@
             android:layout_weight="1"
             android:layout_margin="5dp">
 
-            <GridLayout
-                android:layout_width="match_parent"
+            <RelativeLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:columnCount="2"
-                android:rowCount="2"
-                android:orientation="horizontal"
                 android:layout_gravity="center">
-                <CheckBox
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/group1">
+                <RadioButton
                     android:text="Suggestion"
                     android:layout_gravity="right"
                     android:textSize="20dp"
-                    android:textColor="@color/yellow"/>
+                    android:textColor="@color/yellow"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"/>
 
-                <CheckBox
+                <RadioButton
                     android:text="Question"
                     android:layout_gravity="fill"
-                    android:layout_marginLeft="60dp"
                     android:textSize="20dp"
-                    android:textColor="@color/blue"/>
-
-                <CheckBox
+                    android:textColor="@color/blue"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"/>
+                </RadioGroup>
+                <RadioGroup
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/group1">
+                <RadioButton
                     android:text="Problem"
                     android:layout_gravity="fill"
                     android:textSize="20dp"
-                    android:textColor="@color/red"/>
+                    android:textColor="@color/red"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"/>
 
-                <CheckBox
+                <RadioButton
                     android:text="Praise"
                     android:layout_gravity="fill"
-                    android:layout_marginLeft="60dp"
                     android:textSize="20dp"
-                    android:textColor="@color/purple"/>
+                    android:textColor="@color/purple"
 
-            </GridLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"/>
+                </RadioGroup>
+            </RelativeLayout>
 
         </android.support.v7.widget.CardView>
 
@@ -121,13 +138,13 @@
             android:layout_weight="1" />
 
     </LinearLayout>
-
+</ScrollView>
     <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:src="@drawable/svg_ic_done_black_24px"
-        android:onClick="nextPage"/>
+        android:onClick="nextPage" />
 
 </FrameLayout>
