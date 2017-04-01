@@ -50,6 +50,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -86,6 +88,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
     FirebaseAuth firebaseAuth;
     FirebaseAuth.AuthStateListener authStateListener;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+    FirebaseUser user;
 
 
     private static final int RC_SIGN_IN = 9001;
@@ -260,6 +265,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Toast.makeText(getApplicationContext(),"SignInWithCredential Complete "+task.isSuccessful(),Toast.LENGTH_SHORT).show();
+
+                        user = firebaseAuth.getCurrentUser();
+                        firebaseDatabase = FirebaseDatabase.getInstance();
+                        databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("isBloodBank");
+
+
                         startActivity(new Intent(LoginActivity.this,UserTypeActivity.class));
                     }
                 });
