@@ -39,19 +39,19 @@ public class CertificateActivity extends AppCompatActivity {
         String html_value= "<html xmlns=\\\"http://www.w3.org/1999/xhtml\\\">" +
                 "<head><meta http-equiv=\\\"Content-Type\\\" content=\\\"text/html; charset=iso-8859-1\\\">" +
                 "<title>Certificate <style>\n" +
-                "</style></title></head><body style=\\\"width:300px; color: #00000; \\\"><h1 style=\"text-align: center;\">CERTIFICATE OF APPRECIATION</h1>\n" +
-                "<p style=\"text-align: center;\">\n" +
+                "</style></title></head><body style=\\\"width:300px; color: #00000; \\\"><h1 style=\"font-size: 40px\">CERTIFICATE OF APPRECIATION</h1>\n" +
+                "<p style=\"text-align: center; font-family: Times New Roman;\">\n" +
                 "\n" +
                 "Presented to\n" +
                 "\n" +
-                "Mr./Mrs./Miss " + "  Lorem Ipsum  " +
+                "Mr./Mrs./Miss ______________________________________________\n" +
                 "\n" +
                 "for voluntary blood donation\n" +
                 "\n" +
                 "We appreciate and thank you for your contribution \n" +
                 "towards this noble cause\n" +
                 "</p>\n" +
-                "<p style=\"text-align: right;\">\n" +
+                "<p style=\"text-align: right; font-family: Arial; font-size: 30px\">\n" +
                 "Blood Bank Director\n" +
                 "</p></body></html>";
 
