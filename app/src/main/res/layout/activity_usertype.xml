@@ -3,47 +3,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="smartindia.santas.bloodrelations.activities.LanguageActivity"
+    tools:context="smartindia.santas.bloodrelations.activities.UserTypeActivity"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:padding="5dp">
+    android:padding="5dp"
+    android:weightSum="1">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_width="285dp"
+        android:layout_height="125dp"
         android:text="Are You A Blood Bank ?"
         android:gravity="center"
         android:textSize="25dp"/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="Yes"
-        android:background="@android:color/transparent"
-        android:textSize="25dp"
         android:id="@+id/Yes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="Yes"
+        android:textSize="25dp"
+        android:background="@android:color/transparent"
+        style="@style/Base.TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
         />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"/>
-
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="No"
-        android:background="@android:color/transparent"
         android:textSize="25dp"
+        android:padding="20dp"
         android:id="@+id/No"
+        android:background="@android:color/transparent"
+        style="@style/Base.TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
         />
 
 
