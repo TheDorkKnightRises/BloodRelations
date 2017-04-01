@@ -12,7 +12,7 @@
         <item
             android:title="@string/locate"
             android:id="@+id/menu_item_locate"
-            android:icon="@drawable/svg_ic_locate_black_24px"/>
+            android:icon="@drawable/svg_ic_locate_white_24px"/>
 
         <item
             android:title="@string/form"

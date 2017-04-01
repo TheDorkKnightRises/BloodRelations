@@ -273,6 +273,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupDrawer(){
+        if (bbMode)
+            navigationView.getMenu().findItem(R.id.menu_item_certificate).setVisible(false);
+        else navigationView.getMenu().findItem(R.id.menu_item_bloodbank_details).setVisible(false);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -375,7 +378,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //DatabaseReference notifications = root.child(requests);
-
 
     }
 
