@@ -6,26 +6,25 @@ package smartindia.santas.bloodrelations.Objects;
 
 public class BloodBank {
 
-    private String name;
-    private String location;
-    private String phone;
+    private String bbName;
+    private String bbLocation;
+    private String bbPhone;
 
-
-    public BloodBank(String name, String location, String phone) {
-        this.name = name;
-        this.location = location;
-        this.phone = phone;
+    public BloodBank(String bbName, String bbLocation, String bbPhone) {
+        this.bbName = bbName;
+        this.bbLocation = bbLocation;
+        this.bbPhone = bbPhone;
     }
 
-    public String getName() {
-        return name;
+    public String getBbName() {
+        return bbName;
     }
 
-    public String getLocation() {
-        return location;
+    public String getBbLocation() {
+        return bbLocation;
     }
 
-    public String getPhone(){
-        return phone;
+    public String getBbPhone() {
+        return bbPhone;
     }
 }

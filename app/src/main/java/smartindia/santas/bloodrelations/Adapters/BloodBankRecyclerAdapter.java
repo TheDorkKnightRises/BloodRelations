@@ -44,9 +44,9 @@ public class BloodBankRecyclerAdapter extends RecyclerView.Adapter<BloodBankRecy
 
         public void bindIndustry(BloodBank bloodBank) {
             mBloodBank = bloodBank;
-            itemName.setText(bloodBank.getName());
-            itemLocation.setText(bloodBank.getLocation());
-            itemPhone.setText(bloodBank.getPhone());
+            itemName.setText(bloodBank.getBbName());
+            itemLocation.setText(bloodBank.getBbLocation());
+            itemPhone.setText(bloodBank.getBbPhone());
         }
     }
 
