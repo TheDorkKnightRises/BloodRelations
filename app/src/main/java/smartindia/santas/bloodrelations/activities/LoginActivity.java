@@ -25,6 +25,7 @@ import android.support.transition.Transition;
 import android.support.transition.TransitionManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +62,7 @@ import java.util.List;
 
 import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
+import smartindia.santas.bloodrelations.objects.Donor;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -85,14 +87,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
     SignInButton googleButton;
 
 
-    FirebaseAuth firebaseAuth;
-    FirebaseAuth.AuthStateListener authStateListener;
-    ProgressDialog dialog;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener authStateListener;
+    private ProgressDialog dialog;
 
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
-    FirebaseUser user;
-
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    private ValueEventListener valueEventListener;
+    private FirebaseUser user;
+    private String isBank;
 
     private static final int RC_SIGN_IN = 9001;
 

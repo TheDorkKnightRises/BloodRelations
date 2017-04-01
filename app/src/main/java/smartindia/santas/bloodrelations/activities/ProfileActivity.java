@@ -17,6 +17,10 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -41,6 +45,7 @@ import smartindia.santas.bloodrelations.R;
 public class ProfileActivity extends AppCompatActivity {
 
     private static final int RC_PHOTO_PICKER = 1;
+    int PLACE_PICKER_REQUEST = 2;
 
     private de.hdodenhof.circleimageview.CircleImageView profilePicture;
     private FloatingActionButton profileEditDone;
@@ -157,27 +162,27 @@ public class ProfileActivity extends AppCompatActivity {
             profileEditDone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(!profileName.getEditText().getText().toString().equals(null)){
+                    if(!profileName.getEditText().getText().toString().equals("")){
                         databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("firstname");
                         databaseReference.setValue(profileName.getEditText().getText().toString());
                     }
-                    if(!profileSurname.getEditText().getText().toString().equals(null)){
+                    if(!profileSurname.getEditText().getText().toString().equals("")){
                         databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("surname");
                         databaseReference.setValue(profileSurname.getEditText().getText().toString());
                     }
-                    if(!profilePhone.getEditText().getText().toString().equals(null)){
+                    if(!profilePhone.getEditText().getText().toString().equals("")){
                         databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("phone");
                         databaseReference.setValue(profilePhone.getEditText().getText().toString());
                     }
-                    if(!profileBloodGroup.getEditText().getText().toString().equals(null)){
+                    if(!profileBloodGroup.getEditText().getText().toString().equals("")){
                         databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("bloodgroup");
                         databaseReference.setValue(profileBloodGroup.getEditText().getText().toString());
                     }
-                    if(!profileAddress.getEditText().getText().toString().equals(null)){
+                    if(!profileAddress.getEditText().getText().toString().equals("")){
                         databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("address");
                         databaseReference.setValue(profileAddress.getEditText().getText().toString());
                     }
-                    if(!birthDateEditText.getText().toString().equals(null)){
+                    if(!birthDateEditText.getText().toString().equals("")){
                         databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("birthdate");
                         databaseReference.setValue(birthDateEditText.getText().toString());
                     }
@@ -185,9 +190,9 @@ public class ProfileActivity extends AppCompatActivity {
                         databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("imageURL");
                         databaseReference.setValue(imageUrl.toString());
                     }
-                    if(!profileName.getEditText().getText().toString().equals(null) && !profileSurname.getEditText().getText().toString().equals(null) && !profilePhone.getEditText().getText().toString().equals(null)
-                            && !profileBloodGroup.getEditText().getText().toString().equals(null) && !profileAddress.getEditText().getText().toString().equals(null)
-                            && !birthDateEditText.getText().toString().equals(null)){
+                    if(!profileName.getEditText().getText().toString().equals("") && !profileSurname.getEditText().getText().toString().equals("") && !profilePhone.getEditText().getText().toString().equals("")
+                            && !profileBloodGroup.getEditText().getText().toString().equals("") && !profileAddress.getEditText().getText().toString().equals("")
+                            && !birthDateEditText.getText().toString().equals("")){
                         startActivity(new Intent(ProfileActivity.this,MainActivity.class));
                         finish();
                     }
@@ -246,38 +251,16 @@ public class ProfileActivity extends AppCompatActivity {
             locateFab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(!profileName.getEditText().getText().toString().equals(null)){
-                        databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("firstname");
-                        databaseReference.setValue(profileName.getEditText().getText().toString());
+                    PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+
+                    try {
+                        startActivityForResult(builder.build(ProfileActivity.this), PLACE_PICKER_REQUEST);
+                    } catch (GooglePlayServicesRepairableException e) {
+                        e.printStackTrace();
+                    } catch (GooglePlayServicesNotAvailableException e) {
+                        e.printStackTrace();
                     }
-                    if(!profileSurname.getEditText().getText().toString().equals(null)){
-                        databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("surname");
-                        databaseReference.setValue(profileSurname.getEditText().getText().toString());
-                    }
-                    if(!profilePhone.getEditText().getText().toString().equals(null)){
-                        databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("phone");
-                        databaseReference.setValue(profilePhone.getEditText().getText().toString());
-                    }
-                    if(!profileBbName.getEditText().getText().toString().equals(null)){
-                        databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("bloodbankname");
-                        databaseReference.setValue(profileBbName.getEditText().getText().toString());
-                    }
-                    if(!profileAddress.getEditText().getText().toString().equals(null)){
-                        databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("address");
-                        databaseReference.setValue(profileAddress.getEditText().getText().toString());
-                    }
-                    if(imageUrl!=null){
-                        databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("imageURL");
-                        databaseReference.setValue(imageUrl.toString());
-                    }
-                    if(!profileName.getEditText().getText().toString().equals(null) && !profileSurname.getEditText().getText().toString().equals(null) && !profilePhone.getEditText().getText().toString().equals(null)
-                            && !profileBbName.getEditText().getText().toString().equals(null) && !profileAddress.getEditText().getText().toString().equals(null)){
-                        startActivity(new Intent(ProfileActivity.this,MainActivity.class));
-                        finish();
-                    }
-                    else{
-                        Toast.makeText(ProfileActivity.this, "All fields must be filled", Toast.LENGTH_SHORT).show();
-                    }
+
                 }
             });
         }
@@ -290,7 +273,6 @@ public class ProfileActivity extends AppCompatActivity {
             return;
         }
         else {
-            Log.e("tag",Boolean.toString(t));
             super.onBackPressed();
         }
     }
@@ -353,7 +335,53 @@ public class ProfileActivity extends AppCompatActivity {
                         });
             }
         }
+        if (requestCode == PLACE_PICKER_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                Place place = PlacePicker.getPlace(data, this);
+                String toastMsg = String.format("Place: %s", place.getName());
+                Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
+                pushData(place);
+            }
+        }
+    }
 
+    public void pushData(Place place){
+        if(!profileName.getEditText().getText().toString().equals("")){
+            databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("firstname");
+            databaseReference.setValue(profileName.getEditText().getText().toString());
+        }
+        if(!profileSurname.getEditText().getText().toString().equals("")){
+            databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("surname");
+            databaseReference.setValue(profileSurname.getEditText().getText().toString());
+        }
+        if(!profilePhone.getEditText().getText().toString().equals("")){
+            databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("phone");
+            databaseReference.setValue(profilePhone.getEditText().getText().toString());
+        }
+        if(!profileBbName.getEditText().getText().toString().equals("")){
+            databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("bloodbankname");
+            databaseReference.setValue(profileBbName.getEditText().getText().toString());
+        }
+        if(!profileAddress.getEditText().getText().toString().equals("")){
+            databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("address");
+            databaseReference.setValue(profileAddress.getEditText().getText().toString());
+        }
+        if(place!=null){
+            databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("lat");
+            databaseReference.setValue(place.getLatLng());
+        }
+        if(imageUrl!=null){
+            databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("details").child("imageURL");
+            databaseReference.setValue(imageUrl.toString());
+        }
+        if(!profileName.getEditText().getText().toString().equals("") && !profileSurname.getEditText().getText().toString().equals("") && !profilePhone.getEditText().getText().toString().equals("")
+                && !profileBbName.getEditText().getText().toString().equals("") && !profileAddress.getEditText().getText().toString().equals("")){
+            startActivity(new Intent(ProfileActivity.this,MainActivity.class));
+            finish();
+        }
+        else{
+            Toast.makeText(ProfileActivity.this, "All fields must be filled", Toast.LENGTH_SHORT).show();
+        }
     }
 
     /*
