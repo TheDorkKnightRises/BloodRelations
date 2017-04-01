@@ -39,6 +39,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 
 import org.json.JSONArray;
@@ -287,7 +288,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener
                         if (!task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(),"Unsuccessful" + task.getResult(),Toast.LENGTH_SHORT).show();
+                            try {
+                                String msg = task.getResult().toString();
+                                Toast.makeText(getApplicationContext(), "Unsuccessful" + msg, Toast.LENGTH_SHORT).show();
+                            }
+                            catch(Exception e){e.printStackTrace();}
                         }
                     }
                 });
