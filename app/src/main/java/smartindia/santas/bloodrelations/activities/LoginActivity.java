@@ -246,9 +246,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
             }
             else{
                 Toast.makeText(getApplicationContext(),"Google SignIn Failed",Toast.LENGTH_SHORT).show();
+                showProgress(false);
             }
         }
     }
+
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount account){
 

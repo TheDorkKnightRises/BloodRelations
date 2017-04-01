@@ -25,6 +25,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import smartindia.santas.bloodrelations.R;
 
@@ -35,7 +36,7 @@ import smartindia.santas.bloodrelations.R;
 public class SignUpActivity extends AppCompatActivity{
 
 
-    EditText emailEdiText ,passwordEditText;
+    EditText emailEdiText ,passwordEditText,name_editText;
     Button signupButton;//loginButton,;
     private FirebaseAuth firebaseAuth;
     private  FirebaseAuth.AuthStateListener authStateListener;
@@ -50,6 +51,7 @@ public class SignUpActivity extends AppCompatActivity{
         emailEdiText = (EditText)findViewById(R.id.email_editText);
         passwordEditText =(EditText)findViewById(R.id.password_editText);
         signupButton= (Button)findViewById(R.id.signinButton);
+        name_editText = (EditText)findViewById(R.id.name_editText);
         //loginButton = (Button)findViewById(R.id.loginButton);
         //signout = (Button)findViewById(R.id.signout);
         /*signout.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +67,13 @@ public class SignUpActivity extends AppCompatActivity{
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null){
+                    String name = name_editText.getText().toString();
+                    if(!name.equals("")){
+                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                .setDisplayName(name).build();
+                        user.updateProfile(profileUpdates);
+                    }
+
                     Toast.makeText(SignUpActivity.this,user.getUid().toString(),Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(SignUpActivity.this,UserTypeActivity.class));
                 }
