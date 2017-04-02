@@ -26,6 +26,7 @@ function listenForNotificationRequests() {
       request.longitude,
       request.bloodgroup,
       request.quantity,
+      request.topic,
       function() {
         requestSnapshot.ref.remove();
       }
@@ -35,7 +36,7 @@ function listenForNotificationRequests() {
   });
 };
 
-function sendNotificationToUser(username, message, latitude, longitude, bloodgroup, quantity, onSuccess) {
+function sendNotificationToUser(username, message, latitude, longitude, bloodgroup, quantity, topic, onSuccess) {
   console.error("Message from " + username + " : " + message);
   request({
     url: 'https://fcm.googleapis.com/fcm/send',
@@ -53,7 +54,7 @@ function sendNotificationToUser(username, message, latitude, longitude, bloodgro
         grp: bloodgroup,
         qty: quantity
       },
-      to : '/topics/request'
+      to : '/topics/'+topic
     })
   }, function(error, response, body) {
     if (error) { console.error(error); }
