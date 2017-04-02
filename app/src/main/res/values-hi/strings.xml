@@ -128,4 +128,5 @@ POC का उपनाम</string>
     <string name="no_network">कोई इंटरनेट कनेक्टिविटी नहीं विशेषताएं सीमित हो सकती हैं</string>
     <string name="logout">" लोग आउट"</string>
     <string name="emergency">आपातकालीन</string>
+    <string name="about">जानकारी</string>
 </resources>
