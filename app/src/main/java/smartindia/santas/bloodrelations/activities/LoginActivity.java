@@ -88,6 +88,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private ProgressDialog dialog;
+    boolean check;
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -262,18 +263,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        new MyAsyncTask(user.getUid());
                         Toast.makeText(getApplicationContext(),"SignInWithCredential Complete "+task.isSuccessful(),Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(LoginActivity.this,UserTypeActivity.class));
-                        //fetchIsBloodBank();
+
 
                     }
                 });
     }
 
-    private void fetchIsBloodBank(){
-        FetchTask task = new FetchTask();
-        task.execute();
-    }
 
     private class FetchTask extends AsyncTask<Void,Void,String>{
 
@@ -314,6 +312,46 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
             isBloodBank_root.addValueEventListener(listener);
 
+            return null;
+        }
+
+    }
+
+    private class MyAsyncTask extends AsyncTask<Void,Void,Void>{
+
+        String UID;
+        MyAsyncTask(String UID){
+            this.UID = UID;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            DatabaseReference root = FirebaseDatabase.getInstance().getReference();
+            ValueEventListener listener = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    check = dataSnapshot.hasChild(UID);
+                    dialog.dismiss();
+                    if(check){
+                        String value = dataSnapshot.child(UID).child(Constants.ISBLOODBANK).toString();
+                        boolean isBloodBank = value.equals("true");
+                        SharedPreferences preferences = getSharedPreferences(Constants.PREFS,MODE_PRIVATE);
+                        SharedPreferences.Editor editor=preferences.edit();
+                        editor.putBoolean(Constants.ISBLOODBANK,isBloodBank);
+                        editor.apply();
+                        startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                    }
+                    else{
+                        startActivity(new Intent(LoginActivity.this,UserTypeActivity.class));
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            };
+            root.addValueEventListener(listener);
             return null;
         }
 

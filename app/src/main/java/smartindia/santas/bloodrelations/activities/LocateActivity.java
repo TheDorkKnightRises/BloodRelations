@@ -2,6 +2,8 @@ package smartindia.santas.bloodrelations.activities;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -23,13 +25,29 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
+import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
+import smartindia.santas.bloodrelations.objects.BloodBank;
+import smartindia.santas.bloodrelations.objects.Donor;
 
 public class LocateActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private static final int LOCATION_REQUEST_CODE = 123;
     private GoogleMap mMap;
+    ArrayList<Donor> donorArrayList;
+    ArrayList<BloodBank> bankArrayList;
+    DatabaseReference root;
+    SharedPreferences prefs ;
 
     public static boolean isLocationEnabled(Context context) {
         int locationMode;
@@ -57,6 +75,19 @@ public class LocateActivity extends FragmentActivity implements OnMapReadyCallba
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_locate);
 
+        root = FirebaseDatabase.getInstance().getReference();
+
+        prefs = getSharedPreferences(Constants.PREFS,MODE_PRIVATE);
+        if(prefs.getBoolean(Constants.ISBLOODBANK,false)){
+            donorArrayList = new ArrayList<>();
+            new DonorsFetch().execute();
+        }
+        else{
+            bankArrayList = new ArrayList<>();
+            new FetchBloodBankList().execute();
+        }
+
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -81,6 +112,94 @@ public class LocateActivity extends FragmentActivity implements OnMapReadyCallba
         });
     }
 
+    private void onDonorFetchComplete(ArrayList<Donor> arrayList){
+
+    }
+
+    private void onBankFetchComplete(ArrayList<BloodBank> arrayList){
+
+    }
+
+
+    class DonorsFetch extends AsyncTask<Void,Void,ArrayList<Donor>>{
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            donorArrayList.clear();
+        }
+
+        @Override
+        protected ArrayList<Donor> doInBackground(Void... voids) {
+            ValueEventListener listener = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    try {
+                        for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            String isBank = (String) snapshot.child("isBloodBank").getValue();
+                            if(isBank.equals("false")){
+                                String firstname = snapshot.child("details").child("firstname").getValue().toString();
+                                String surname = snapshot.child("details").child("surname").getValue().toString();
+                                String name = firstname + " " + surname;
+                                String location = snapshot.child("details").child("address").getValue().toString();
+                                String bloodGroup = snapshot.child("details").child("bloodgroup").getValue().toString();
+                                String phone = snapshot.child("details").child("phone").getValue().toString();
+                                donorArrayList.add(new Donor(name,location,bloodGroup,phone));
+                            }
+                        }
+                        //updateUI();
+                        onDonorFetchComplete(donorArrayList);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            };
+            root.addValueEventListener(listener);
+            return null;
+        }
+    }
+
+    class FetchBloodBankList extends AsyncTask<Void,Void,ArrayList<BloodBank>> {
+        @Override
+        protected ArrayList<BloodBank> doInBackground(Void... params) {
+
+            ValueEventListener valueEventListener= new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    bankArrayList.clear();
+                    try {
+                        for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            String isBank = (String) snapshot.child("isBloodBank").getValue();
+                            if(isBank.equals("true")){
+                                String bbname = snapshot.child("details").child("bloodbankname").getValue().toString();
+                                String location = snapshot.child("details").child("address").getValue().toString();
+                                String phone = snapshot.child("details").child("phone").getValue().toString();
+                                bankArrayList.add(new BloodBank(bbname,location,phone));
+
+                            }
+                        }
+                        onBankFetchComplete(bankArrayList);
+                        //updateUI();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            };
+
+            root.addValueEventListener(valueEventListener);
+            return bankArrayList;
+        }
+    }
 
     /**
      * Manipulates the map once available.
