@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -34,10 +35,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
 import smartindia.santas.bloodrelations.adapters.BloodBankRecyclerAdapter;
@@ -53,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Button fab;
+    CircleImageView profile_image;
+    TextView header_name, header_subtext;
 
     RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
@@ -103,6 +108,10 @@ public class MainActivity extends AppCompatActivity {
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
+        profile_image = (CircleImageView) navigationView.getHeaderView(0).findViewById(R.id.profile_image);
+        header_name = (TextView) navigationView.getHeaderView(0).findViewById(R.id.header_name_view);
+        header_subtext = (TextView) navigationView.getHeaderView(0).findViewById(R.id.header_subtext_view);
+
         if (bbMode) {
             list = new ArrayList<Donor>();
             FetchDonorList mFetch = new FetchDonorList();
@@ -123,13 +132,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-    }
-
     public void updateUI(){
+        String imageUrl = pref.getString(Constants.PROFILE_IMAGE, "");
+        Picasso.with(MainActivity.this)
+                    .load(imageUrl)
+                    .error(R.drawable.ic_account_circle_black_24dp)
+                    .into(profile_image);
+        header_name.setText(user.getDisplayName());
+        header_subtext.setText(user.getEmail());
         if (bbMode)
             adapter = new DonorRecyclerAdapter(list);
         else adapter = new BloodBankRecyclerAdapter(list);
@@ -190,6 +200,9 @@ public class MainActivity extends AppCompatActivity {
                                 String location = snapshot.child("details").child("address").getValue().toString();
                                 String phone = snapshot.child("details").child("phone").getValue().toString();
                                 list.add(new BloodBank(bbname,location,phone));
+                                if (FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl() != null)
+                                    Picasso.with(MainActivity.this).load(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl()).into(profile_image);
+
                             }
                         }
                         updateUI();

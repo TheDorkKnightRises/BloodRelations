@@ -9,7 +9,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -331,6 +330,7 @@ public class ProfileActivity extends AppCompatActivity {
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                 imageUrl = taskSnapshot.getDownloadUrl();
                                 Picasso.with(ProfileActivity.this).load(selectedImageUri).into(profilePicture);
+                                getSharedPreferences(Constants.PREFS, MODE_PRIVATE).edit().putString(Constants.PROFILE_IMAGE, imageUrl.toString()).apply();
                             }
                         });
             }
