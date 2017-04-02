@@ -9,7 +9,10 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.RemoteViews;
 
+import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by samri_000 on 4/2/2017.
@@ -22,7 +25,7 @@ public class WidgetProvider extends AppWidgetProvider {
         for (int appWidgetId : appWidgetIds) {
 
             Intent callIntent = new Intent(Intent.ACTION_CALL);
-            callIntent.setData(Uri.parse("tel:"+"555"));
+            callIntent.setData(Uri.parse("tel:"+context.getSharedPreferences(Constants.PREFS, MODE_PRIVATE).getString(Constants.CONTACT, "18001801104")));
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, callIntent, 0);
 
             // Get the layout for the App Widget and attach an on-click listener to the button

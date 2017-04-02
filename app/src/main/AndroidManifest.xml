@@ -134,8 +134,16 @@
                 android:resource="@xml/widget" />
         </receiver>
         <activity android:name=".activities.EmergencyActivity"
-            android:label="Emergency"
-            android:theme="@style/AppTheme"/>
+            android:label="@string/emergency"
+            android:parentActivityName=".activities.MainActivity"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="smartindia.santas.bloodrelations.activities.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
