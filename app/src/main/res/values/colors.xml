@@ -12,4 +12,5 @@
     <color name="indigo">#283593</color>
     <color name="colorTextCommon">#212121</color>
     <color name="darker_grey">#aaa</color>
+    <color name="dark_gray">#505050</color>
 </resources>

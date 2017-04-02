@@ -116,4 +116,41 @@
     <string name="emergency">Emergency</string>
     <string name="about_app">Blood Bank developed for Smart India Hackathon</string>
     <string name="github">https://github.com/TheDorkKnightRises/BloodRelations.git</string>
+    <string name="about">About</string>
+
+
+    <!--Libraries-->
+    <string name="picasso_name">Picasso</string>
+    <string name="picasso_author">Square, Inc.</string>
+    <string name="picasso_description">A powerful image downloading and caching library for Android.</string>
+    <string name="picasso_license">Licensed under Apache License 2.0</string>
+    <string name="picasso_copyright">&#169; 2013 Square, Inc.</string>
+
+    <string name="circular_image_view_name">Circular ImageView</string>
+    <string name="circular_image_view_author">Henning Dodenhof</string>
+    <string name="circular_image_view_description">A circular ImageView for Android.</string>
+    <string name="circular_image_view_license">Licensed under Apache License 2.0</string>
+    <string name="circular_image_view_copyright">&#169; 2016 Henning Dodenhof</string>
+
+    <string name="circle_indicator_name">CircleIndicator</string>
+    <string name="circle_indicator_author">Relex</string>
+    <string name="circle_indicator_description">A lightweight ViewPager indicator like in the Nexus 5 launcher.</string>
+    <string name="circle_indicator_license">Licensed under Apache License 2.0</string>
+    <string name="circle_indicator_copyright">&#169; 2014 Relex</string>
+
+    <string name="android_support">Android Support Libraries</string>
+    <string name="android_support_author">Google Inc.</string>
+    <string name="android_support_license">Licensed under Apache License 2.0</string>
+    <string name="android_support_copyright">&#169; 2016 Google Inc.</string>
+
+    <string name="app_description">An open source application for the annual technical festival of Sardar Patel Institute of Technology.</string>
+    <string name="app_licence">Licensed under the MIT license</string>
+    <string name="app_copyright">&#169; 2016 Sardar Patel Institute of Technology</string>
+    <string name="aboutapp">About</string>
+    <string name="date">15th and 16th Feb 2017</string>
+    <string name="firebase_libraries">Firebase Libraries</string>
+    <string name="firebase_about">Mobile backend that supports Analytics, Cloud Messaging, Authentication, Realtime Database, Storage, Notifications and much more.</string>
+    <string name="google_play_services">Google Play Services</string>
+    <string name="play_services_about">Maps and Places API</string>
+
 </resources>

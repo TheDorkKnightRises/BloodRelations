@@ -339,6 +339,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.menu_item_emergency:
                         startActivity(new Intent(MainActivity.this,EmergencyActivity.class));
                         break;
+                    case R.id.menu_item_about:
+                        startActivity(new Intent(MainActivity.this,AboutActivity.class));
+                        break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;

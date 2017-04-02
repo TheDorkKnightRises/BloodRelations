@@ -48,6 +48,10 @@
             android:title="@string/emergency"
             android:id="@+id/menu_item_emergency"
             android:icon="@drawable/ic_call_black_24dp"/>
+        <item
+            android:title="@string/about"
+            android:id="@+id/menu_item_about"
+            android:icon="@drawable/svg_ic_info_outline_black_48px"/>
     </group>
 
 </menu>
