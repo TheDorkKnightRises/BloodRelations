@@ -267,9 +267,9 @@ public class ProfileActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(!t){
+        if(!t) {
             super.onBackPressed();
-        }
+        } else Toast.makeText(this, R.string.backpress, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -279,6 +279,7 @@ public class ProfileActivity extends AppCompatActivity {
             case android.R.id.home:
                 if (!t)
                 onBackPressed();
+                else Toast.makeText(this, R.string.backpress, Toast.LENGTH_SHORT).show();
                 break;
 
         }
