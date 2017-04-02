@@ -259,7 +259,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         //new MyAsyncTask(user.getUid());
                         startActivity(new Intent(LoginActivity.this,UserTypeActivity.class));
-                        Toast.makeText(getApplicationContext(),"SignInWithCredential Complete "+task.isSuccessful(),Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(),"SignInWithCredential Complete "+task.isSuccessful(),Toast.LENGTH_SHORT).show();
 
 
                     }
@@ -410,8 +410,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
             //true
             showProgress(true);
             login();
-            //startActivity(new Intent(LoginActivity.this,MainActivity.class));
-            //finish();
 
         }
 
@@ -425,7 +423,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Toast.makeText(getApplicationContext(),"signinUserWithEmail:onComplete:" + task.isSuccessful(),Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(),"signinUserWithEmail:onComplete:" + task.isSuccessful(),Toast.LENGTH_SHORT).show();
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener

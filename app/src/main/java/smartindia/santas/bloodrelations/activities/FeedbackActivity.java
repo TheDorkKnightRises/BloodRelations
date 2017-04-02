@@ -54,7 +54,6 @@ public class FeedbackActivity extends AppCompatActivity implements AdapterView.O
         categories.add("Question");
         categories.add("Problem");
 
-
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item, categories);
 
@@ -71,7 +70,7 @@ public class FeedbackActivity extends AppCompatActivity implements AdapterView.O
         item = parent.getItemAtPosition(position).toString();
 
         // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+        Toast.makeText(parent.getContext(), item +" Selected", Toast.LENGTH_LONG).show();
 
     }
 
@@ -80,15 +79,9 @@ public class FeedbackActivity extends AppCompatActivity implements AdapterView.O
 
     }
 
-
-
-
     public void nextPage(View view){
         String emailSubject = subject.getText().toString();
         String emailBody = description.getText().toString();
-
-
-
 
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                 "mailto","sihbloodbank@gmail.com", null));
