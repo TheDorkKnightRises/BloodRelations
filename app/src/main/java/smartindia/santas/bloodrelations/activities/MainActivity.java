@@ -87,7 +87,12 @@ public class MainActivity extends AppCompatActivity {
             setTheme(R.style.AppTheme_Dark_Translucent);
 
         if(!pref.getBoolean(Constants.ISPROFILEFILLED,false)){
-            startActivity(new Intent(this,ProfileActivity.class));
+            startActivity(new Intent(this, ProfileActivity.class));
+        }
+
+        if(!pref.getBoolean(Constants.ISFORMFILLED,false)){
+            startActivity(new Intent(this, FormActivity.class));
+            pref.edit().putBoolean(Constants.ISFORMFILLED, true).apply();
         }
 
         setContentView(R.layout.activity_main);

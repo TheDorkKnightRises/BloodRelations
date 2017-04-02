@@ -155,4 +155,8 @@
 
     <string name="your_emergency_contact">Custom emergency contact</string>
     <string name="default_emergency">18001801104 (default)</string>
+    <string name="ok">OK</string>
+    <string name="form_verify">Please go to your nearest blood bank to verify that you are fit for donating</string>
+    <string name="take_to_map">Take me to the map</string>
+    <string name="blacklist">Sorry you are unfit to donate blood. Please visit the nearest blood bank for further checks and advice</string>
 </resources>

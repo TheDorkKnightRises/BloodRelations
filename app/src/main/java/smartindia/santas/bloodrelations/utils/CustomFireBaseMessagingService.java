@@ -20,7 +20,6 @@ import java.net.URL;
 
 import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
-import smartindia.santas.bloodrelations.activities.MainActivity;
 import smartindia.santas.bloodrelations.activities.ResponseActivity;
 
 /**
@@ -86,7 +85,7 @@ public class CustomFireBaseMessagingService extends FirebaseMessagingService {
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationManager.notify(0, notificationBuilder.build());
+        notificationManager.notify((int) (Math.random()*1000), notificationBuilder.build());
     }
 
 

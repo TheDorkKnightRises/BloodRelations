@@ -28,4 +28,5 @@ public class Constants {
     public static final String NOTIFICATIONS = "notifications_enabled";
     public static final String PROFILE_IMAGE = "profile_image";
     public static final String CONTACT = "emergency_contact";
+    public static final String ISFORMFILLED = "is_form_filled";
 }
