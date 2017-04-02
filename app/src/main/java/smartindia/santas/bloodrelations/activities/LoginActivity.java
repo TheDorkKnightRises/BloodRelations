@@ -338,6 +338,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                         SharedPreferences preferences = getSharedPreferences(Constants.PREFS,MODE_PRIVATE);
                         SharedPreferences.Editor editor=preferences.edit();
                         editor.putBoolean(Constants.ISBLOODBANK,isBloodBank);
+                        editor.putBoolean(Constants.ISPROFILEFILLED,true);
                         editor.apply();
                         startActivity(new Intent(LoginActivity.this,MainActivity.class));
                     }
