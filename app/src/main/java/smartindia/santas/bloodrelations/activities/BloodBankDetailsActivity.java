@@ -176,50 +176,50 @@ public class BloodBankDetailsActivity extends AppCompatActivity implements Adapt
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                                if(snapshot.hasChild("O+")){
-                                    opos.setText(snapshot.child("details").child("O+").getValue().toString());
+                                if(snapshot.getKey().equals("O+")){
+                                    opos.setText(snapshot.getValue().toString());
                                 }
                                 else{
                                     opos.setText("0");
                                 }
-                                if(snapshot.hasChild("O-")){
-                                    oneg.setText(snapshot.child("details").child("O-").getValue().toString());
+                                if(snapshot.getKey().equals("O-")){
+                                    oneg.setText(snapshot.getValue().toString());
                                 }
                                 else{
                                     oneg.setText("0");
                                 }
-                                if(snapshot.hasChild("A+")){
-                                    apos.setText(snapshot.child("details").child("A+").getValue().toString());
+                                if(snapshot.getKey().equals("A+")){
+                                    apos.setText(snapshot.getValue().toString());
                                 }
                                 else{
                                     apos.setText("0");
                                 }
-                                if(snapshot.hasChild("A-")){
-                                    aneg.setText(snapshot.child("details").child("A-").getValue().toString());
+                                if(snapshot.getKey().equals("A-")){
+                                    aneg.setText(snapshot.getValue().toString());
                                 }
                                 else{
                                     aneg.setText("0");
                                 }
-                                if(snapshot.hasChild("B+")){
-                                    bpos.setText(snapshot.child("details").child("B+").getValue().toString());
+                                if(snapshot.getKey().equals("B+")){
+                                    bpos.setText(snapshot.getValue().toString());
                                 }
                                 else{
                                     bpos.setText("0");
                                 }
-                                if(snapshot.hasChild("B-")){
-                                    bneg.setText(snapshot.child("details").child("B-").getValue().toString());
+                                if(snapshot.getKey().equals("B-")){
+                                    bneg.setText(snapshot.getValue().toString());
                                 }
                                 else{
                                     bneg.setText("0");
                                 }
-                                if(snapshot.hasChild("AB+")){
-                                    abpos.setText(snapshot.child("details").child("AB+").getValue().toString());
+                                if(snapshot.getKey().equals("AB+")){
+                                    abpos.setText(snapshot.getValue().toString());
                                 }
                                 else{
                                     abpos.setText("0");
                                 }
-                                if(snapshot.hasChild("AB-")){
-                                    abneg.setText(snapshot.child("details").child("AB-").getValue().toString());
+                                if(snapshot.getKey().equals("AB-")){
+                                    abneg.setText(snapshot.getValue().toString());
                                 }
                                 else{
                                     abneg.setText("0");
