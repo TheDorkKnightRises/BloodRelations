@@ -11,4 +11,5 @@
     <color name="black">#000000</color>
     <color name="indigo">#283593</color>
     <color name="colorTextCommon">#212121</color>
+    <color name="darker_grey">#aaa</color>
 </resources>

@@ -130,10 +130,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        updateUI();
+
     }
 
     public void updateUI(){
-        String imageUrl = pref.getString(Constants.PROFILE_IMAGE, "");
+        String imageUrl = pref.getString(Constants.PROFILE_IMAGE, "image.png");
         Picasso.with(MainActivity.this)
                     .load(imageUrl)
                     .error(R.drawable.ic_account_circle_black_24dp)

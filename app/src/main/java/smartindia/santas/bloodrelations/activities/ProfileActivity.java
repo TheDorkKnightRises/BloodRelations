@@ -9,11 +9,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
-import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -56,7 +55,7 @@ public class ProfileActivity extends AppCompatActivity {
     private TextInputLayout profileBloodGroup;
     private TextInputLayout profileAddress;
     private TextInputLayout profileBbName;
-    private EditText birthDateEditText;
+    private TextView birthDateEditText;
 
     private FirebaseDatabase firebaseDatabase;
     private FirebaseAuth firebaseAuth;
@@ -86,7 +85,7 @@ public class ProfileActivity extends AppCompatActivity {
             setContentView(R.layout.activity_profile);
 
             profilePicture=(de.hdodenhof.circleimageview.CircleImageView)findViewById(R.id.profile_image);
-            birthDateEditText=(EditText) findViewById(R.id.birthday_edittext);
+            birthDateEditText=(TextView) findViewById(R.id.birthday_text);
             profileEditDone=(FloatingActionButton)findViewById(R.id.profile_edit_done_fab);
             profileName = (TextInputLayout)findViewById(R.id.profile_name);
             profileSurname = (TextInputLayout)findViewById(R.id.profile_surname);
@@ -110,7 +109,7 @@ public class ProfileActivity extends AppCompatActivity {
 
             };
 
-            birthDateEditText.setOnClickListener(new View.OnClickListener() {
+            findViewById(R.id.birthday_button).setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
@@ -268,10 +267,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(t){
-            return;
-        }
-        else {
+        if(!t){
             super.onBackPressed();
         }
     }
@@ -284,10 +280,10 @@ public class ProfileActivity extends AppCompatActivity {
                 if (!t)
                 onBackPressed();
                 break;
+
         }
         return true;
     }
-
 
     public void getPicture(View v){
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
