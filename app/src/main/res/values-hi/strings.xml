@@ -127,4 +127,5 @@ POC का उपनाम</string>
     <string name="language_settings">" वर्तमान में केवल अंग्रेज़ी और हिंदी समर्थित हैं"</string>
     <string name="no_network">कोई इंटरनेट कनेक्टिविटी नहीं विशेषताएं सीमित हो सकती हैं</string>
     <string name="logout">" लोग आउट"</string>
+    <string name="emergency">आपातकालीन</string>
 </resources>

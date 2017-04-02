@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -112,19 +113,23 @@
         </activity>
         <activity
             android:name=".activities.SettingsActivity"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".activities.MainActivity" >
+            android:parentActivityName=".activities.MainActivity"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="smartindia.santas.bloodrelations.activities.MainActivity" />
         </activity>
-        <activity android:name=".activities.ResponseActivity"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".activities.MainActivity">
+        <activity
+            android:name=".activities.ResponseActivity"
+            android:parentActivityName=".activities.MainActivity"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="smartindia.santas.bloodrelations.activities.MainActivity" />
         </activity>
+        <activity android:name=".activities.EmergencyActivity"
+            android:label="Emergency"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

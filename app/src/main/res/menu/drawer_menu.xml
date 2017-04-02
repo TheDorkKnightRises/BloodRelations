@@ -43,4 +43,11 @@
 
     </group>
 
+    <group android:id="@+id/group1">
+        <item
+            android:title="@string/emergency"
+            android:id="@+id/menu_item_emergency"
+            android:icon="@drawable/ic_call_black_24dp"/>
+    </group>
+
 </menu>

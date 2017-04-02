@@ -113,6 +113,7 @@
   limitations under the License.
     </string>
     <string name="logout">Logout</string>
+    <string name="emergency">Emergency</string>
     <string name="about_app">Blood Bank developed for Smart India Hackathon</string>
     <string name="github">https://github.com/TheDorkKnightRises/BloodRelations.git</string>
 </resources>
