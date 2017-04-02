@@ -140,7 +140,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/_10"
                     android:id="@+id/oneg"
                     android:layout_columnSpan="1"
                     android:layout_columnWeight="1"
@@ -151,7 +150,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/_10"
                     android:id="@+id/apos"
                     android:layout_columnSpan="1"
                     android:layout_columnWeight="1"
@@ -162,7 +160,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/_10"
                     android:id="@+id/aneg"
                     android:layout_columnSpan="1"
                     android:layout_columnWeight="1"
@@ -173,7 +170,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/_10"
                     android:id="@+id/bpos"
                     android:layout_columnSpan="1"
                     android:layout_columnWeight="1"
@@ -184,7 +180,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/_10"
                     android:id="@+id/bneg"
                     android:layout_columnSpan="1"
                     android:layout_columnWeight="1"
@@ -195,7 +190,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/_10"
                     android:id="@+id/abpos"
                     android:layout_columnSpan="1"
                     android:layout_columnWeight="1"
@@ -206,7 +200,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/_10"
                     android:id="@+id/abneg"
                     android:layout_columnSpan="1"
                     android:layout_columnWeight="1"
