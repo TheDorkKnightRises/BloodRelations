@@ -90,13 +90,13 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, ProfileActivity.class));
         }
 
+        setContentView(R.layout.activity_main);
+        bbMode = pref.getBoolean(Constants.ISBLOODBANK, false);
+
         if(!pref.getBoolean(Constants.ISFORMFILLED,false)&&!bbMode){
             startActivity(new Intent(this, FormActivity.class));
             pref.edit().putBoolean(Constants.ISFORMFILLED, true).apply();
         }
-
-        setContentView(R.layout.activity_main);
-        bbMode = pref.getBoolean(Constants.ISBLOODBANK, false);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

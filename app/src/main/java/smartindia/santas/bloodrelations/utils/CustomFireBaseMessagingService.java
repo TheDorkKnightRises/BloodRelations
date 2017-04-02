@@ -85,7 +85,7 @@ public class CustomFireBaseMessagingService extends FirebaseMessagingService {
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationManager.notify((int) (Math.random()*1000), notificationBuilder.build());
+        notificationManager.notify(1, notificationBuilder.build());
     }
 
 
