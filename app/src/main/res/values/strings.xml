@@ -90,4 +90,5 @@
     <string name="blood_bank">Blood Bank</string>
     <string name="save">save</string>
     <string name="backpress">Please fill all fields</string>
+    <string name="no_network">No internet connectivity. Features might be limited</string>
 </resources>
