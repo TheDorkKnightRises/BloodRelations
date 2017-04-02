@@ -153,4 +153,6 @@
     <string name="google_play_services">Google Play Services</string>
     <string name="play_services_about">Maps and Places API</string>
 
+    <string name="your_emergency_contact">Custom emergency contact</string>
+    <string name="default_emergency">18001801104 (default)</string>
 </resources>

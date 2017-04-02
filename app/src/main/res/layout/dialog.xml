@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/title"
+        android:textSize="20sp"
+        tools:text="Your emergency contact"
+        android:padding="16dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dialog_editText"
+        android:inputType="phone"
+        android:maxLength="10"
+        android:layout_margin="@dimen/app_padding"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:id="@+id/password_dialog_cancel"
+            android:padding="16dp"
+            style="@style/Base.Widget.AppCompat.Button.Borderless.Colored" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OK"
+            android:id="@+id/password_dialog_ok"
+            android:padding="16dp"
+            style="@style/Base.Widget.AppCompat.Button.Borderless.Colored" />
+    </LinearLayout>
+
+</LinearLayout>
