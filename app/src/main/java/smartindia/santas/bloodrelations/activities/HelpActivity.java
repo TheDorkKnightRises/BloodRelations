@@ -122,6 +122,9 @@ public class HelpActivity extends AppCompatActivity {
             holder.text.setText(getChild(groupPosition, childPosition).toString());
             if (getSharedPreferences(Constants.PREFS, MODE_PRIVATE).getBoolean(Constants.DARK_THEME, false))
                 holder.text.setTextColor(Color.WHITE);
+            else{
+                holder.text.setTextColor(Color.DKGRAY);
+            }
             holder.text.setAutoLinkMask(Linkify.PHONE_NUMBERS);
 
             return convertView;
@@ -144,6 +147,9 @@ public class HelpActivity extends AppCompatActivity {
             holder.text.setText(getGroup(groupPosition).toString());
             if (getSharedPreferences(Constants.PREFS, MODE_PRIVATE).getBoolean(Constants.DARK_THEME, false))
                 holder.text.setTextColor(Color.WHITE);
+            else{
+                holder.text.setTextColor(Color.BLACK);
+            }
 
             return convertView;
         }
