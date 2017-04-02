@@ -284,22 +284,10 @@ public class ProfileActivity extends AppCompatActivity {
                 if (!t)
                 onBackPressed();
                 break;
-
-            case R.id.menu_save:
-                onSavePressed();
-                break;
         }
         return true;
     }
 
-    private void onSavePressed() {
-
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.profile_menu,menu);
-        return true;
-    }
 
     public void getPicture(View v){
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
