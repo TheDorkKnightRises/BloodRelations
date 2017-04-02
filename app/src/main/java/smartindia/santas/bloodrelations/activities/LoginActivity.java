@@ -264,7 +264,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        new MyAsyncTask(user.getUid());
+                        //new MyAsyncTask(user.getUid());
+                        startActivity(new Intent(LoginActivity.this,UserTypeActivity.class));
                         Toast.makeText(getApplicationContext(),"SignInWithCredential Complete "+task.isSuccessful(),Toast.LENGTH_SHORT).show();
 
 
