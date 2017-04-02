@@ -17,7 +17,6 @@ import smartindia.santas.bloodrelations.R;
 public class AboutActivity extends AppCompatActivity {
 
     //Button github;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
