@@ -9,7 +9,6 @@ import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -18,7 +17,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.transition.ChangeBounds;
 import android.support.transition.Scene;
 import android.support.transition.Transition;
@@ -62,15 +60,11 @@ import java.util.List;
 import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
 
-import static android.Manifest.permission.READ_CONTACTS;
-
 /**
  * Created by DELL on 31/03/2017.
  */
 
 public class LoginActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
-
-    private static final int REQUEST_READ_CONTACTS = 0;
 
     Boolean backPressFlag = false;
     SharedPreferences pref;
@@ -146,7 +140,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                         // Set up the login form.
                         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
                         mEmailView.setDropDownBackgroundResource(R.color.white);
-                        populateAutoComplete();
 
                         mPasswordView = (EditText) findViewById(R.id.password);
                         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -375,50 +368,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
     }
 
 
-    private void populateAutoComplete() {
-        if (!mayRequestContacts()) {
-            return;
-        }
-
-        getLoaderManager().initLoader(0, null, this);
-    }
-
-    private boolean mayRequestContacts() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return true;
-        }
-        if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        }
-        if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
-            Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(android.R.string.ok, new View.OnClickListener() {
-                        @Override
-                        @TargetApi(Build.VERSION_CODES.M)
-                        public void onClick(View v) {
-                            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-                        }
-                    });
-        } else {
-            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-        }
-        return false;
-    }
-
-    /**
-     * Callback received when a permissions request has been completed.
-     */
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_READ_CONTACTS) {
-            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                populateAutoComplete();
-            }
-        }
-    }
-
-
     /**
      * Attempts to sign in or register the account specified by the login form.
      * If there are form errors (invalid email, missing fields, etc.), the
@@ -568,8 +517,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(LoginActivity.this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(LoginActivity.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
         mEmailView.setAdapter(adapter);
