@@ -12,5 +12,14 @@
     <color name="indigo">#283593</color>
     <color name="colorTextCommon">#212121</color>
     <color name="darker_grey">#aaa</color>
+
+    <color name="lt10">#CC0000</color>
+    <color name="lt20">#FF3333</color>
+    <color name="lt30">#FF8000</color>
+    <color name="lt40">#FFB266</color>
+    <color name="lt50">#FFFF00</color>
+    <color name="lt60">#FFFF99</color>
+    <color name="lt70">#66CC00</color>
+    <color name="lt80">#66FF66</color>
     <color name="dark_gray">#505050</color>
 </resources>

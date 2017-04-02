@@ -39,6 +39,8 @@ public class BloodBankRecyclerAdapter extends RecyclerView.Adapter<BloodBankRecy
             mBloodBank = bloodBankList.get(position);
             Intent i = new Intent(v.getContext(), BloodBankDetailsActivity.class);
             i.putExtra("coordinates",mBloodBank.getCoordinateString());
+            i.putExtra("name",mBloodBank.getBbName());
+            i.putExtra("location",mBloodBank.getBbLocation());
             v.getContext().startActivity(i);
         }
 

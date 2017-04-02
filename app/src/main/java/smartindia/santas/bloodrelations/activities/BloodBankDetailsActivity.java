@@ -34,7 +34,7 @@ public class BloodBankDetailsActivity extends AppCompatActivity implements Adapt
 
     String item;
     List <String> categories;
-    TextView opos, oneg, apos, aneg, bpos, bneg, abpos, abneg, bloodGroupTextView;
+    TextView opos, oneg, apos, aneg, bpos, bneg, abpos, abneg, bloodGroupTextView,bbName,bbLocation;
     EditText bloodQuantity;
     Button submitBloodQuantity;
 
@@ -60,6 +60,8 @@ public class BloodBankDetailsActivity extends AppCompatActivity implements Adapt
         bneg=(TextView) findViewById(R.id.bneg);
         abpos=(TextView) findViewById(R.id.abpos);
         abneg=(TextView) findViewById(R.id.abneg);
+        bbName = (TextView) findViewById(R.id.bbName);
+        bbLocation = (TextView) findViewById(R.id.bbLocation);
 
         bloodGroupTextView = (TextView) findViewById(R.id.bloodGroupTextView);
 
@@ -98,11 +100,15 @@ public class BloodBankDetailsActivity extends AppCompatActivity implements Adapt
         databaseReference = firebaseDatabase.getReference().child("users");
 
         final Intent i = getIntent();
+        String name = i.getStringExtra("name");
+        String location = i.getStringExtra("location");
         if(!i.getStringExtra("coordinates").equals("")){
             bloodGroupTextView.setVisibility(View.GONE);
             spinner.setVisibility(View.GONE);
             bloodQuantity.setVisibility(View.GONE);
             submitBloodQuantity.setVisibility(View.GONE);
+            bbName.setText(name);
+            bbLocation.setText(location);
 
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -139,6 +145,14 @@ public class BloodBankDetailsActivity extends AppCompatActivity implements Adapt
                             }
                         }
                     }
+                    updateColour(opos);
+                    updateColour(oneg);
+                    updateColour(apos);
+                    updateColour(aneg);
+                    updateColour(bpos);
+                    updateColour(bneg);
+                    updateColour(abpos);
+                    updateColour(abneg);
                 }
 
                 @Override
@@ -148,6 +162,8 @@ public class BloodBankDetailsActivity extends AppCompatActivity implements Adapt
             });
         }
         else {
+            bbName.setVisibility(View.GONE);
+            bbLocation.setVisibility(View.GONE);
             databaseReference.child(user.getUid()).child("details").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -183,6 +199,39 @@ public class BloodBankDetailsActivity extends AppCompatActivity implements Adapt
 
                 }
             });
+        }
+    }
+
+    public void updateColour(TextView tv){
+        if(!tv.getText().toString().equals("")){
+            int val = Integer.parseInt(tv.getText().toString());
+            if(val<=10){
+                tv.setBackgroundResource(R.color.lt10);
+            }
+            else if(val<=20){
+                tv.setBackgroundResource(R.color.lt20);
+            }
+            else if(val<=30){
+                tv.setBackgroundResource(R.color.lt30);
+            }
+            else if(val<=40){
+                tv.setBackgroundResource(R.color.lt40);
+            }
+            else if(val<=50){
+                tv.setBackgroundResource(R.color.lt50);
+            }
+            else if(val<=60){
+                tv.setBackgroundResource(R.color.lt60);
+            }
+            else if(val<=70){
+                tv.setBackgroundResource(R.color.lt70);
+            }
+            else if(val<=80){
+                tv.setBackgroundResource(R.color.lt80);
+            }
+        }
+        else{
+            tv.setBackgroundResource(R.color.colorAccent);
         }
     }
 
