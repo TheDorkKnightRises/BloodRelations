@@ -21,6 +21,7 @@ import java.net.URL;
 import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
 import smartindia.santas.bloodrelations.activities.MainActivity;
+import smartindia.santas.bloodrelations.activities.ResponseActivity;
 
 /**
  * Created by DELL on 31/03/2017.
@@ -67,7 +68,7 @@ public class CustomFireBaseMessagingService extends FirebaseMessagingService {
     private void sendNotification(String messageTitle, String messageBody) {
         if (!getSharedPreferences(Constants.PREFS, MODE_PRIVATE).getBoolean(Constants.NOTIFICATIONS, true))
             return;
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, ResponseActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
                 PendingIntent.FLAG_ONE_SHOT);

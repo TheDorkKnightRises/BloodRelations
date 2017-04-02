@@ -109,8 +109,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="smartindia.santas.bloodrelations.activities.MainActivity" />
         </activity>
-        <activity android:name=".activities.SettingsActivity"
-            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activities.ResponseActivity"></activity>
     </application>
 
 </manifest>
