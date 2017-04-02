@@ -111,6 +111,7 @@ public class BloodBankDetailsActivity extends AppCompatActivity implements Adapt
                         if(snapshot.child("isBloodBank").getValue().toString().equals("true")){
                             String coord = (String)snapshot.child("details").child("lat").child("latitude").getValue().toString() + " " + (String)snapshot.child("details").child("lat").child("longitude").getValue().toString();
                             if(coord.equals(i.getStringExtra("coordinates"))){
+                                Log.v("tag","selected");
                                 if(snapshot.child("details").hasChild("O+")){
                                     opos.setText(snapshot.child("details").child("O+").getValue().toString());
                                 }
@@ -121,40 +122,43 @@ public class BloodBankDetailsActivity extends AppCompatActivity implements Adapt
                                     oneg.setText(snapshot.child("details").child("O-").getValue().toString());
                                 }
                                 else{
-                                    opos.setText("0");
+                                    oneg.setText("0");
                                 }
                                 if(snapshot.child("details").hasChild("A+")){
                                     apos.setText(snapshot.child("details").child("A+").getValue().toString());
                                 }
                                 else{
-                                    opos.setText("0");
+                                    apos.setText("0");
                                 }
                                 if(snapshot.child("details").hasChild("A-")){
                                     aneg.setText(snapshot.child("details").child("A-").getValue().toString());
+                                }
+                                else{
+                                    aneg.setText("0");
                                 }
                                 if(snapshot.child("details").hasChild("B+")){
                                     bpos.setText(snapshot.child("details").child("B+").getValue().toString());
                                 }
                                 else{
-                                    opos.setText("0");
+                                    bpos.setText("0");
                                 }
                                 if(snapshot.child("details").hasChild("B-")){
                                     bneg.setText(snapshot.child("details").child("B-").getValue().toString());
                                 }
                                 else{
-                                    opos.setText("0");
+                                    bneg.setText("0");
                                 }
                                 if(snapshot.child("details").hasChild("AB+")){
                                     abpos.setText(snapshot.child("details").child("AB+").getValue().toString());
                                 }
                                 else{
-                                    opos.setText("0");
+                                    abpos.setText("0");
                                 }
                                 if(snapshot.child("details").hasChild("AB-")){
                                     abneg.setText(snapshot.child("details").child("AB-").getValue().toString());
                                 }
                                 else{
-                                    opos.setText("0");
+                                    abneg.setText("0");
                                 }
                             }
                         }
@@ -185,40 +189,43 @@ public class BloodBankDetailsActivity extends AppCompatActivity implements Adapt
                                     oneg.setText(snapshot.child("details").child("O-").getValue().toString());
                                 }
                                 else{
-                                    opos.setText("0");
+                                    oneg.setText("0");
                                 }
                                 if(snapshot.child("details").hasChild("A+")){
                                     apos.setText(snapshot.child("details").child("A+").getValue().toString());
                                 }
                                 else{
-                                    opos.setText("0");
+                                    apos.setText("0");
                                 }
                                 if(snapshot.child("details").hasChild("A-")){
                                     aneg.setText(snapshot.child("details").child("A-").getValue().toString());
+                                }
+                                else{
+                                    aneg.setText("0");
                                 }
                                 if(snapshot.child("details").hasChild("B+")){
                                     bpos.setText(snapshot.child("details").child("B+").getValue().toString());
                                 }
                                 else{
-                                    opos.setText("0");
+                                    bpos.setText("0");
                                 }
                                 if(snapshot.child("details").hasChild("B-")){
                                     bneg.setText(snapshot.child("details").child("B-").getValue().toString());
                                 }
                                 else{
-                                    opos.setText("0");
+                                    bneg.setText("0");
                                 }
                                 if(snapshot.child("details").hasChild("AB+")){
                                     abpos.setText(snapshot.child("details").child("AB+").getValue().toString());
                                 }
                                 else{
-                                    opos.setText("0");
+                                    abpos.setText("0");
                                 }
                                 if(snapshot.child("details").hasChild("AB-")){
                                     abneg.setText(snapshot.child("details").child("AB-").getValue().toString());
                                 }
                                 else{
-                                    opos.setText("0");
+                                    abneg.setText("0");
                                 }
                             }
                         }
