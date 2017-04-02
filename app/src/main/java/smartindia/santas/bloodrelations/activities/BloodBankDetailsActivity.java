@@ -172,66 +172,60 @@ public class BloodBankDetailsActivity extends AppCompatActivity implements Adapt
             });
         }
         else {
-            databaseReference.addValueEventListener(new ValueEventListener() {
+            databaseReference.child(user.getUid()).child("details").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                        if(snapshot.child("isBloodBank").getValue().toString().equals("true")){
-                            String coord = (String)snapshot.child("details").child("lat").child("latitude").getValue().toString() + " " + (String)snapshot.child("details").child("lat").child("longitude").getValue().toString();
-                            if(coord.equals(i.getStringExtra("coordinates"))){
-                                if(snapshot.child("details").hasChild("O+")){
+                                if(snapshot.hasChild("O+")){
                                     opos.setText(snapshot.child("details").child("O+").getValue().toString());
                                 }
                                 else{
                                     opos.setText("0");
                                 }
-                                if(snapshot.child("details").hasChild("O-")){
+                                if(snapshot.hasChild("O-")){
                                     oneg.setText(snapshot.child("details").child("O-").getValue().toString());
                                 }
                                 else{
                                     oneg.setText("0");
                                 }
-                                if(snapshot.child("details").hasChild("A+")){
+                                if(snapshot.hasChild("A+")){
                                     apos.setText(snapshot.child("details").child("A+").getValue().toString());
                                 }
                                 else{
                                     apos.setText("0");
                                 }
-                                if(snapshot.child("details").hasChild("A-")){
+                                if(snapshot.hasChild("A-")){
                                     aneg.setText(snapshot.child("details").child("A-").getValue().toString());
                                 }
                                 else{
                                     aneg.setText("0");
                                 }
-                                if(snapshot.child("details").hasChild("B+")){
+                                if(snapshot.hasChild("B+")){
                                     bpos.setText(snapshot.child("details").child("B+").getValue().toString());
                                 }
                                 else{
                                     bpos.setText("0");
                                 }
-                                if(snapshot.child("details").hasChild("B-")){
+                                if(snapshot.hasChild("B-")){
                                     bneg.setText(snapshot.child("details").child("B-").getValue().toString());
                                 }
                                 else{
                                     bneg.setText("0");
                                 }
-                                if(snapshot.child("details").hasChild("AB+")){
+                                if(snapshot.hasChild("AB+")){
                                     abpos.setText(snapshot.child("details").child("AB+").getValue().toString());
                                 }
                                 else{
                                     abpos.setText("0");
                                 }
-                                if(snapshot.child("details").hasChild("AB-")){
+                                if(snapshot.hasChild("AB-")){
                                     abneg.setText(snapshot.child("details").child("AB-").getValue().toString());
                                 }
                                 else{
                                     abneg.setText("0");
                                 }
                             }
-                        }
-                    }
                 }
-
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
 
