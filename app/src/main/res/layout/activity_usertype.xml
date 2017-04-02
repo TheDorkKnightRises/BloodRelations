@@ -12,7 +12,7 @@
     <TextView
         android:layout_width="285dp"
         android:layout_height="125dp"
-        android:text="Are You A Blood Bank ?"
+        android:text="@string/are_you_a_blood_bank"
         android:gravity="center"
         android:textSize="25dp"/>
 
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        android:text="Yes"
+        android:text="@string/yes_rb"
         android:textSize="25dp"
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
         />
@@ -30,7 +30,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="No"
+        android:text="@string/no_rb"
         android:textSize="25dp"
         android:padding="20dp"
         android:id="@+id/No"

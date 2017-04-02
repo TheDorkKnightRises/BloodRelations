@@ -37,7 +37,7 @@
             android:minHeight="64dp"
             android:layout_gravity="bottom|center"
             android:padding="@dimen/app_padding"
-            android:text="Send a request"
+            android:text="@string/send_a_request"
             style="@style/Widget.AppCompat.Button.Colored"
             android:elevation="8dp"
             android:layout_margin="24dp" />

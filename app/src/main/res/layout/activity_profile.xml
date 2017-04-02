@@ -58,7 +58,7 @@
                         <android.support.design.widget.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Name"
+                            android:hint="@string/name_profile"
                             android:inputType="textCapSentences"/>
 
                     </android.support.design.widget.TextInputLayout>
@@ -72,7 +72,7 @@
                         <android.support.design.widget.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Surname"
+                            android:hint="@string/surname_profile"
                             android:inputType="textCapSentences"/>
 
                     </android.support.design.widget.TextInputLayout>
@@ -98,7 +98,7 @@
                         <android.support.design.widget.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Phone No"
+                            android:hint="@string/phone_no_profile"
                             android:inputType="number"/>
 
                     </android.support.design.widget.TextInputLayout>
@@ -113,7 +113,7 @@
                         <android.support.design.widget.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Blood Group"/>
+                            android:hint="@string/blood_group_profile"/>
 
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
@@ -132,7 +132,7 @@
                     <android.support.design.widget.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Enter Address"/>
+                        android:hint="@string/enter_address"/>
 
                 </android.support.design.widget.TextInputLayout>
             </android.support.v7.widget.CardView>
@@ -145,7 +145,7 @@
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Birthday"
+                    android:hint="@string/birthday"
                     android:id="@+id/birthday_edittext" />
             </android.support.v7.widget.CardView>
         </LinearLayout>

@@ -33,11 +33,11 @@
             android:id="@+id/menu_item_bloodbank_details"
             android:icon="@drawable/ic_work_black_24dp"/>
         <item
-            android:title="Certificate"
+            android:title="@string/certificate"
             android:id="@+id/menu_item_certificate"
             android:icon="@drawable/ic_library_books_black_24dp"/>
         <item
-            android:title="Settings"
+            android:title="@string/settings"
             android:id="@+id/menu_item_settings"
             android:icon="@drawable/ic_settings_black_24dp"/>
 

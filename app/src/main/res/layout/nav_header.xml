@@ -20,14 +20,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Username"
+        android:text="@string/username"
         android:textSize="15sp"
         android:textColor="@android:color/white"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Blood Bank"
+        android:text="@string/blood_bank"
         android:textSize="12sp"
         android:textColor="@android:color/darker_gray"
         android:gravity="center_horizontal"/>

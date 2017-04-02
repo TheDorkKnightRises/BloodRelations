@@ -21,7 +21,7 @@
                 android:id="@+id/blood_bank_name_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Blood Bank Name"
+                android:text="@string/blood_bank_name"
                 android:textSize="22sp"
                 android:layout_marginBottom="4dp"/>
 
@@ -30,14 +30,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:text="Blood Bank Location"/>
+                android:text="@string/blood_bank_location"/>
 
             <TextView
                 android:id="@+id/blood_bank_phone_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:text="Blood Bank Phone"/>
+                android:text="@string/blood_bank_phone"/>
 
         </LinearLayout>
     </android.support.v7.widget.CardView>

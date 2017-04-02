@@ -18,14 +18,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="BLOOD BANK NAME"
+                android:text="@string/blood_bank_name"
                 android:textSize="30dp"
                 android:paddingTop="10dp"
                 android:gravity="center" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Location"
+                android:text="@string/location"
                 android:textSize="20dp"
                 android:paddingTop="20dp" />
 
@@ -38,7 +38,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="WHOLE BLOOD (WB)"
+                    android:text="@string/whole_blood_wb"
                     android:layout_columnSpan="8"
                     android:gravity="center_horizontal"
                     android:layout_marginTop="30dp"
@@ -48,7 +48,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="O+"
+                    android:text="@string/opositive"
                     android:layout_columnSpan="1"
                     android:layout_columnWeight="1"
                     android:textColor="@color/white"
@@ -58,7 +58,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="O-"
+                    android:text="@string/onegative"
                     android:layout_columnSpan="1"
                     android:layout_columnWeight="1"
                     android:textColor="@color/white"
@@ -130,7 +130,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10"
+                    android:text="@string/_10"
                     android:layout_columnSpan="1"
                     android:layout_columnWeight="1"
                     android:textColor="@color/white"
@@ -140,7 +140,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10"
+                    android:text="@string/_10"
                     android:layout_columnSpan="1"
                     android:layout_columnWeight="1"
                     android:textColor="@color/white"
@@ -150,7 +150,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10"
+                    android:text="@string/_10"
                     android:layout_columnSpan="1"
                     android:layout_columnWeight="1"
                     android:textColor="@color/white"
@@ -160,7 +160,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10"
+                    android:text="@string/_10"
                     android:layout_columnSpan="1"
                     android:layout_columnWeight="1"
                     android:textColor="@color/white"
@@ -170,7 +170,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10"
+                    android:text="@string/_10"
                     android:layout_columnSpan="1"
                     android:layout_columnWeight="1"
                     android:textColor="@color/white"
@@ -180,7 +180,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10"
+                    android:text="@string/_10"
                     android:layout_columnSpan="1"
                     android:layout_columnWeight="1"
                     android:textColor="@color/white"
@@ -190,7 +190,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10"
+                    android:text="@string/_10"
                     android:layout_columnSpan="1"
                     android:layout_columnWeight="1"
                     android:textColor="@color/white"
@@ -200,7 +200,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10"
+                    android:text="@string/_10"
                     android:layout_columnSpan="1"
                     android:layout_columnWeight="1"
                     android:textColor="@color/white"
@@ -214,7 +214,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="90dp"
-                android:text="Blood Group:"
+                android:text="@string/blood_group"
                 android:textSize="20dp" />
             <Spinner
                 android:layout_width="150dp"
@@ -231,7 +231,7 @@
             <android.support.design.widget.TextInputEditText
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:hint="Quantity"
+                android:hint="@string/quantity"
                 android:inputType="number"
                 android:textSize="20dp" />
 
@@ -240,7 +240,7 @@
                 android:layout_width="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_height="wrap_content"
-                android:text="Submit"
+                android:text="@string/submit"
                 android:layout_margin="8dp"
                 android:textColor="@color/white"
                 android:textSize="20dp"

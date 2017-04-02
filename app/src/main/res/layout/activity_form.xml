@@ -29,7 +29,7 @@
                     android:layout_weight="1"
                     android:textSize="@dimen/form_header_size"
                     android:layout_height="wrap_content"
-                    android:text="1. Occupation"/>
+                    android:text="@string/_1_occupation"/>
                 <EditText
                     android:layout_width="0dp"
                     android:id="@+id/ques1"
@@ -53,7 +53,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="In the past 6 months"
+                    android:text="@string/in_the_past_6_months"
                     android:layout_margin="8dp"
                     android:textSize="@dimen/form_header_size"
                     android:textStyle="bold"/>
@@ -68,7 +68,7 @@
                         android:padding="3dp"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
-                        android:text="2. Have you had a blood transfusion?"/>
+                        android:text="@string/_2_have_you_had_a_blood_transfusion"/>
                     <RadioGroup
                         android:layout_width="0dp"
                         android:id="@+id/ques2"
@@ -82,14 +82,14 @@
                             android:id="@+id/ques2_yes"
                             android:padding="5dp"
                             android:layout_height="wrap_content"
-                            android:text="Yes"/>
+                            android:text="@string/yes_rb"/>
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_weight="1"
                             android:padding="5dp"
                             android:id="@+id/ques2_no"
                             android:layout_height="wrap_content"
-                            android:text="No"/>
+                            android:text="@string/no_rb"/>
                     </RadioGroup>
                 </LinearLayout>
 
@@ -103,7 +103,7 @@
                         android:layout_height="wrap_content"
                         android:padding="3dp"
                         android:textSize="20sp"
-                        android:text="3. Have you had any vaccinations or other shots?"/>
+                        android:text="@string/_3_have_you_had_any_vaccinations_or_other_shots"/>
                     <RadioGroup
                         android:layout_width="0dp"
                         android:layout_weight="2"
@@ -117,14 +117,14 @@
                             android:id="@+id/ques3_yes"
                             android:padding="5dp"
                             android:layout_height="wrap_content"
-                            android:text="Yes"/>
+                            android:text="@string/yes_rb"/>
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_weight="1"
                             android:id="@+id/ques3_no"
                             android:padding="5dp"
                             android:layout_height="wrap_content"
-                            android:text="No"/>
+                            android:text="@string/no_rb"/>
                     </RadioGroup>
                 </LinearLayout>
             </LinearLayout>
@@ -144,7 +144,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Have you ever"
+                    android:text="@string/have_you_ever"
                     android:layout_margin="8dp"
                     android:textSize="@dimen/form_header_size"
                     android:textStyle="bold"/>
@@ -159,7 +159,7 @@
                         android:layout_height="wrap_content"
                         android:padding="3dp"
                         android:textSize="20sp"
-                        android:text="4. Had Jaundice/Hepatitis"/>
+                        android:text="@string/_4_had_jaundice_hepatitis"/>
                     <RadioGroup
                         android:layout_width="0dp"
                         android:layout_weight="2"
@@ -173,14 +173,14 @@
                             android:id="@+id/ques4_yes"
                             android:padding="5dp"
                             android:layout_height="wrap_content"
-                            android:text="Yes"/>
+                            android:text="@string/yes_rb"/>
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_weight="1"
                             android:id="@+id/ques4_no"
                             android:padding="5dp"
                             android:layout_height="wrap_content"
-                            android:text="No"/>
+                            android:text="@string/no_rb"/>
                     </RadioGroup>
                 </LinearLayout>
 
@@ -195,7 +195,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
                         android:padding="3dp"
-                        android:text="5. Had a positive test for HIV/HbSAg/HCV?"
+                        android:text="@string/_5_had_a_positive_test_for_hiv_hbsag_hcv"
                         android:textSize="20sp" />
 
                     <RadioGroup
@@ -211,14 +211,14 @@
                             android:id="@+id/ques5_yes"
                             android:padding="5dp"
                             android:layout_height="wrap_content"
-                            android:text="Yes"/>
+                            android:text="@string/yes_rb"/>
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_weight="1"
                             android:id="@+id/ques5_no"
                             android:padding="5dp"
                             android:layout_height="wrap_content"
-                            android:text="No"/>
+                            android:text="@string/no_rb"/>
                     </RadioGroup>
                 </LinearLayout>
 
@@ -232,7 +232,7 @@
                         android:layout_height="wrap_content"
                         android:padding="3dp"
                         android:textSize="20sp"
-                        android:text="6. Had any cardiac/lung problems?"/>
+                        android:text="@string/_6_had_any_cardiac_lung_problems"/>
                     <RadioGroup
                         android:layout_width="0dp"
                         android:layout_weight="2"
@@ -246,14 +246,14 @@
                             android:id="@+id/ques6_yes"
                             android:padding="5dp"
                             android:layout_height="wrap_content"
-                            android:text="Yes"/>
+                            android:text="@string/yes_rb"/>
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_weight="1"
                             android:id="@+id/ques6_no"
                             android:padding="5dp"
                             android:layout_height="wrap_content"
-                            android:text="No"/>
+                            android:text="@string/no_rb"/>
                     </RadioGroup>
                 </LinearLayout>
 
@@ -267,7 +267,7 @@
                         android:layout_height="wrap_content"
                         android:padding="3dp"
                         android:textSize="20sp"
-                        android:text="7. Had a bleeding condition or blood disease?"/>
+                        android:text="@string/_7_had_a_bleeding_condition_or_blood_disease"/>
                     <RadioGroup
                         android:layout_width="0dp"
                         android:layout_weight="2"
@@ -281,14 +281,14 @@
                             android:id="@+id/ques7_yes"
                             android:padding="5dp"
                             android:layout_height="wrap_content"
-                            android:text="Yes"/>
+                            android:text="@string/yes_rb"/>
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_weight="1"
                             android:id="@+id/ques7_no"
                             android:padding="5dp"
                             android:layout_height="wrap_content"
-                            android:text="No"/>
+                            android:text="@string/no_rb"/>
                     </RadioGroup>
                 </LinearLayout>
 
@@ -302,7 +302,7 @@
                         android:layout_height="wrap_content"
                         android:padding="3dp"
                         android:textSize="20sp"
-                        android:text="8. Do you have hypertension or blood disease"/>
+                        android:text="@string/_8_do_you_have_hypertension_or_blood_disease"/>
                     <RadioGroup
                         android:layout_width="0dp"
                         android:layout_weight="2"
@@ -316,14 +316,14 @@
                             android:id="@+id/ques8_yes"
                             android:padding="5dp"
                             android:layout_height="wrap_content"
-                            android:text="Yes"/>
+                            android:text="@string/yes_rb"/>
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_weight="1"
                             android:id="@+id/ques8_no"
                             android:padding="5dp"
                             android:layout_height="wrap_content"
-                            android:text="No"/>
+                            android:text="@string/no_rb"/>
                     </RadioGroup>
                 </LinearLayout>
             </LinearLayout>
