@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, ProfileActivity.class));
         }
 
-        if(!pref.getBoolean(Constants.ISFORMFILLED,false)){
+        if(!pref.getBoolean(Constants.ISFORMFILLED,false)&&!bbMode){
             startActivity(new Intent(this, FormActivity.class));
             pref.edit().putBoolean(Constants.ISFORMFILLED, true).apply();
         }
@@ -306,9 +306,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupDrawer(){
-        if (bbMode)
+        if (bbMode) {
             navigationView.getMenu().findItem(R.id.menu_item_certificate).setVisible(false);
-        else navigationView.getMenu().findItem(R.id.menu_item_bloodbank_details).setVisible(false);
+            navigationView.getMenu().findItem(R.id.menu_item_form).setVisible(false);
+        } else navigationView.getMenu().findItem(R.id.menu_item_bloodbank_details).setVisible(false);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
