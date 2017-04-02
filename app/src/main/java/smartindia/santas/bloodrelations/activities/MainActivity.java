@@ -175,7 +175,9 @@ public class MainActivity extends AppCompatActivity {
                                 String location = snapshot.child("details").child("address").getValue().toString();
                                 String bloodGroup = snapshot.child("details").child("bloodgroup").getValue().toString();
                                 String phone = snapshot.child("details").child("phone").getValue().toString();
-                                list.add(new Donor(name,location,bloodGroup,phone));
+                                double lat = Double.parseDouble(snapshot.child("details").child("lat").child("latitude").getValue().toString());
+                                double lng = Double.parseDouble(snapshot.child("details").child("lat").child("longitude").getValue().toString());
+                                list.add(new Donor(name,location,bloodGroup,phone, lat, lng));
                             }
                         }
                         updateUI();
@@ -210,7 +212,9 @@ public class MainActivity extends AppCompatActivity {
                                 String bbname = snapshot.child("details").child("bloodbankname").getValue().toString();
                                 String location = snapshot.child("details").child("address").getValue().toString();
                                 String phone = snapshot.child("details").child("phone").getValue().toString();
-                                list.add(new BloodBank(bbname,location,phone));
+                                double lat = Double.parseDouble(snapshot.child("details").child("lat").child("latitude").getValue().toString());
+                                double lng = Double.parseDouble(snapshot.child("details").child("lat").child("longitude").getValue().toString());
+                                list.add(new BloodBank(bbname,location,phone, lat, lng));
                                 if (FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl() != null)
                                     Picasso.with(MainActivity.this).load(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl()).into(profile_image);
 

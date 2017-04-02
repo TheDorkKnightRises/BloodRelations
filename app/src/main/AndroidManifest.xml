@@ -104,6 +104,7 @@
         <activity
             android:name=".activities.LocateActivity"
             android:label="@string/title_activity_locate"
+            android:parentActivityName=".activities.MainActivity"
             android:theme="@style/AppTheme.Translucent">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -111,8 +112,19 @@
         </activity>
         <activity
             android:name=".activities.SettingsActivity"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".activities.ResponseActivity"></activity>
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".activities.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="smartindia.santas.bloodrelations.activities.MainActivity" />
+        </activity>
+        <activity android:name=".activities.ResponseActivity"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".activities.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="smartindia.santas.bloodrelations.activities.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

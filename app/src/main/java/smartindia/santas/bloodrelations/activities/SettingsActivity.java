@@ -7,10 +7,10 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -20,6 +20,7 @@ import smartindia.santas.bloodrelations.R;
 public class SettingsActivity extends AppCompatActivity {
 
     Switch themeSwitch, notifSwitch;
+    TextView languageSwitch;
     SharedPreferences shPref;
     SharedPreferences.Editor editor;
     TextView logout;
@@ -33,6 +34,15 @@ public class SettingsActivity extends AppCompatActivity {
             setTheme(R.style.AppTheme_Dark);
         setContentView(R.layout.activity_settings);
 
+        languageSwitch = (TextView) findViewById(R.id.change_language);
+        languageSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(SettingsActivity.this, R.string.language_settings, Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(android.provider.Settings.ACTION_LOCALE_SETTINGS);
+                startActivity(i);
+            }
+        });
         themeSwitch = (Switch) findViewById(R.id.theme_switch);
         notifSwitch = (Switch) findViewById(R.id.notif_switch);
         logout = (TextView)findViewById(R.id.logout);

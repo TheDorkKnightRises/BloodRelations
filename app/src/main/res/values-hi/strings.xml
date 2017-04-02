@@ -48,7 +48,7 @@
 रक्त बैंक नाम</string>
     <string name="location">
 स्थान</string>
-    <string name="whole_blood_wb">WHOLE BLOOD (WB)</string>
+    <string name="whole_blood_wb">संपूर्ण रक्त (डब्ल्यूबी)</string>
     <string name="opositive">O+</string>
     <string name="onegative">O-</string>
     <string name="blood_group">रक्त समूह:</string>
@@ -94,16 +94,15 @@
     <string name="enter_address">
 पता दर्ज करें</string>
     <string name="birthday">जन्मदिन</string>
-    <string name="name_of_poc">
-POC का नाम</string>
+    <string name="name_of_poc">" POC का नाम"</string>
     <string name="surname_of_poc">
 POC का उपनाम</string>
     <string name="blood_bank_name_profile">
 रक्त बैंक का नाम</string>
     <string name="phone">
 फ़ोन</string>
-    <string name="use_a_dark_theme">Use a dark theme</string>
-    <string name="show_push_notifications">Show push notifications</string>
+    <string name="use_a_dark_theme">एक अंधेरे विषय का उपयोग करें</string>
+    <string name="show_push_notifications">"पुश सूचनाएं दिखाएं "</string>
     <string name="sign_up">साइन अप करें</string>
     <string name="are_you_a_blood_bank">क्या आप एक ब्लड बैंक हैं?</string>
     <string name="blood_bank_location">
@@ -122,4 +121,10 @@ POC का उपनाम</string>
     <string name="blood_bank">
 रक्त बैंक</string>
     <string name="save">बचाना</string>
+    <string name="backpress">कृपया सभी स्थाान भरे</string>
+    <string name="change_language">भाषा बदलो</string>
+    <string name="google_maps_key"></string>
+    <string name="language_settings">" वर्तमान में केवल अंग्रेज़ी और हिंदी समर्थित हैं"</string>
+    <string name="no_network">कोई इंटरनेट कनेक्टिविटी नहीं विशेषताएं सीमित हो सकती हैं</string>
+    <string name="logout">" लोग आउट"</string>
 </resources>

@@ -25,13 +25,11 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -75,7 +73,7 @@ public class LocateActivity extends FragmentActivity implements OnMapReadyCallba
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_locate);
 
-        root = FirebaseDatabase.getInstance().getReference();
+        root = FirebaseDatabase.getInstance().getReference().child("users");
 
         prefs = getSharedPreferences(Constants.PREFS,MODE_PRIVATE);
         if(prefs.getBoolean(Constants.ISBLOODBANK,false)){
@@ -101,7 +99,7 @@ public class LocateActivity extends FragmentActivity implements OnMapReadyCallba
             public void onPlaceSelected(Place place) {
                 // TODO: Get info about the selected place.
                 Log.i("Map", "Place: " + place.getName());
-                addMarkers(place.getLatLng());
+                addMarkers(place.getLatLng(), place.getName().toString());
             }
 
             @Override
@@ -113,11 +111,17 @@ public class LocateActivity extends FragmentActivity implements OnMapReadyCallba
     }
 
     private void onDonorFetchComplete(ArrayList<Donor> arrayList){
-
+        Log.e("DONORS", "FETCHED");
+        for (Donor donor : arrayList) {
+            addMarkers(new LatLng(donor.getLatitude(), donor.getLongitude()), donor.getDonorName());
+        }
     }
 
     private void onBankFetchComplete(ArrayList<BloodBank> arrayList){
-
+        Log.e("BLOOD BANKS", "FETCHED");
+        for (BloodBank bank : arrayList) {
+            addMarkers(new LatLng(bank.getBbLatitude(), bank.getBbLongitude()), bank.getBbName());
+        }
     }
 
 
@@ -144,7 +148,9 @@ public class LocateActivity extends FragmentActivity implements OnMapReadyCallba
                                 String location = snapshot.child("details").child("address").getValue().toString();
                                 String bloodGroup = snapshot.child("details").child("bloodgroup").getValue().toString();
                                 String phone = snapshot.child("details").child("phone").getValue().toString();
-                                donorArrayList.add(new Donor(name,location,bloodGroup,phone));
+                                double lat = Double.parseDouble(snapshot.child("details").child("lat").child("latitude").getValue().toString());
+                                double lng = Double.parseDouble(snapshot.child("details").child("lat").child("longitude").getValue().toString());
+                                donorArrayList.add(new Donor(name, location, bloodGroup, phone, lat, lng));
                             }
                         }
                         //updateUI();
@@ -179,7 +185,9 @@ public class LocateActivity extends FragmentActivity implements OnMapReadyCallba
                                 String bbname = snapshot.child("details").child("bloodbankname").getValue().toString();
                                 String location = snapshot.child("details").child("address").getValue().toString();
                                 String phone = snapshot.child("details").child("phone").getValue().toString();
-                                bankArrayList.add(new BloodBank(bbname,location,phone));
+                                double lat = Double.parseDouble(snapshot.child("details").child("lat").child("latitude").getValue().toString());
+                                double lng = Double.parseDouble(snapshot.child("details").child("lat").child("longitude").getValue().toString());
+                                bankArrayList.add(new BloodBank(bbname, location, phone, lat, lng));
 
                             }
                         }
@@ -225,7 +233,8 @@ public class LocateActivity extends FragmentActivity implements OnMapReadyCallba
                     Toast.makeText(LocateActivity.this, "Turn on Location Services", Toast.LENGTH_LONG).show();
                 else if (mMap.isMyLocationEnabled() && mMap.getMyLocation() != null) {
                     LatLng myLocation = new LatLng(mMap.getMyLocation().getLatitude(), mMap.getMyLocation().getLongitude());
-                    addMarkers(myLocation);
+                    addMarkers(myLocation, "Me");
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(myLocation, 15f));
                 }
                 return true;
             }
@@ -233,20 +242,15 @@ public class LocateActivity extends FragmentActivity implements OnMapReadyCallba
 
         if (mMap.isMyLocationEnabled() && mMap.getMyLocation() != null) {
             LatLng myLocation = new LatLng(mMap.getMyLocation().getLatitude(), mMap.getMyLocation().getLongitude());
-            addMarkers(myLocation);
+            addMarkers(myLocation, "Me");
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(myLocation, 15f));
         }
 
     }
 
-    private void addMarkers(LatLng location) {
-        mMap.clear();
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 14f));
-        LatLng loc1 = new LatLng(location.latitude - 0.0030, location.longitude + 0.0087);
-        mMap.addMarker(new MarkerOptions().position(loc1).title("Blood Bank"));
-        LatLng loc2 = new LatLng(location.latitude + 0.0057, location.longitude + 0.0092);
-        mMap.addMarker(new MarkerOptions().position(loc2).title("Blood Bank"));
-        LatLng loc3 = new LatLng(location.latitude - 0.0009, location.longitude - 0.0025);
-        mMap.addMarker(new MarkerOptions().position(loc3).title("Blood Bank"));
+    private void addMarkers(LatLng location, String tag) {
+        LatLng loc1 = new LatLng(location.latitude, location.longitude);
+        mMap.addMarker(new MarkerOptions().position(loc1).title(tag));
     }
 
     @Override
