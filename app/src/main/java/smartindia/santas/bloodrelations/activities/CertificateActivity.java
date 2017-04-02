@@ -10,17 +10,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
-import android.print.PrintJob;
 import android.print.PrintManager;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Toast;
-
 
 import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
@@ -43,19 +43,20 @@ public class CertificateActivity extends AppCompatActivity {
         String html_value= "<html xmlns=\\\"http://www.w3.org/1999/xhtml\\\">" +
                 "<head><meta http-equiv=\\\"Content-Type\\\" content=\\\"text/html; charset=iso-8859-1\\\">" +
                 "<title>Certificate <style>\n" +
-                "</style></title></head><body style=\\\"width:300px; color: #00000; \\\"><h1 style=\"font-size: 40px\">CERTIFICATE OF APPRECIATION</h1>\n" +
+                "</style></title></head><body style=\\\"width:300px; color: #00000; \\\"><h1 style=\"font-size: 40px; text-align: center\">CERTIFICATE OF APPRECIATION</h1>\n" +
                 "<p style=\"text-align: center; font-family: Times New Roman;\">\n" +
                 "\n" +
                 "Presented to\n" +
                 "\n" +
-                "Mr./Mrs./Miss ______________________________________________\n" +
+                " Mr./Mrs./Miss ______________________________________________\n" +
                 "\n" +
-                "for voluntary blood donation\n" +
+                " for voluntary blood donation\n" +
                 "\n" +
-                "We appreciate and thank you for your contribution \n" +
+                " We appreciate and thank you for your contribution \n" +
                 "towards this noble cause\n" +
                 "</p>\n" +
-                "<p style=\"text-align: right; font-family: Arial; font-size: 30px\">\n" +
+                "<br>\n" +
+                "<p style=\"text-align: right; font-family: Arial; font-size: 24px\">\n" +
                 "Blood Bank Director\n" +
                 "</p></body></html>";
 
@@ -69,8 +70,6 @@ public class CertificateActivity extends AppCompatActivity {
 
 
     public void createWebPrintJob(View view) {
-
-
 
         if (ActivityCompat.checkSelfPermission(CertificateActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(CertificateActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
@@ -137,7 +136,7 @@ public class CertificateActivity extends AppCompatActivity {
 
             // Create a print job with name and adapter instance
             String jobName = getString(R.string.app_name) + " Document";
-            PrintJob printJob = printManager.print(jobName, printAdapter,
+            printManager.print(jobName, printAdapter,
                     new PrintAttributes.Builder().build());
 
             // Save the job object for later status checking
@@ -146,6 +145,20 @@ public class CertificateActivity extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == EXTERNAL_STORAGE_PERMISSION_CONSTANT) {
+            if (grantResults[0] == PermissionChecker.PERMISSION_GRANTED)
+                try {
+                    createWebPrintJob(null);
+                } catch (SecurityException e) {
+                    Toast.makeText(this, "Storage permission is required to printf certificate or store it as PDF", Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+            else
+                Toast.makeText(this, "Storage permission is required to printf certificate or store it as PDF", Toast.LENGTH_LONG).show();
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
 
 }
