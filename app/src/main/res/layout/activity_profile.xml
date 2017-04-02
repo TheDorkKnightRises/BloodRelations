@@ -139,6 +139,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/app_padding"
                             android:text="@string/birthday"
+                            android:gravity="center"
                             android:id="@+id/birthday_text" />
 
                         <ImageButton
@@ -152,17 +153,18 @@
                     </LinearLayout>
 
                 </LinearLayout>
+
             </android.support.v7.widget.CardView>
 
         </LinearLayout>
     </ScrollView>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/profile_edit_done_fab"
+        android:id="@+id/locateFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:src="@drawable/svg_ic_done_white_24px" />
+        android:layout_gravity="bottom|right"
+        android:src="@drawable/svg_ic_locate_white_24px"
+        android:layout_margin="16dp" />
 
 </android.support.design.widget.CoordinatorLayout>
