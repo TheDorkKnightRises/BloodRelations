@@ -28,6 +28,7 @@ import smartindia.santas.bloodrelations.activities.ResponseActivity;
 
 public class CustomFireBaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "FirebaseMessageService";
+    private static int notifCount=0;
 
     /**
      * Called when message is received.
@@ -85,7 +86,7 @@ public class CustomFireBaseMessagingService extends FirebaseMessagingService {
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationManager.notify(1, notificationBuilder.build());
+        notificationManager.notify(notifCount++, notificationBuilder.build());
     }
 
 
