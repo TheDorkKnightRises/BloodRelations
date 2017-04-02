@@ -137,12 +137,14 @@ public class ProfileActivity extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                             if(snapshot.getKey().equals(user.getUid())){
-                                profileName.getEditText().setText(snapshot.child("details").child("firstname").getValue().toString());
-                                profileSurname.getEditText().setText(snapshot.child("details").child("surname").getValue().toString());
-                                profileBloodGroup.getEditText().setText(snapshot.child("details").child("bloodgroup").getValue().toString());
-                                profileAddress.getEditText().setText(snapshot.child("details").child("address").getValue().toString());
-                                profilePhone.getEditText().setText(snapshot.child("details").child("phone").getValue().toString());
-                                birthDateEditText.setText(snapshot.child("details").child("birthdate").getValue().toString());
+                                    profileName.getEditText().setText(snapshot.child("details").child("firstname").getValue().toString());
+                                    profileSurname.getEditText().setText(snapshot.child("details").child("surname").getValue().toString());
+                                if(snapshot.child("details").hasChild("bloodgroup"))
+                                    profileBloodGroup.getEditText().setText(snapshot.child("details").child("bloodgroup").getValue().toString());
+                                    profileAddress.getEditText().setText(snapshot.child("details").child("address").getValue().toString());
+                                    profilePhone.getEditText().setText(snapshot.child("details").child("phone").getValue().toString());
+                                if(snapshot.child("details").hasChild("birthdate"))
+                                    birthDateEditText.setText(snapshot.child("details").child("birthdate").getValue().toString());
                                 if(snapshot.child("details").hasChild("imageURL")){
                                     Picasso.with(profilePicture.getContext()).load(snapshot.child("details").child("imageURL").getValue().toString()).into(profilePicture);
                                 }
@@ -191,6 +193,9 @@ public class ProfileActivity extends AppCompatActivity {
                     if(!profileName.getEditText().getText().toString().equals("") && !profileSurname.getEditText().getText().toString().equals("") && !profilePhone.getEditText().getText().toString().equals("")
                             && !profileBloodGroup.getEditText().getText().toString().equals("") && !profileAddress.getEditText().getText().toString().equals("")
                             && !birthDateEditText.getText().toString().equals("")){
+                        SharedPreferences.Editor editor=getSharedPreferences(Constants.PREFS,MODE_PRIVATE).edit();
+                        editor.putBoolean(Constants.ISPROFILEFILLED,true);
+                        editor.apply();
                         startActivity(new Intent(ProfileActivity.this,MainActivity.class));
                         finish();
                     }
@@ -229,7 +234,8 @@ public class ProfileActivity extends AppCompatActivity {
                             if(snapshot.getKey().equals(user.getUid())){
                                 profileName.getEditText().setText(snapshot.child("details").child("firstname").getValue().toString());
                                 profileSurname.getEditText().setText(snapshot.child("details").child("surname").getValue().toString());
-                                profileBbName.getEditText().setText(snapshot.child("details").child("bloodbankname").getValue().toString());
+                                if(snapshot.child("details").hasChild("bloodbankname"))
+                                    profileBbName.getEditText().setText(snapshot.child("details").child("bloodbankname").getValue().toString());
                                 profileAddress.getEditText().setText(snapshot.child("details").child("address").getValue().toString());
                                 profilePhone.getEditText().setText(snapshot.child("details").child("phone").getValue().toString());
                                 if(snapshot.child("details").hasChild("imageURL")){
@@ -361,6 +367,9 @@ public class ProfileActivity extends AppCompatActivity {
         }
         if(!profileName.getEditText().getText().toString().equals("") && !profileSurname.getEditText().getText().toString().equals("") && !profilePhone.getEditText().getText().toString().equals("")
                 && !profileBbName.getEditText().getText().toString().equals("") && !profileAddress.getEditText().getText().toString().equals("")){
+            SharedPreferences.Editor editor=getSharedPreferences(Constants.PREFS,MODE_PRIVATE).edit();
+            editor.putBoolean(Constants.ISPROFILEFILLED,true);
+            editor.apply();
             startActivity(new Intent(ProfileActivity.this,MainActivity.class));
             finish();
         }

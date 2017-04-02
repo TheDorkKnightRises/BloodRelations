@@ -86,6 +86,10 @@ public class MainActivity extends AppCompatActivity {
         if (pref.getBoolean(Constants.DARK_THEME, false))
             setTheme(R.style.AppTheme_Dark_Translucent);
 
+        if(!pref.getBoolean(Constants.ISPROFILEFILLED,false)){
+            startActivity(new Intent(this,ProfileActivity.class));
+        }
+
         setContentView(R.layout.activity_main);
         bbMode = pref.getBoolean(Constants.ISBLOODBANK, false);
 
