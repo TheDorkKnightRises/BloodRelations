@@ -39,4 +39,8 @@ public class BloodBank {
     public double getBbLongitude() {
         return bbLongitude;
     }
+
+    public String getCoordinateString(){
+        return Double.toString(bbLatitude) + " " + Double.toString(bbLongitude);
+    }
 }

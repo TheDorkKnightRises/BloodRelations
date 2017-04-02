@@ -155,11 +155,15 @@ public class ProfileActivity extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                             if(snapshot.getKey().equals(user.getUid())){
+                                if(snapshot.child("details").hasChild("firstname"))
                                     profileName.getEditText().setText(snapshot.child("details").child("firstname").getValue().toString());
+                                if(snapshot.child("details").hasChild("surname"))
                                     profileSurname.getEditText().setText(snapshot.child("details").child("surname").getValue().toString());
                                 if(snapshot.child("details").hasChild("bloodgroup"))
                                     profileBloodGroup.getEditText().setText(snapshot.child("details").child("bloodgroup").getValue().toString());
+                                if(snapshot.child("details").hasChild("address"))
                                     profileAddress.getEditText().setText(snapshot.child("details").child("address").getValue().toString());
+                                if(snapshot.child("details").hasChild("phone"))
                                     profilePhone.getEditText().setText(snapshot.child("details").child("phone").getValue().toString());
                                 if(snapshot.child("details").hasChild("birthdate"))
                                     birthDateEditText.setText(snapshot.child("details").child("birthdate").getValue().toString());
@@ -219,12 +223,16 @@ public class ProfileActivity extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                             if(snapshot.getKey().equals(user.getUid())){
-                                profileName.getEditText().setText(snapshot.child("details").child("firstname").getValue().toString());
-                                profileSurname.getEditText().setText(snapshot.child("details").child("surname").getValue().toString());
+                                if(snapshot.child("details").hasChild("firstname"))
+                                    profileName.getEditText().setText(snapshot.child("details").child("firstname").getValue().toString());
+                                if(snapshot.child("details").hasChild("surname"))
+                                    profileSurname.getEditText().setText(snapshot.child("details").child("surname").getValue().toString());
                                 if(snapshot.child("details").hasChild("bloodbankname"))
                                     profileBbName.getEditText().setText(snapshot.child("details").child("bloodbankname").getValue().toString());
-                                profileAddress.getEditText().setText(snapshot.child("details").child("address").getValue().toString());
-                                profilePhone.getEditText().setText(snapshot.child("details").child("phone").getValue().toString());
+                                if(snapshot.child("details").hasChild("address"))
+                                    profileAddress.getEditText().setText(snapshot.child("details").child("address").getValue().toString());
+                                if(snapshot.child("details").hasChild("phone"))
+                                    profilePhone.getEditText().setText(snapshot.child("details").child("phone").getValue().toString());
                                 if(snapshot.child("details").hasChild("imageURL")){
                                     Picasso.with(profilePicture.getContext()).load(snapshot.child("details").child("imageURL").getValue().toString()).into(profilePicture);
                                 }

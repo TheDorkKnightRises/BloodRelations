@@ -326,7 +326,9 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this, HelpActivity.class));
                         break;
                     case R.id.menu_item_bloodbank_details:
-                        startActivity(new Intent(MainActivity.this, BloodBankDetailsActivity.class));
+                        Intent j = new Intent(MainActivity.this, BloodBankDetailsActivity.class);
+                        j.putExtra("coordinates","");
+                        startActivity(j);
                         break;
                     case R.id.menu_item_certificate:
                         startActivity(new Intent(MainActivity.this, CertificateActivity.class));

@@ -1,5 +1,6 @@
 package smartindia.santas.bloodrelations.adapters;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import smartindia.santas.bloodrelations.activities.BloodBankDetailsActivity;
 import smartindia.santas.bloodrelations.objects.BloodBank;
 import smartindia.santas.bloodrelations.R;
 
@@ -33,6 +35,11 @@ public class BloodBankRecyclerAdapter extends RecyclerView.Adapter<BloodBankRecy
 
         @Override
         public void onClick(View v) {
+            int position = getAdapterPosition();
+            mBloodBank = bloodBankList.get(position);
+            Intent i = new Intent(v.getContext(), BloodBankDetailsActivity.class);
+            i.putExtra("coordinates",mBloodBank.getCoordinateString());
+            v.getContext().startActivity(i);
         }
 
         public void bindIndustry(BloodBank bloodBank) {
