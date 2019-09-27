@@ -25,7 +25,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
+import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
 
 /**
@@ -35,7 +37,7 @@ import smartindia.santas.bloodrelations.R;
 public class SignUpActivity extends AppCompatActivity{
 
 
-    EditText emailEdiText ,passwordEditText;
+    EditText emailEdiText ,passwordEditText,name_editText;
     Button signupButton;//loginButton,;
     private FirebaseAuth firebaseAuth;
     private  FirebaseAuth.AuthStateListener authStateListener;
@@ -45,11 +47,15 @@ public class SignUpActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getSharedPreferences(Constants.PREFS, MODE_PRIVATE).getBoolean(Constants.DARK_THEME, false))
+            setTheme(R.style.AppTheme_Dark_NoActionBar);
         setContentView(R.layout.activity_sign_up);
+
 
         emailEdiText = (EditText)findViewById(R.id.email_editText);
         passwordEditText =(EditText)findViewById(R.id.password_editText);
         signupButton= (Button)findViewById(R.id.signinButton);
+        name_editText = (EditText)findViewById(R.id.name_editText);
         //loginButton = (Button)findViewById(R.id.loginButton);
         //signout = (Button)findViewById(R.id.signout);
         /*signout.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +71,13 @@ public class SignUpActivity extends AppCompatActivity{
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null){
+                    String name = name_editText.getText().toString();
+                    if(!name.equals("")){
+                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                .setDisplayName(name).build();
+                        user.updateProfile(profileUpdates);
+                    }
+
                     Toast.makeText(SignUpActivity.this,user.getUid().toString(),Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(SignUpActivity.this,UserTypeActivity.class));
                 }
@@ -88,15 +101,7 @@ public class SignUpActivity extends AppCompatActivity{
             }
         });
 
-
-        /*Google SignUp*/
-
-
     }
-
-
-
-
 
     public void signUP(){
 
@@ -106,7 +111,7 @@ public class SignUpActivity extends AppCompatActivity{
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Toast.makeText(getApplicationContext(),"createUserWithEmail:onComplete:" + task.isSuccessful(),Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(),"createUserWithEmail:onComplete:" + task.isSuccessful(),Toast.LENGTH_SHORT).show();
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.

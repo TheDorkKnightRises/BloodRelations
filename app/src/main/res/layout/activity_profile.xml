@@ -1,161 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="smartindia.santas.bloodrelations.activities.ProfileActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:background="@color/colorPrimary">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:paddingBottom="24dp">
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:id="@+id/profile_image"
-                android:src="@drawable/ic_account_circle_black_24dp"
-                />
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_photo_camera_black_24dp"
-                android:background="@android:color/transparent"
-                android:layout_alignBottom="@+id/profile_image"
-                android:layout_alignRight="@+id/profile_image"
-                android:scaleX="0.75"
-                android:scaleY="0.75"
-                android:onClick="getPicture"/>
-        </RelativeLayout>
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:id="@+id/profile_name">
-
-                <android.support.design.widget.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Name"/>
-
-            </android.support.design.widget.TextInputLayout>
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:id="@+id/profile_surname">
-
-                <android.support.design.widget.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Surname"/>
-
-            </android.support.design.widget.TextInputLayout>
-            </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <android.support.design.widget.TextInputLayout
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:id="@+id/profile_email">
-
-            <android.support.design.widget.TextInputEditText
-                android:layout_width="match_parent"
+            android:paddingBottom="96dp"
+            android:clipToPadding="false"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Email"
-                android:inputType="textEmailAddress"/>
-
-        </android.support.design.widget.TextInputLayout>
-            </android.support.v7.widget.CardView>
+                android:layout_gravity="center_horizontal"
+                android:paddingBottom="24dp">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/profile_image"
+                    android:onClick="getPicture"
+                    android:src="@drawable/ic_account_circle_black_24dp"
+                    />
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add_a_photo_grey_24dp"
+                    android:background="@android:color/transparent"
+                    android:layout_alignBottom="@+id/profile_image"
+                    android:layout_alignRight="@+id/profile_image"
+                    android:paddingRight="10dp"/>
+            </RelativeLayout>
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardElevation="4dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:id="@+id/profile_phone">
+                    android:padding="@dimen/app_padding"
+                    android:orientation="vertical">
 
-                <android.support.design.widget.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Phone No"
-                    android:inputType="number"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:id="@+id/profile_name">
 
-            </android.support.design.widget.TextInputLayout>
+                            <android.support.design.widget.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/name_profile"
+                                android:inputType="textCapSentences"/>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:id="@+id/profile_blood_group">
+                        </android.support.design.widget.TextInputLayout>
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:id="@+id/profile_surname">
 
-                <android.support.design.widget.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Blood Group"/>
+                            <android.support.design.widget.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/surname_profile"
+                                android:inputType="textCapSentences"/>
 
-            </android.support.design.widget.TextInputLayout>
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:id="@+id/profile_phone">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/phone_no_profile"
+                                android:inputType="number"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:id="@+id/profile_blood_group">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/blood_group_profile"/>
+
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:id="@+id/profile_address">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/enter_address"/>
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="2"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/app_padding"
+                            android:text="@string/birthday"
+                            android:gravity="center"
+                            android:id="@+id/birthday_text" />
+
+                        <ImageButton
+                            android:id="@+id/birthday_button"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_date_range_red_24dp"
+                            style="@style/Widget.AppCompat.Button.Borderless.Colored"/>
+
+                    </LinearLayout>
+
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:id="@+id/profile_address">
 
-            <android.support.design.widget.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter Address"/>
-
-        </android.support.design.widget.TextInputLayout>
             </android.support.v7.widget.CardView>
 
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Birthday"
-            android:id="@+id/birthday_edittext" />
-            </android.support.v7.widget.CardView>
-
+        </LinearLayout>
+    </ScrollView>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/profile_edit_done_fab"
+        android:id="@+id/locateFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:src="@drawable/svg_ic_done_black_24px" />
+        android:layout_gravity="bottom|right"
+        android:src="@drawable/svg_ic_locate_white_24px"
+        android:layout_margin="16dp" />
 
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

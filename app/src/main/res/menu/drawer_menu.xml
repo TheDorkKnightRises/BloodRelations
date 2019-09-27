@@ -2,8 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group
-        android:id="@+id/drawer_items"
-        android:checkableBehavior="single">
+        android:id="@+id/drawer_items">
 
         <item
             android:title="@string/profile"
@@ -13,7 +12,7 @@
         <item
             android:title="@string/locate"
             android:id="@+id/menu_item_locate"
-            android:icon="@drawable/svg_ic_locate_black_24px"/>
+            android:icon="@drawable/svg_ic_locate_white_24px"/>
 
         <item
             android:title="@string/form"
@@ -33,7 +32,26 @@
             android:title="@string/bloodbank_details"
             android:id="@+id/menu_item_bloodbank_details"
             android:icon="@drawable/ic_work_black_24dp"/>
+        <item
+            android:title="@string/certificate"
+            android:id="@+id/menu_item_certificate"
+            android:icon="@drawable/ic_library_books_black_24dp"/>
+        <item
+            android:title="@string/settings"
+            android:id="@+id/menu_item_settings"
+            android:icon="@drawable/ic_settings_black_24dp"/>
 
+    </group>
+
+    <group android:id="@+id/group1">
+        <item
+            android:title="@string/emergency"
+            android:id="@+id/menu_item_emergency"
+            android:icon="@drawable/ic_call_black_24dp"/>
+        <item
+            android:title="@string/about"
+            android:id="@+id/menu_item_about"
+            android:icon="@drawable/svg_ic_info_outline_black_48px"/>
     </group>
 
 </menu>

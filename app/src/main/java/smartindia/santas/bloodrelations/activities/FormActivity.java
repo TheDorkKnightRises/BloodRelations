@@ -1,7 +1,10 @@
 package smartindia.santas.bloodrelations.activities;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +17,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
 
 public class FormActivity extends AppCompatActivity {
@@ -32,7 +36,10 @@ public class FormActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getSharedPreferences(Constants.PREFS, MODE_PRIVATE).getBoolean(Constants.DARK_THEME, false))
+            setTheme(R.style.AppTheme_Dark);
         setContentView(R.layout.activity_form);
+
 
         ques1_ans = (EditText)findViewById(R.id.ques1);
         ques2 = (RadioGroup)findViewById(R.id.ques2);
@@ -108,6 +115,26 @@ public class FormActivity extends AppCompatActivity {
                             break;
                     }
                 }
+
+                int message;
+                if (ans8.equals(getString(R.string.yes_rb))||ans7.equals(getString(R.string.yes_rb))||ans6.equals(getString(R.string.yes_rb))||ans5.equals(getString(R.string.yes_rb))||ans4.equals(getString(R.string.yes_rb))) {
+                    message = R.string.blacklist;
+                } else {
+                    message = R.string.form_verify;
+                }
+
+                    AlertDialog dialog = new AlertDialog.Builder(FormActivity.this)
+                            .setMessage(message)
+                            .setPositiveButton(R.string.take_to_map, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    startActivity(new Intent(FormActivity.this, LocateActivity.class));
+                                    finish();
+                                }
+                            })
+                            .create();
+                    dialog.show();
+
             }
         });
     }

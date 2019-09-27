@@ -10,12 +10,16 @@ public class Donor {
     private String donorLocation;
     private String donorBloodGroup;
     private String donorPhone;
+    private double latitude;
+    private double longitude;
 
-    public Donor(String donorName, String donorLocation, String donorBloodGroup, String donorPhone) {
+    public Donor(String donorName, String donorLocation, String donorBloodGroup, String donorPhone, double lat, double lng) {
         this.donorName = donorName;
         this.donorLocation = donorLocation;
         this.donorBloodGroup = donorBloodGroup;
         this.donorPhone = donorPhone;
+        this.latitude = lat;
+        this.longitude = lng;
     }
 
     public String getDonorName() {
@@ -32,5 +36,13 @@ public class Donor {
 
     public String getDonorPhone() {
         return donorPhone;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
     }
 }

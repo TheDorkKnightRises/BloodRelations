@@ -21,7 +21,12 @@ public class Constants {
     public static final String BLOOD_GROUP = "group";
     public static final String DOB = "dob";
     public static final String ISBLOODBANK = "isbb";
+    public static final String ISPROFILEFILLED = "ispf";
 
 
-
+    public static final String DARK_THEME = "dark_theme";
+    public static final String NOTIFICATIONS = "notifications_enabled";
+    public static final String PROFILE_IMAGE = "profile_image";
+    public static final String CONTACT = "emergency_contact";
+    public static final String ISFORMFILLED = "is_form_filled";
 }

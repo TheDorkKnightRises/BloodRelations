@@ -22,6 +22,10 @@ function listenForNotificationRequests() {
     sendNotificationToUser(
       request.username, 
       request.message,
+      request.latitude,
+      request.longitude,
+      request.bloodgroup,
+      request.quantity,
       function() {
         requestSnapshot.ref.remove();
       }
@@ -31,7 +35,7 @@ function listenForNotificationRequests() {
   });
 };
 
-function sendNotificationToUser(username, message, onSuccess) {
+function sendNotificationToUser(username, message, latitude, longitude, bloodgroup, quantity, onSuccess) {
   console.error("Message from " + username + " : " + message);
   request({
     url: 'https://fcm.googleapis.com/fcm/send',
@@ -41,9 +45,13 @@ function sendNotificationToUser(username, message, onSuccess) {
       'Authorization': 'key='+API_KEY
     },
     body: JSON.stringify({
-      notification: {
+      data: {
         title: username,
-        body: message
+        body: message,
+        lat: latitude,
+        lng: longitude,
+        grp: bloodgroup,
+        qty: quantity
       },
       to : '/topics/notifs'
     })

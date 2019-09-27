@@ -18,8 +18,9 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
-import smartindia.santas.bloodrelations.activities.MainActivity;
+import smartindia.santas.bloodrelations.activities.ResponseActivity;
 
 /**
  * Created by DELL on 31/03/2017.
@@ -27,6 +28,7 @@ import smartindia.santas.bloodrelations.activities.MainActivity;
 
 public class CustomFireBaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "FirebaseMessageService";
+    private static int notifCount=0;
 
     /**
      * Called when message is received.
@@ -48,14 +50,13 @@ public class CustomFireBaseMessagingService extends FirebaseMessagingService {
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
+            sendNotification(remoteMessage.getData().get("title"), remoteMessage.getData().get("body"));
         }
 
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
-
-        sendNotification(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
 
     }
 
@@ -65,8 +66,10 @@ public class CustomFireBaseMessagingService extends FirebaseMessagingService {
      */
 
     private void sendNotification(String messageTitle, String messageBody) {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        if (!getSharedPreferences(Constants.PREFS, MODE_PRIVATE).getBoolean(Constants.NOTIFICATIONS, true))
+            return;
+        Intent intent = new Intent(this, ResponseActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
                 PendingIntent.FLAG_ONE_SHOT);
 
@@ -83,7 +86,7 @@ public class CustomFireBaseMessagingService extends FirebaseMessagingService {
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationManager.notify(0, notificationBuilder.build());
+        notificationManager.notify(notifCount++, notificationBuilder.build());
     }
 
 

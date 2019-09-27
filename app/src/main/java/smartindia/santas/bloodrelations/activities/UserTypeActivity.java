@@ -14,6 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
+import smartindia.santas.bloodrelations.objects.User;
 
 
 public class UserTypeActivity extends AppCompatActivity {
@@ -28,7 +29,10 @@ public class UserTypeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getSharedPreferences(Constants.PREFS, MODE_PRIVATE).getBoolean(Constants.DARK_THEME, false))
+            setTheme(R.style.AppTheme_Dark);
         setContentView(R.layout.activity_usertype);
+
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -40,7 +44,8 @@ public class UserTypeActivity extends AppCompatActivity {
                 isBloodBank = true;
                 push();
                 setsharedpreference();
-                Intent i = new Intent(UserTypeActivity.this, MainActivity.class);
+                Intent i = new Intent(UserTypeActivity.this, ProfileActivity.class);
+                i.putExtra("isfromsignup",true);
                 startActivity(i);
                 finish();
 
@@ -54,7 +59,8 @@ public class UserTypeActivity extends AppCompatActivity {
                 isBloodBank = false;
                 push();
                 setsharedpreference();
-                Intent j = new Intent(UserTypeActivity.this, BloodBankListActivity.class);
+                Intent j = new Intent(UserTypeActivity.this, ProfileActivity.class);
+                j.putExtra("isfromsignup",true);
                 startActivity(j);
                 finish();
 
@@ -72,7 +78,7 @@ public class UserTypeActivity extends AppCompatActivity {
 
     public void push(){
         databaseReference = firebaseDatabase.getReference().child("users").child(user.getUid()).child("isBloodBank");
-        databaseReference.setValue(isBloodBank);
+        databaseReference.setValue(Boolean.toString(isBloodBank));
 
     }
 }

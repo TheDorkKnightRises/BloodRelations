@@ -19,6 +19,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
 
 public class FeedbackActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
@@ -31,7 +32,10 @@ public class FeedbackActivity extends AppCompatActivity implements AdapterView.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getSharedPreferences(Constants.PREFS, MODE_PRIVATE).getBoolean(Constants.DARK_THEME, false))
+            setTheme(R.style.AppTheme_Dark);
         setContentView(R.layout.activity_feedback);
+
 
         subject= (TextInputEditText)findViewById(R.id.subject);
         description=(TextInputEditText)findViewById(R.id.description);
@@ -50,7 +54,6 @@ public class FeedbackActivity extends AppCompatActivity implements AdapterView.O
         categories.add("Question");
         categories.add("Problem");
 
-
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item, categories);
 
@@ -67,7 +70,7 @@ public class FeedbackActivity extends AppCompatActivity implements AdapterView.O
         item = parent.getItemAtPosition(position).toString();
 
         // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+        Toast.makeText(parent.getContext(), item +" Selected", Toast.LENGTH_LONG).show();
 
     }
 
@@ -76,15 +79,9 @@ public class FeedbackActivity extends AppCompatActivity implements AdapterView.O
 
     }
 
-
-
-
     public void nextPage(View view){
         String emailSubject = subject.getText().toString();
         String emailBody = description.getText().toString();
-
-
-
 
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                 "mailto","sihbloodbank@gmail.com", null));

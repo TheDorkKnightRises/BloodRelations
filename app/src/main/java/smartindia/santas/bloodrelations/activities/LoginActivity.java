@@ -4,26 +4,25 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.LoaderManager;
+import android.app.ProgressDialog;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.transition.ChangeBounds;
 import android.support.transition.Scene;
 import android.support.transition.Transition;
 import android.support.transition.TransitionManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,13 +46,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,15 +60,11 @@ import java.util.List;
 import smartindia.santas.bloodrelations.Constants;
 import smartindia.santas.bloodrelations.R;
 
-import static android.Manifest.permission.READ_CONTACTS;
-
 /**
  * Created by DELL on 31/03/2017.
  */
 
 public class LoginActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
-
-    private static final int REQUEST_READ_CONTACTS = 0;
 
     Boolean backPressFlag = false;
     SharedPreferences pref;
@@ -84,9 +79,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
     SignInButton googleButton;
 
 
-    FirebaseAuth firebaseAuth;
-    FirebaseAuth.AuthStateListener authStateListener;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener authStateListener;
+    private ProgressDialog dialog;
+    boolean check;
 
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    private ValueEventListener valueEventListener;
+    private FirebaseUser user;
+    private String isBank;
 
     private static final int RC_SIGN_IN = 9001;
 
@@ -108,8 +110,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                     Toast.makeText(LoginActivity.this,"Signed in",Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(LoginActivity.this,MainActivity.class));
                     finish();
-                }
-                else {
+                } else {
                     //Toast.makeText(getApplicationContext(), "onAuthStateChanged:signed_out", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -120,6 +121,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if(user != null){
             Toast.makeText(LoginActivity.this,"Signed in",Toast.LENGTH_SHORT).show();
+            SharedPreferences prefs = getSharedPreferences(Constants.PREFS,MODE_PRIVATE);
             startActivity(new Intent(LoginActivity.this,MainActivity.class));
             finish();
         }
@@ -138,7 +140,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                         // Set up the login form.
                         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
                         mEmailView.setDropDownBackgroundResource(R.color.white);
-                        populateAutoComplete();
 
                         mPasswordView = (EditText) findViewById(R.id.password);
                         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -152,7 +153,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                             }
                         });
 
-                        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+                        final Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
                         mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -221,10 +222,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
         }
 
-
-
-
-
     }
 
     private void googleSignIn() {
@@ -246,9 +243,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
             }
             else{
                 Toast.makeText(getApplicationContext(),"Google SignIn Failed",Toast.LENGTH_SHORT).show();
+                showProgress(false);
             }
         }
     }
+
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount account){
 
@@ -257,55 +256,115 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Toast.makeText(getApplicationContext(),"SignInWithCredential Complete "+task.isSuccessful(),Toast.LENGTH_SHORT).show();
-                        /*if(!task.isSuccessful()){
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        //new MyAsyncTask(user.getUid());
+                        startActivity(new Intent(LoginActivity.this,UserTypeActivity.class));
+                        //Toast.makeText(getApplicationContext(),"SignInWithCredential Complete "+task.isSuccessful(),Toast.LENGTH_SHORT).show();
 
-                        }*/
+
                     }
                 });
     }
 
-    private void populateAutoComplete() {
-        if (!mayRequestContacts()) {
-            return;
+
+    private class FetchTask extends AsyncTask<Void,Void,String>{
+
+        DatabaseReference root,isBloodBank_root;
+        ValueEventListener listener;
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            dialog = new ProgressDialog(LoginActivity.this);
+            dialog.show();
+            String uid = firebaseAuth.getCurrentUser().getUid();
+
+            root = FirebaseDatabase.getInstance().getReference();
+
+            isBloodBank_root  = root.child("users").child(uid).child("isBloodBank");
+
+
         }
 
-        getLoaderManager().initLoader(0, null, this);
+        @Override
+        protected String doInBackground(Void... voids) {
+
+            listener = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String value = dataSnapshot.getValue().toString();
+                    updatePrefs(value);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            };
+
+            isBloodBank_root.addValueEventListener(listener);
+
+            return null;
+        }
+
     }
 
-    private boolean mayRequestContacts() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return true;
+    private class MyAsyncTask extends AsyncTask<Void,Void,Void>{
+
+        String UID;
+        MyAsyncTask(String UID){
+            this.UID = UID;
         }
-        if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
-            return true;
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            DatabaseReference root = FirebaseDatabase.getInstance().getReference();
+            ValueEventListener listener = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    check = dataSnapshot.hasChild(UID);
+                    dialog.dismiss();
+                    if(check){
+                        String value = dataSnapshot.child(UID).child(Constants.ISBLOODBANK).toString();
+                        boolean isBloodBank = value.equals("true");
+                        SharedPreferences preferences = getSharedPreferences(Constants.PREFS,MODE_PRIVATE);
+                        SharedPreferences.Editor editor=preferences.edit();
+                        editor.putBoolean(Constants.ISBLOODBANK,isBloodBank);
+                        editor.putBoolean(Constants.ISPROFILEFILLED,true);
+                        editor.apply();
+                        startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                    }
+                    else{
+                        startActivity(new Intent(LoginActivity.this,UserTypeActivity.class));
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            };
+            root.addValueEventListener(listener);
+            return null;
         }
-        if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
-            Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(android.R.string.ok, new View.OnClickListener() {
-                        @Override
-                        @TargetApi(Build.VERSION_CODES.M)
-                        public void onClick(View v) {
-                            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-                        }
-                    });
-        } else {
-            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-        }
-        return false;
+
     }
 
-    /**
-     * Callback received when a permissions request has been completed.
-     */
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_READ_CONTACTS) {
-            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                populateAutoComplete();
-            }
-        }
+    private void updatePrefs(String value){
+        boolean isBloodBank;
+        if(value.equals("true")) isBloodBank = true;
+        else isBloodBank=false;
+
+        pref = getSharedPreferences(Constants.PREFS,MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putBoolean(Constants.ISBLOODBANK,isBloodBank);
+        editor.apply();
+
+        dialog.dismiss();
+        //startActivity(new Intent(LoginActivity.this,UserTypeActivity.class));
+
     }
 
 
@@ -351,8 +410,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
             //true
             showProgress(true);
             login();
-            //startActivity(new Intent(LoginActivity.this,MainActivity.class));
-            //finish();
 
         }
 
@@ -366,11 +423,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Toast.makeText(getApplicationContext(),"signinUserWithEmail:onComplete:" + task.isSuccessful(),Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(),"signinUserWithEmail:onComplete:" + task.isSuccessful(),Toast.LENGTH_SHORT).show();
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener
                         if (!task.isSuccessful()) {
+                            showProgress(false);
                             try {
                                 String msg = task.getResult().toString();
                                 Toast.makeText(getApplicationContext(), "Unsuccessful" + msg, Toast.LENGTH_SHORT).show();
@@ -457,8 +515,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(LoginActivity.this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(LoginActivity.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
         mEmailView.setAdapter(adapter);
@@ -490,4 +547,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        if (backPressFlag)
+            finishAffinity();
+        else {
+            Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show();
+            backPressFlag = true;
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    backPressFlag = false;
+                }
+            }, 2000);
+        }
+    }
 }

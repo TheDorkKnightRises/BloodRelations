@@ -6,10 +6,12 @@
     android:layout_width="match_parent"
 
     android:layout_height="175dp"
-    android:paddingLeft="20dp"
-    android:background="@drawable/back">
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:background="@color/colorPrimaryDark">
 
     <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginTop="32dp"
@@ -17,16 +19,18 @@
         android:layout_marginBottom="12dp"/>
 
     <TextView
+        android:id="@+id/header_name_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Username"
+        android:text="@string/username"
         android:textSize="15sp"
         android:textColor="@android:color/white"/>
 
     <TextView
+        android:id="@+id/header_subtext_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Blood Bank"
+        android:text="@string/blood_bank"
         android:textSize="12sp"
         android:textColor="@android:color/darker_gray"
         android:gravity="center_horizontal"/>

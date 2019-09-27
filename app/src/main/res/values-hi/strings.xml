@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">रक्त संबंध</string>
+
+    <string name="drawer_open">नेविगेशन ड्रॉवर खोलें</string>
+    <string name="drawer_close">नेविगेशन ड्रॉवर को बंद करें</string>
+
+    <string name="error">त्रुटि</string>
+    <string name="please_wait">कृपया प्रतीक्षा करें</string>
+    <string name="prompt_email">ईमेल</string>
+    <string name="prompt_password">पासवर्ड</string>
+
+
+    <string name="action_sign_in">वेबसाइट्स में साइन इन करें</string>
+    <string name="action_sign_in_short">साइन इन करें</string>
+    <string name="action_sign_up_short">साइन अप करें</string>
+
+    <string name="no_account">अभी तक कोई खाता नहीं है?</string>
+
+    <string name="permission_rationale">"ई-मेलिंग पूर्णता प्रदान करने के लिए संपर्क अनुमतियां आवश्यक हैं."</string>
+
+    <string name="error_invalid_email">यह ईमेल पता अमान्य है</string>
+    <string name="error_invalid_password">यह पासवर्ड बहुत छोटा है</string>
+    <string name="error_invalid_phone">यह फ़ोन नंबर अमान्य है</string>
+    <string name="error_incorrect_password">यह पासवर्ड गलत है</string>
+    <string name="error_field_required">यह फ़ील्ड आवश्यक है</string>
+
+    <string name="home">घर</string>
+    <string name="profile">
+प्रोफाइल</string>
+    <string name="locate">
+पता लगाएँ</string>
+    <string name="form">प्रपत्र</string>
+    <string name="language">
+भाषा</string>
+    <string name="faqs">पूछे जाने वाले प्रश्न
+</string>
+    <string name="feedback">प्रतिक्रिया</string>
+    <string name="help">मदद</string>
+    <string name="bloodbank_details">
+रक्तबैंक विवरण</string>
+    <string name="title_activity_locate">
+नक्शा</string>
+    <string name="prompt_name">नाम</string>
+    <string name="submit_form">फार्म जमा करें</string>
+    <string name="app_settings">एप्लिकेशन सेटिंग</string>
+    <string name="blood_bank_name">
+रक्त बैंक नाम</string>
+    <string name="location">
+स्थान</string>
+    <string name="whole_blood_wb">संपूर्ण रक्त (डब्ल्यूबी)</string>
+    <string name="opositive">O+</string>
+    <string name="onegative">O-</string>
+    <string name="blood_group">रक्त समूह:</string>
+    <string name="quantity">
+मात्रा</string>
+    <string name="submit">
+जमा करें</string>
+    <string name="subject_hint">विषय</string>
+    <string name="_10">10</string>
+    <string name="description">
+विवरण</string>
+    <string name="type">
+प्रकार</string>
+    <string name="rating">रेटिंग</string>
+    <string name="_1_occupation">1. व्यवसाय</string>
+    <string name="_2_have_you_had_a_blood_transfusion">2. क्या आपके पास रक्त आधान है?</string>
+    <string name="_3_have_you_had_any_vaccinations_or_other_shots">3. क्या आपके पास कोई टीकाकरण या अन्य शॉट्स हैं?</string>
+    <string name="have_you_ever">
+क्या आपने कभी</string>
+    <string name="_4_had_jaundice_hepatitis">4. पीलिया / हेपेटाइटिस होने पर</string>
+    <string name="_5_had_a_positive_test_for_hiv_hbsag_hcv">5.
+एचआईवी / एचबीएसएजी / एचसीवी के लिए एक सकारात्मक परीक्षण था?</string>
+    <string name="_6_had_any_cardiac_lung_problems">6. क्या कोई हृदय / फेफड़ों की समस्या है?</string>
+    <string name="_7_had_a_bleeding_condition_or_blood_disease">7.
+एक खून बह रहा हालत या रक्त की बीमारी थी?</string>
+    <string name="_8_do_you_have_hypertension_or_blood_disease">8.
+क्या आपको उच्च रक्तचाप या रक्तचाप है</string>
+    <string name="yes_rb">
+हाँ</string>
+    <string name="no_rb">
+नहीं</string>
+    <string name="in_the_past_6_months">
+पिछले 6 महीनों में</string>
+    <string name="send_a_request">
+एक अनुरोध भेजें</string>
+    <string name="name_profile">नाम</string>
+    <string name="surname_profile">
+उपनाम</string>
+    <string name="phone_no_profile">
+फोन नंबर</string>
+    <string name="blood_group_profile">
+रक्त समूह</string>
+    <string name="enter_address">
+पता दर्ज करें</string>
+    <string name="birthday">जन्मदिन</string>
+    <string name="name_of_poc">" POC का नाम"</string>
+    <string name="surname_of_poc">
+POC का उपनाम</string>
+    <string name="blood_bank_name_profile">
+रक्त बैंक का नाम</string>
+    <string name="phone">
+फ़ोन</string>
+    <string name="use_a_dark_theme">एक अंधेरे विषय का उपयोग करें</string>
+    <string name="show_push_notifications">"पुश सूचनाएं दिखाएं "</string>
+    <string name="sign_up">साइन अप करें</string>
+    <string name="are_you_a_blood_bank">क्या आप एक ब्लड बैंक हैं?</string>
+    <string name="blood_bank_location">
+रक्त बैंक स्थान</string>
+    <string name="blood_bank_phone">
+रक्त बैंक फोन</string>
+    <string name="donor_name">दाता का नाम</string>
+    <string name="donor_location">दाता स्थान</string>
+    <string name="donor_blood_group">
+दाता रक्त समूह</string>
+    <string name="certificate">
+प्रमाण पत्र</string>
+    <string name="settings">
+सेटिंग्स</string>
+    <string name="username">उपयोगकर्ता नाम</string>
+    <string name="blood_bank">
+रक्त बैंक</string>
+    <string name="save">बचाना</string>
+    <string name="backpress">कृपया सभी स्थाान भरे</string>
+    <string name="change_language">भाषा बदलो</string>
+    <string name="google_maps_key"></string>
+    <string name="language_settings">" वर्तमान में केवल अंग्रेज़ी और हिंदी समर्थित हैं"</string>
+    <string name="no_network">कोई इंटरनेट कनेक्टिविटी नहीं विशेषताएं सीमित हो सकती हैं</string>
+    <string name="logout">" लोग आउट"</string>
+    <string name="emergency">आपातकालीन</string>
+    <string name="about">जानकारी</string>
+</resources>
