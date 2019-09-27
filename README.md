@@ -8,7 +8,7 @@ This app was developed by a team consisting of six students of Second Year Compu
 - Neil Daftary
 - Tejas Bhitle
 - Ananya Navelkar
-- Sai Yerremreddy
+- Sai Yerramreddy
 
 ## Problem Statement
 Mobile App for real time inventory of blood availability during disasters, in the affected area or close proximity and for contacting blood and platelet donors when needed to donate at the nearest blood bank utilizing geo tracking
